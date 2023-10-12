@@ -86,7 +86,10 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 			if (genres && xsrfToken) {
 				try {
 					console.log(genres);
-					const promises = genres.map((genre) => getMoviesByGenre(genre));
+					const promises = genres.map((genre, index) => {
+						getMoviesByGenre(genre);
+						console.log(index);
+					});
 					await Promise.all(promises);
 					setIsLoading(false);
 				} catch (err) {
