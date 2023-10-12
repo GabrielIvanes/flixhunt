@@ -42,15 +42,13 @@ function App() {
 	useEffect(() => {
 		async function getBaseUrl() {
 			try {
-				const response = await axios.get(
-					'http://localhost:3000/api/TMDB/baseUrl',
-					{
-						headers: {
-							'x-xsrf-token': xsrfToken,
-						},
-						withCredentials: true,
-					}
-				);
+				const response = await axios.get(`${baseUrlBack}/api/TMDB/baseUrl`, {
+					headers: {
+						'x-xsrf-token': xsrfToken,
+					},
+					withCredentials: true,
+				});
+				console.log(response.data.baseUrl);
 				setUrl(response.data.baseUrl);
 			} catch (err) {
 				console.error(err);
@@ -64,12 +62,9 @@ function App() {
 	useEffect(() => {
 		async function fetchToken() {
 			try {
-				const response = await axios.get(
-					'http://localhost:3000/api/user/getId',
-					{
-						withCredentials: true,
-					}
-				);
+				const response = await axios.get(`${baseUrlBack}/api/user/getId`, {
+					withCredentials: true,
+				});
 				if (response.data.id !== '') {
 					setUserId(response.data.id);
 					if (location.pathname === '/login') navigate('/');
