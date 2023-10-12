@@ -81,11 +81,14 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 	}, []);
 
 	useEffect(() => {
-		if (genres && xsrfToken) {
-			Promise.all(genres.map((genre) => getMoviesByGenre(genre)))
-				.then(() => setIsLoading(false))
-				.catch((err) => console.error(err));
+		async function getMoviesByGenresCall() {
+			if (genres && xsrfToken) {
+				await Promise.all(genres.map((genre) => getMoviesByGenre(genre)))
+					.then(() => setIsLoading(false))
+					.catch((err) => console.error(err));
+			}
 		}
+		getMoviesByGenresCall();
 	}, [genres]);
 
 	async function getMoviesByGenre(genre: Genre) {
@@ -209,14 +212,6 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 			console.error(err);
 		}
 	}
-
-	useEffect(() => {
-		if (elementsListHome.length > 15) {
-			setIsLoading(false);
-		} else {
-			setIsLoading(true);
-		}
-	}, [elementsListHome]);
 
 	return (
 		<div className='lists-wrapper'>
