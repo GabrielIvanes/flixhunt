@@ -210,6 +210,14 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 		}
 	}
 
+	useEffect(() => {
+		if (elementsListHome.length > 15) {
+			setIsLoading(false);
+		} else {
+			setIsLoading(true);
+		}
+	}, [elementsListHome]);
+
 	return (
 		<div className='lists-wrapper'>
 			{!isLoading ? (
