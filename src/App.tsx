@@ -27,7 +27,7 @@ function App() {
 	const [xsrfToken, setXsrfToken] = useState<string>('');
 
 	// const baseUrlBack = 'http://localhost:3000';
-	const baseUrlBack = 'https://flixhunt-api.onrender.com';
+	const baseUrlBack = 'https://flixhunt-api.ivanes.fr';
 
 	useEffect(() => {
 		if (!xsrfToken) {
