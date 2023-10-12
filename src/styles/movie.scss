@@ -1,0 +1,342 @@
+.movie-page-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 40px;
+}
+.movie-page-wrapper .movie {
+	position: relative;
+}
+.movie-page-wrapper .movie {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0 40px 0;
+	position: relative;
+}
+.movie-page-wrapper .movie .main-informations {
+	width: 92%;
+	display: flex;
+	height: 500px;
+	z-index: 1;
+}
+.movie-page-wrapper .movie .main-informations .left {
+	width: 25%;
+}
+.movie-page-wrapper .movie .main-informations .left > img {
+	width: 333px;
+	height: 500px;
+}
+.movie-page-wrapper .movie .main-informations .right {
+	margin-left: 20px;
+	width: 75%;
+	height: 500px;
+	max-height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+}
+.movie-page-wrapper .providers {
+	position: absolute;
+	bottom: -5px;
+}
+.movie-page-wrapper .movie .main-informations .right > h1 {
+	margin-bottom: 10px;
+}
+.movie-page-wrapper .movie .main-informations .right > p {
+	margin-bottom: 20px;
+}
+.movie-page-wrapper .movie .main-informations .right h3 {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.movie-page-wrapper .movie .main-informations .right .director {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .movie .main-informations .right .director .director-name {
+	cursor: pointer;
+	margin-right: 5px;
+}
+.movie-page-wrapper
+	.movie
+	.main-informations
+	.right
+	.director
+	.director-name:hover {
+	color: $hover-color;
+}
+.movie-page-wrapper .tagline {
+	margin-bottom: 10px;
+	font-family: $second-font;
+	color: $hover-color;
+	font-style: italic;
+}
+.movie-page-wrapper
+	.movie
+	.main-informations
+	.right
+	.row
+	> div
+	> span:first-child {
+	margin-right: 10px;
+}
+.movie-page-wrapper .movie .main-informations .right .row {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0 10px 0;
+}
+.movie-page-wrapper .movie .main-informations .right .row > div {
+	margin: 0 10px;
+	border: 1px Solid white;
+	padding: 10px;
+	border-radius: 8px;
+}
+.movie-page-wrapper .movie .main-informations .right .row > div:first-child {
+	margin-left: 0;
+}
+.movie-page-wrapper .movie .main-informations .right .row > div:last-child {
+	margin-right: 0;
+}
+.movie-page-wrapper .movie .main-informations .right .row > span {
+	margin: 0 10px;
+	border: 1px Solid white;
+	padding: 10px;
+	border-radius: 8px;
+}
+.movie-page-wrapper .movie .main-informations .right .row > span:hover {
+	color: $hover-color;
+}
+.movie-page-wrapper .movie .main-informations .right .providers h3 {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .movie .main-informations .right .providers img {
+	width: 50px;
+	margin: 0 5px;
+	border-radius: 6px;
+}
+.movie-page-wrapper
+	.movie
+	.main-informations
+	.right
+	.providers
+	img:first-of-type {
+	margin-left: 0;
+}
+.movie-page-wrapper
+	.movie
+	.main-informations
+	.right
+	.providers
+	img:last-of-type {
+	margin-right: 0;
+}
+.movie-page-wrapper .cast-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.movie-page-wrapper .cast-wrapper .cast {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.movie-page-wrapper .cast-wrapper .cast h2 {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .recommendation-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.movie-page-wrapper .recommendation-wrapper .recommendation {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.movie-page-wrapper .recommendation-wrapper .recommendation h2 {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .crew-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.movie-page-wrapper .crew-wrapper .crew {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.movie-page-wrapper .crew-wrapper .crew h2 {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .comment-wrapper-list {
+	display: flex;
+	flex-wrap: wrap;
+	word-wrap: normal;
+	line-break: auto;
+	justify-content: center;
+	text-align: justify;
+}
+.movie-page-wrapper .comment-wrapper-list .comment {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.movie-page-wrapper .comment-wrapper-list .comment h2 {
+	margin-bottom: 15px;
+}
+.movie-page-wrapper .comment-wrapper-list .comment > div {
+	font-size: 20px;
+}
+.movie-page-wrapper .comment-wrapper-list .comment > div.date-comment {
+	margin-top: 10px;
+	font-size: 15px;
+	font-family: $second-font;
+}
+.movie-page-wrapper .movie .backdrop-image {
+	top: -60px;
+	z-index: 0;
+	opacity: 0.2;
+	position: absolute;
+	height: fit-content;
+	width: 100%;
+}
+.actions {
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+}
+.actions .video > div,
+.actions button {
+	width: fit-content;
+	border: 1px Solid white;
+	border-radius: 10px;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	color: #1a1a1a;
+	background-color: rgba(255, 255, 255, 0.8);
+}
+.actions .video > div:hover,
+.actions button:hover {
+	color: $hover-color;
+}
+.actions > span {
+	margin: 0 3px;
+}
+.actions > span:first-of-type {
+	margin-left: 0;
+}
+.actions > span:last-of-type {
+	margin-right: 0;
+}
+.actions .video > div > span {
+	margin-left: 5px;
+}
+.trailer-video {
+	position: absolute;
+	z-index: 4;
+	top: 23%;
+	left: 28%;
+}
+.trailer-video > div {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	font-size: 25px;
+	cursor: pointer;
+}
+.movie-page-wrapper .overview {
+	text-align: justify;
+}
+.movie-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15px;
+	height: 15px;
+}
+.comment-wrapper {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 4;
+	top: 25%;
+	left: 23%;
+}
+.comment-wrapper > div {
+	border: 1px solid black;
+	background-color: white;
+	padding: 10px 20px 5px 20px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.comment-wrapper textarea {
+	resize: none;
+	width: 800px;
+	height: 200px;
+	padding: 10px;
+	border-radius: 10px;
+	font-family: $main-font;
+	font-size: 15px;
+}
+.comment-wrapper .xMark {
+	position: absolute;
+	right: 4px;
+	font-size: 25px;
+	cursor: pointer;
+	color: #1e1e1e;
+}
+.comment-wrapper .header {
+	position: relative;
+	margin-bottom: 10px;
+}
+.comment-wrapper button {
+	position: relative;
+	width: fit-content;
+	margin-top: 10px;
+	padding: 5px 10px;
+	cursor: pointer;
+	font-family: $second-font;
+	background-color: transparent;
+	font-size: 17px;
+}
+.comment-wrapper .header .title {
+	position: absolute;
+	color: black;
+}
+.actions > span {
+	position: relative;
+}
+.actions > span .tooltip {
+	position: absolute;
+	width: fit-content;
+	text-wrap: nowrap;
+	top: -45px;
+	transform: translateX(-42%);
+	text-align: center;
+	border: 1px Solid white;
+	border-radius: 10px;
+	padding: 5px 10px;
+	cursor: pointer;
+	color: #1a1a1a;
+	background-color: rgba(255, 255, 255, 0.8);
+	visibility: hidden;
+	text-align: center;
+}
+.actions > span:hover .tooltip,
+.actions > span:hover .triangle,
+.actions > span .tooltip:hover,
+.actions > span .triangle:hover {
+	visibility: visible;
+}
+.triangle {
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid rgba(255, 255, 255, 0.8);
+	position: absolute;
+	top: -15px;
+	right: 9px;
+	visibility: hidden;
+}

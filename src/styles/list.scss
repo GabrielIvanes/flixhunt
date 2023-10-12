@@ -1,0 +1,68 @@
+.lists .btn-list {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	padding: 10px;
+	border: none;
+	border-radius: 50%;
+	z-index: 20px;
+	cursor: pointer;
+	background-color: #fff;
+	font-size: 18px;
+	opacity: 0;
+	transition: opacity 0.1s ease;
+}
+.lists .btn-list:active {
+	transform: scale(1.1);
+}
+
+.lists .btn-prev {
+	position: absolute;
+	top: 150px;
+	left: 2%;
+}
+.lists .btn-next {
+	position: absolute;
+	top: 150px;
+	right: 2%;
+}
+.lists > div > div > div {
+	display: flex;
+	overflow: hidden;
+	position: relative;
+	width: auto;
+}
+.lists > div > div > div > div {
+	margin: 0 10px;
+	cursor: pointer;
+	display: flex;
+	text-align: center;
+	flex-direction: column;
+	width: 200px;
+}
+.lists > div > div > div > div .character,
+.movie-page-wrapper .lists > div > div > div > div .job {
+	font-style: italic;
+}
+.lists > div > div > div > div:hover .title,
+.lists > div > div > div > div:hover .actor,
+.lists > div > div > div > div:hover .name {
+	color: $hover-color;
+}
+.lists .poster {
+	width: 200px;
+	height: 300px;
+	border-radius: 10px;
+}
+.lists div.poster {
+	background-color: #1e1e1e;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 60px;
+	cursor: pointer;
+}
+.lists > div > div > div:hover .btn-list {
+	opacity: 1;
+	transition: opacity 0.7s ease;
+}

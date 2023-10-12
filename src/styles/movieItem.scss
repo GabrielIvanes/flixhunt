@@ -1,0 +1,60 @@
+.movie-item {
+	margin: 0 10px;
+	position: relative;
+}
+.movie-item .title {
+	margin-top: 5px;
+	text-align: center;
+}
+.movie-item .year {
+	margin-bottom: 20px;
+	font-family: $second-font;
+	color: beige;
+	font-weight: bold;
+}
+.movie-item:hover .title {
+	color: $hover-color;
+}
+.movie-item .poster {
+	border-radius: 8px;
+	cursor: pointer;
+}
+.movie-item div.poster {
+	background-color: #1e1e1e;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 60px;
+	cursor: pointer;
+}
+.movie-item .actions {
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	right: 10px;
+	top: 5px;
+}
+.movie-item .actions button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 2px 0;
+	padding: 2.5px 5px;
+	text-align: center;
+	background-color: rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(10px);
+	border: 1px solid black;
+	color: black;
+	cursor: pointer;
+}
+.movie-item .actions {
+	visibility: hidden;
+}
+.movie-item:hover .actions {
+	visibility: visible;
+}
+.movie-item .movie-icon {
+	width: 15px;
+	height: 15px;
+}

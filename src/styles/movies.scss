@@ -1,0 +1,112 @@
+.all-movies-wrapper {
+	min-height: 100vh;
+	width: 100%;
+	height: fit-content;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	position: relative;
+}
+.all-movies-wrapper .all-movies {
+	padding-top: 70px;
+	padding-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.all-movies-wrapper .all-movies .movies {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.all-movies-wrapper .all-movies .pages button {
+	width: 50px;
+	height: 40px;
+	padding: 10px;
+	border-radius: 6px;
+	font-size: 15px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.all-movies-wrapper .all-movies .pages .nav-btn {
+	font-size: 15px;
+}
+.all-movies-wrapper .all-movies .pages .current-page {
+	background-color: #ababab;
+}
+.all-movies-wrapper .all-movies .pages .number-btn:hover {
+	background-color: #ababab;
+}
+.filter-wrapper {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 1;
+}
+.filter-wrapper .all {
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	left: -100px;
+}
+.filter-wrapper .all .genre-list-container {
+	position: relative;
+	margin-left: 30px;
+}
+.filter-wrapper .all .genre-list-container .genre-list {
+	position: absolute;
+	z-index: 1;
+	top: -4px;
+}
+.filter-wrapper .all .genre-list-container .genre-list div {
+	background-color: #1a1a1a;
+	border: 1px Solid white;
+	width: 200px;
+	height: fit-content;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.filter-wrapper .all .genre-list-container .genre-list div:hover {
+	background-color: $hover-color;
+}
+.filter-wrapper .all .genre-list-container .genre-list div:first-of-type {
+	text-align: end;
+	padding-right: 5px;
+}
+.filter-wrapper .selected {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	flex-wrap: wrap;
+	width: 60%;
+}
+.filter-wrapper .selected div {
+	border: 1px Solid white;
+	border-radius: 20px;
+	padding: 5px 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 5px 5px;
+}
+.filter-wrapper .selected div span {
+	margin-right: 10px;
+}
+.filter-wrapper .selected div .xmark {
+	cursor: pointer;
+}
+.wait,
+.no-result {
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 0;
+}

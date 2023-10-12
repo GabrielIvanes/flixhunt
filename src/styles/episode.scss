@@ -1,0 +1,179 @@
+.episode .poster-episode {
+	width: 320px;
+	height: 180px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+.episode div.poster-episode {
+	background-color: #1e1e1e;
+	font-size: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.episodes-list-wrapper .episode {
+	width: fit-content;
+}
+.episode {
+	margin: 0 10px;
+	width: 320px;
+}
+.episode .title {
+	text-align: center;
+}
+.episode:hover .title {
+	color: $hover-color;
+}
+.episodes-list-wrapper .title {
+	margin-top: 5px;
+}
+.episode-page-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 40px;
+}
+.episode-page-wrapper .episode-page {
+	display: flex;
+	align-items: center;
+	margin: 20px 0 40px 0;
+	position: relative;
+}
+.episode-page-wrapper .left .poster {
+	width: 300px;
+	height: 450px;
+}
+.episode-page-wrapper .lists {
+	padding-bottom: 20px;
+}
+.episode-page-wrapper .main {
+	width: 92%;
+	display: flex;
+	align-items: center;
+	height: 450px;
+	z-index: 1;
+}
+.episode-page-wrapper .main .left {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.episode-page-wrapper .overview {
+	margin-bottom: 20px;
+}
+.episode-page-wrapper .right h1 {
+	margin-bottom: 10px;
+}
+.episode-page-wrapper .main .right {
+	margin-left: 20px;
+	width: 50%;
+	height: 337.5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+}
+.episode-page-wrapper h2 {
+	color: #ffffff;
+}
+.episode-page-wrapper .cast-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.episode-page-wrapper .cast-wrapper .cast {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.episode-page-wrapper .cast-wrapper .cast h2 {
+	margin-bottom: 15px;
+}
+.episode-page-wrapper .crew-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.episode-page-wrapper .crew-wrapper .crew {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.episode-page-wrapper .crew-wrapper .crew h2 {
+	margin-bottom: 15px;
+}
+.episode-page-wrapper .images-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.episode-page-wrapper .images-wrapper .images {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.episode-page-wrapper .images-wrapper .images h2 {
+	margin-bottom: 15px;
+}
+.episode-page-wrapper .comment-wrapper-list {
+	display: flex;
+	flex-wrap: wrap;
+	word-wrap: normal;
+	line-break: auto;
+	justify-content: center;
+	text-align: justify;
+}
+.episode-page-wrapper .comment-wrapper-list .comment {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.episode-page-wrapper .comment-wrapper-list .comment h2 {
+	margin-bottom: 15px;
+}
+.episode-page-wrapper .comment-wrapper-list .comment > div {
+	font-size: 20px;
+}
+.episode-page-wrapper .comment-wrapper-list .comment > div.date-comment {
+	margin-top: 10px;
+	font-size: 15px;
+	font-family: $second-font;
+}
+.episode-page-wrapper .video > div {
+	width: fit-content;
+	color: inherit;
+	border: 1px Solid white;
+	border-radius: 10px;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	margin-top: 20px;
+}
+.episode-page-wrapper .video > div:hover {
+	color: $hover-color;
+}
+.episode-page-wrapper .video > div > span {
+	margin-left: 5px;
+}
+.episode-page-wrapper .trailer-video {
+	position: absolute;
+	z-index: 4;
+	top: 23%;
+	left: 28%;
+}
+.episode-page-wrapper .trailer-video > div {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	font-size: 25px;
+	cursor: pointer;
+}
+.episode-page-wrapper .right h2 > span:hover {
+	color: $hover-color;
+}
+.episode-page-wrapper .date {
+	margin-bottom: 5px;
+	font-family: $second-font;
+	color: $hover-color;
+	font-weight: bold;
+}
+.episodes-list-wrapper .btn-list {
+	top: 85px;
+}

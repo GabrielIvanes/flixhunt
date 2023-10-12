@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@font-face {
+	font-family: 'nosan';
+	// src: url('../assets/nosan-bold.otf') format('opentype'),
+	// 	url('../assets/nosan-bold.ttf') format('truetype');
+	// src: url('../assets/nosan-bold.ttf');
+}
+$primary-color: #f8e657;
+$secondary-color: #abcfee;
+$tertiary-color: #22222e;
+$hover-color: #8f8f8f;
+// $main-font: 'Roboto';
+$main-font: 'Lato';
+$second-font: 'Cinzel';

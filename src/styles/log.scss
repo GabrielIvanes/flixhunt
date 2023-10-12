@@ -1,0 +1,139 @@
+.log-wrapper {
+	width: 100%;
+	height: 100vh;
+	background-image: url('./assets/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: left;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: $main-font;
+	color: $tertiary-color;
+}
+.log-wrapper nav {
+	padding: 10px 10px;
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(10px);
+	font-family: $second-font;
+}
+.log-wrapper nav span {
+	margin-left: 10px;
+}
+.log-wrapper .card-wrapper {
+	background-color: white;
+	height: fit-content;
+	width: 25%;
+	border-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+		rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+		rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+}
+.log-wrapper .card-wrapper h1 {
+	width: 50%;
+	text-align: center;
+	margin: 20px 0 10px 0;
+	border-bottom: 2px Solid black;
+	padding-bottom: 10px;
+}
+.log-wrapper .card-wrapper .sign-in {
+	margin: 10px 0;
+	text-align: center;
+}
+.log-wrapper .card-wrapper form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+.log-wrapper .card-wrapper form input {
+	margin: 10px;
+}
+.log-wrapper .card-wrapper form .password {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.log-wrapper .card-wrapper form .password .visibility {
+	cursor: pointer;
+	font-size: 20px;
+	position: absolute;
+	right: 25px;
+}
+.log-wrapper .card-wrapper form .username,
+.email {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.log-wrapper .card-wrapper form input[type='text'],
+input[type='password'] {
+	font-size: 15px;
+	border-radius: 5px;
+	border: 1px Solid black;
+	height: 50px;
+	padding-left: 10px;
+	width: calc(100% - 10px);
+}
+.log-wrapper .card-wrapper form input[type='submit'] {
+	font-size: 17px;
+	cursor: pointer;
+	height: 40px;
+	border-left: 5px groove $primary-color;
+	border-top: 5px groove $primary-color;
+	border-right: 5px groove $secondary-color;
+	border-bottom: 5px groove $secondary-color;
+	color: #fff;
+	background-color: $tertiary-color;
+}
+.log-wrapper .card-wrapper form .password .password-input {
+	padding-right: 45px;
+}
+.log-wrapper .card-wrapper .sign-in p {
+	margin-bottom: 5px;
+}
+.log-wrapper .card-wrapper .sign-in a {
+	text-decoration: none;
+	font-weight: bold;
+	color: $secondary-color;
+	width: fit-content;
+	display: inline-block;
+	position: relative;
+}
+.log-wrapper .card-wrapper .sign-in a::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: $secondary-color;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+.log-wrapper .card-wrapper .sign-in a:hover::after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+.log-wrapper .card-wrapper .error-message {
+	font-size: 15px;
+	color: red;
+	margin: 10px;
+	text-align: justify;
+	display: flex;
+	align-items: center;
+}
+.log-wrapper .card-wrapper .error-message span {
+	color: inherit;
+	margin-left: 5px;
+}

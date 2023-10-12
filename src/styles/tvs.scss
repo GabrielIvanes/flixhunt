@@ -1,0 +1,45 @@
+.all-tv-wrapper {
+	min-height: 100vh;
+	width: 100%;
+	height: fit-content;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+}
+.all-tv-wrapper .all-tv {
+	padding-top: 70px;
+	padding-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.all-tv-wrapper .all-tv .tv {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.all-tv-wrapper .no-result {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.all-tv-wrapper .all-tv .pages button {
+	width: 50px;
+	height: 40px;
+	padding: 10px;
+	border-radius: 6px;
+	font-size: 15px;
+	margin: 0 5px;
+	cursor: pointer;
+}
+.all-tv-wrapper .all-tv .pages .nav-btn {
+	font-size: 15px;
+}
+.all-tv-wrapper .all-tv .pages .current-page {
+	background-color: #ababab;
+}
+.all-tv-wrapper .all-tv .pages .number-btn:hover {
+	background-color: #ababab;
+}

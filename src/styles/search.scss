@@ -1,0 +1,150 @@
+.search-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	height: fit-content;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 50px;
+	position: relative;
+}
+.search-wrapper .search-box {
+	width: 78%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100px;
+	position: relative;
+}
+.search-wrapper .search-box input {
+	width: 80%;
+	height: 40px;
+	padding-left: 10px;
+	font-size: 18px;
+}
+.search-wrapper .search-box .btn-search {
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	color: white;
+	font-size: 30px;
+	margin-left: 10px;
+}
+.search-wrapper .search-box .auto-complete {
+	position: absolute;
+	top: 80px;
+	left: 23%;
+	z-index: 1;
+	padding: 0 10px;
+	width: 50%;
+	height: fit-content;
+	background-color: #1e1e1e;
+	cursor: pointer;
+}
+.search-wrapper .search-box .auto-complete > div {
+	padding: 5px 10px;
+}
+.search-wrapper .search-box .auto-complete > div:hover {
+	background-color: $hover-color;
+}
+.search-wrapper .main {
+	width: 100%;
+	display: flex;
+	height: calc(100vh - 150px);
+	justify-content: space-between;
+}
+.search-wrapper .main .menu-wrapper {
+	width: 20%;
+	margin: 0 auto;
+}
+.search-wrapper .main .response-wrapper {
+	width: 78%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 10px;
+}
+.search-wrapper .main .response-wrapper .page {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	height: 8%;
+}
+.search-wrapper .main .response-wrapper .page button {
+	cursor: pointer;
+	height: fit-content;
+	width: fit-content;
+	padding: 5px 10px;
+	border: 1px Solid black;
+	border-radius: 8px;
+}
+.search-wrapper .main .response-wrapper .page button:hover,
+.search-wrapper .main .response-wrapper .page .current-page {
+	background-color: $hover-color;
+}
+.search-wrapper .main .response-wrapper > div {
+	width: 100%;
+	display: flex;
+	justify-self: center;
+	flex-wrap: wrap;
+	overflow-y: auto;
+	height: calc(100vh - 210px);
+}
+.search-wrapper .main .response-wrapper > div > div:hover .title {
+	color: $hover-color;
+}
+.search-wrapper .main .response-wrapper > div > div {
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	width: 270px;
+	margin: 0 10px;
+	text-align: center;
+}
+.search-wrapper .main .response-wrapper > div > div .poster {
+	width: 270px;
+	height: 405px;
+}
+.search-wrapper .main .response-wrapper > div > div .title {
+	margin-top: 5px;
+}
+.search-wrapper .main .response-wrapper > div > div .year {
+	margin-bottom: 15px;
+}
+.search-wrapper .main .response-wrapper > div > div div.poster {
+	text-align: center;
+	background-color: #1e1e1e;
+	font-size: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.search-wrapper .main .menu-wrapper .menu > div {
+	cursor: pointer;
+	width: 100%;
+	padding: 20px 0;
+	margin: 10px 0;
+	border-radius: 8px;
+	height: 60px;
+	background-color: #1e1e1e;
+	position: relative;
+}
+.search-wrapper .main .menu-wrapper .menu > div:first-of-type {
+	margin-top: 0;
+}
+.search-wrapper .main .menu-wrapper .menu > div.active {
+	background-color: $hover-color;
+}
+.search-wrapper .main .menu-wrapper .menu > div .category {
+	position: absolute;
+	left: 40px;
+}
+.search-wrapper .main .menu-wrapper .menu > div .number {
+	position: absolute;
+	border: 1px Solid white;
+	border-radius: 8px;
+	padding: 5px 10px;
+	background-color: rgba(255, 255, 255, 0.2);
+	right: 40px;
+	top: 15px;
+}

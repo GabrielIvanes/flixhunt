@@ -1,0 +1,60 @@
+.person-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.person-wrapper .main {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+	margin-top: 30px;
+}
+.person-wrapper .main .left {
+	width: 25%;
+}
+.person-wrapper .main .right {
+	width: 75%;
+	margin-left: 20px;
+}
+.person-wrapper .main .left > img {
+	width: 300px;
+	height: 450px;
+	border-radius: 10px;
+}
+.person-wrapper .main .right > h1 {
+	margin-bottom: 30px;
+}
+.person-wrapper .main .right > h2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.person-wrapper .main .right .movies {
+	display: flex;
+	flex-wrap: wrap;
+}
+.person-wrapper .main .left h2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+.person-wrapper .main .left .personal-information {
+	margin-bottom: 50px;
+}
+.person-wrapper .main .left .personal-information .date {
+	display: flex;
+}
+.person-wrapper .main .left .personal-information > h3 {
+	margin: 20px 0 5px 0;
+}
+.person-wrapper .biography {
+	text-align: justify;
+}
+.person-wrapper .biography > p {
+	margin-bottom: 10px;
+}

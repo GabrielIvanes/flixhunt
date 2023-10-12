@@ -1,0 +1,84 @@
+.header {
+	padding: 10px 10px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	font-family: $second-font;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.header.blur-effect {
+	backdrop-filter: blur(100px);
+}
+.header .navbar {
+	display: flex;
+	width: 50%;
+	align-items: center;
+}
+.header nav {
+	display: flex;
+	align-items: center;
+}
+.header nav img {
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+}
+nav span {
+	margin-left: 10px;
+	font-size: 20px;
+	cursor: pointer;
+}
+.header .user {
+	width: 33%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	position: relative;
+}
+.header .user span {
+	cursor: pointer;
+}
+.header .user img {
+	cursor: pointer;
+	width: 40px;
+	height: 40px;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+.header .user .user-menu {
+	position: absolute;
+	top: 50px;
+	border: 1px Solid white;
+	border-radius: 4px;
+	padding: 15px;
+	background-color: #1a1a1a;
+}
+.header .user .user-menu span {
+	margin-right: 10px;
+}
+.header .user .user-menu .icon {
+	cursor: pointer;
+}
+.header .navbar .btn {
+	color: white;
+	cursor: pointer;
+	border: 1px solid transparent;
+	background-color: transparent;
+	padding: 5px 10px;
+	font-size: 15px;
+	margin: 0 25px;
+}
+.header .navbar .movies {
+	margin-left: 50px;
+}
+.header .navbar .btn:hover {
+	border: 1px Solid white;
+	border-radius: 4px;
+	background-color: rgba(255, 255, 255, 0.2);
+}

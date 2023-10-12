@@ -1,0 +1,47 @@
+.my-lists-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 40px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+}
+.my-lists-wrapper > div > div > div > div {
+	padding: 0 !important;
+}
+.my-lists-wrapper .my-lists {
+	margin-bottom: 20px;
+}
+.my-lists-wrapper .filters-wrapper {
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+.my-lists-wrapper .filters-wrapper .filters {
+	width: 60%;
+	display: flex;
+	justify-content: space-between;
+}
+.my-lists-wrapper .filters-wrapper .filters > div {
+	font-size: 20px;
+	border: 1px solid white;
+	padding: 5px 10px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+.my-lists-wrapper .filters-wrapper .filters > div:hover,
+.my-lists-wrapper .filters-wrapper .filters > div.active {
+	background-color: $hover-color;
+}
+.my-lists-wrapper .my-lists > div > h1 {
+	position: absolute;
+	top: 35%;
+	left: 35%;
+}

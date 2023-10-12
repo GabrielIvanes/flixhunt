@@ -1,0 +1,178 @@
+.tv-page-wrapper {
+	width: 100%;
+	min-height: 100vh;
+	background-color: #1a1a1a;
+	font-family: $main-font;
+	color: #ffffff;
+	padding-top: 40px;
+}
+.tv-page-wrapper .tv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px 0 40px 0;
+}
+.tv-page-wrapper .backdrop-image {
+	opacity: 0.2;
+	top: 0;
+	position: absolute;
+	width: 100%;
+	height: auto;
+}
+.tv-page-wrapper .left > img {
+	width: 333px;
+	height: 500px;
+}
+.tv-page-wrapper .cast-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.tv-page-wrapper .main {
+	width: 92%;
+	display: flex;
+	height: 500px;
+	z-index: 1;
+}
+.tv-page-wrapper .main .left {
+	width: 25%;
+}
+.tv-page-wrapper .main .right {
+	margin-left: 20px;
+	width: 75%;
+	height: 500px;
+	max-height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	position: relative;
+}
+.tv-page-wrapper .cast-wrapper .cast {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.tv-page-wrapper .providers {
+	position: absolute;
+	bottom: -5px;
+}
+.rv-page-wrapper .right > h1 {
+	margin-bottom: 10px;
+}
+.tv-page-wrapper .right > p {
+	margin-bottom: 20px;
+}
+.tv-page-wrapper h3 {
+	margin-bottom: 5px;
+	margin-top: 10px;
+}
+.tv-page-wrapper .creator {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .overview {
+	margin-bottom: 20px;
+}
+.tv-page-wrapper .tv .main .right .creator .creator-name {
+	cursor: pointer;
+}
+.tv-page-wrapper .creator-name:hover {
+	color: $hover-color;
+}
+.tv-page-wrapper .tagline {
+	margin-bottom: 10px;
+	font-family: $second-font;
+	color: $hover-color;
+	font-style: italic;
+}
+.tv-page-wrapper .providers h3 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .providers img {
+	width: 50px;
+	margin: 0 5px;
+	border-radius: 6px;
+}
+.tv-page-wrapper .providers img:first-of-type {
+	margin-left: 0;
+}
+.tv-page-wrapper .providers img:last-of-type {
+	margin-right: 0;
+}
+.tv-page-wrapper .row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 8px;
+}
+.tv-page-wrapper .row > span {
+	margin: 0 10px;
+	border: 1px Solid white;
+	padding: 10px;
+	border-radius: 8px;
+}
+.tv-page-wrapper .row.genres > span:hover {
+	color: $hover-color;
+}
+.tv-page-wrapper .cast-wrapper .cast h2 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .crew-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.tv-page-wrapper .crew-wrapper .crew {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.tv-page-wrapper .crew-wrapper .crew h2 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .recommendation-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.tv-page-wrapper .recommendation-wrapper .recommendation {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.tv-page-wrapper .recommendation-wrapper .recommendation h2 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .seasons-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.tv-page-wrapper .seasons-wrapper .seasons {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.tv-page-wrapper .seasons-wrapper .seasons h2 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .comment-wrapper-list {
+	display: flex;
+	flex-wrap: wrap;
+	word-wrap: normal;
+	line-break: auto;
+	justify-content: center;
+	text-align: justify;
+}
+.tv-page-wrapper .comment-wrapper-list .comment {
+	width: 98%;
+	padding-bottom: 20px;
+}
+.tv-page-wrapper .comment-wrapper-list .comment h2 {
+	margin-bottom: 15px;
+}
+.tv-page-wrapper .comment-wrapper-list .comment > div {
+	font-size: 20px;
+}
+.tv-page-wrapper .comment-wrapper-list .comment > div.date-comment {
+	margin-top: 10px;
+	font-size: 15px;
+	font-family: $second-font;
+}
+.tv-page-wrapper .creator .from-crew::after {
+	content: ',';
+}
+.tv-page-wrapper .creator .from-crew:last-child::after {
+	content: '';
+}

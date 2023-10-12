@@ -1,0 +1,36 @@
+@import './styles/variables.scss';
+@import './styles/log.scss';
+@import './styles/home.scss';
+@import './styles/nav.scss';
+@import './styles/movie.scss';
+@import './styles/list.scss';
+@import './styles/person.scss';
+@import './styles/movies.scss';
+@import './styles/search.scss';
+@import './styles//movieItem.scss';
+@import './styles/tv.scss';
+@import './styles/season.scss';
+@import './styles/episode.scss';
+@import './styles/tvs.scss';
+@import './styles/myLists.scss';
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 13px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #666;
+	border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+	background: #ddd;
+	border-radius: 20px;
+}
