@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // Se connecter
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState } from 'react';
 import logo from '../../../assets/logo.png';
@@ -94,7 +94,8 @@ function SignUp({ baseUrlBack }: Props) {
 									value={passwordValue}
 									id='password'
 								/>
-								<VisibilityIcon
+								<FontAwesomeIcon
+									icon={faEye}
 									onClick={() => setPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
@@ -108,12 +109,9 @@ function SignUp({ baseUrlBack }: Props) {
 									value={passwordValue}
 									className='password-input'
 								/>
-								<VisibilityOffIcon
-									onClick={() => {
-										if (confirmPasswordVisible)
-											setConfirmPasswordVisible(false);
-										setPasswordVisible(!passwordVisible);
-									}}
+								<FontAwesomeIcon
+									icon={faEyeSlash}
+									onClick={() => setPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
 							</>
@@ -131,10 +129,9 @@ function SignUp({ baseUrlBack }: Props) {
 									value={confirmPasswordValue}
 									id='password'
 								/>
-								<VisibilityIcon
-									onClick={() =>
-										setConfirmPasswordVisible(!confirmPasswordVisible)
-									}
+								<FontAwesomeIcon
+									icon={faEye}
+									onClick={() => setConfirmPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
 							</>
@@ -149,11 +146,9 @@ function SignUp({ baseUrlBack }: Props) {
 									value={confirmPasswordValue}
 									className='password-input'
 								/>
-								<VisibilityOffIcon
-									onClick={() => {
-										setConfirmPasswordVisible(!confirmPasswordVisible);
-										if (passwordVisible) setPasswordVisible(false);
-									}}
+								<FontAwesomeIcon
+									icon={faEyeSlash}
+									onClick={() => setPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
 							</>

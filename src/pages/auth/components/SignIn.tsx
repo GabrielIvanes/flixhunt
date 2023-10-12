@@ -4,8 +4,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 // Se connecter
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -87,7 +87,8 @@ function SignIn({ setUserId, setXsrfToken, baseUrlBack }: Props) {
 									value={passwordValue}
 									id='password'
 								/>
-								<VisibilityIcon
+								<FontAwesomeIcon
+									icon={faEye}
 									onClick={() => setPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
@@ -101,7 +102,8 @@ function SignIn({ setUserId, setXsrfToken, baseUrlBack }: Props) {
 									value={passwordValue}
 									id='password'
 								/>
-								<VisibilityOffIcon
+								<FontAwesomeIcon
+									icon={faEyeSlash}
 									onClick={() => setPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
