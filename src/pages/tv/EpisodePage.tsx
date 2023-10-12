@@ -237,9 +237,9 @@ function EpisodePage({ xsrfToken, userId, url, baseUrlBack }: Props) {
 					action: action,
 					title: episodeInfo?.name,
 					posterPath: episodeInfo?.still_path,
-					directors: episodeInfo?.credits.crew
-						.filter((person) => person.job === 'Creator')
-						.join(','),
+					directors: episodeInfo?.credits.crew.filter(
+						(person) => person.job === 'Creator'
+					),
 					genres: null,
 					backdropPath: location.state && location.state.backdropPath,
 					date: null,

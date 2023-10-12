@@ -376,10 +376,8 @@ function Tv({ userId, xsrfToken, url, baseUrlBack }: Props) {
 					action: action,
 					title: tvInfo?.name,
 					posterPath: tvInfo?.poster_path,
-					directors: tvInfo?.created_by
-						.filter((creator) => creator.name)
-						.join(','),
-					genres: tvInfo?.genres.filter((genre) => genre.name).join(','),
+					directors: tvInfo?.created_by.filter((creator) => creator.name),
+					genres: tvInfo?.genres.filter((genre) => genre.name),
 					backdropPath: tvInfo?.backdrop_path,
 					date: tvInfo?.first_air_date,
 				},
@@ -390,7 +388,6 @@ function Tv({ userId, xsrfToken, url, baseUrlBack }: Props) {
 					withCredentials: true,
 				}
 			);
-			console.log(response);
 			if (response.data.success) {
 				if (list === 'like') {
 					setTvLiked(!tvLiked);

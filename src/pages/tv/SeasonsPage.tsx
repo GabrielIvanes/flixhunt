@@ -253,9 +253,9 @@ function SeasonsPage({ xsrfToken, userId, url, baseUrlBack }: Props) {
 					action: action,
 					title: seasonInfo?.name,
 					posterPath: seasonInfo?.poster_path,
-					directors: seasonInfo?.credits.crew
-						.filter((person) => person.job === 'Creator')
-						.join(','),
+					directors: seasonInfo?.credits.crew.filter(
+						(person) => person.job === 'Creator'
+					),
 					genres: null,
 					backdropPath: location.state && location.state.backdropPath,
 					date: null,
