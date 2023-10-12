@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -12,11 +13,11 @@ import { useNavigate } from 'react-router-dom';
 
 interface Props {
 	userId: string;
-	xsrfToken: string;
 	baseUrlBack: string;
+	xsrfToken: string;
 }
 
-function Nav({ userId, xsrfToken, baseUrlBack }: Props) {
+function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 	const [username, setUsername] = useState<string>('');
 	const [userMenu, setUserMenu] = useState<boolean>(false);
 	const [image, setImage] = useState<string>('');
