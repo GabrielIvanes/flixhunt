@@ -82,6 +82,7 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 
 	useEffect(() => {
 		async function getMoviesByGenresCall() {
+			setIsLoading(true);
 			if (genres && xsrfToken) {
 				try {
 					console.log(genres);
