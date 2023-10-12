@@ -212,7 +212,7 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 
 	return (
 		<div className='lists-wrapper'>
-			{!isLoading && (
+			{!isLoading ? (
 				<>
 					{elementsListHome.map((list) => (
 						<ListElements
@@ -228,6 +228,8 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 					))}
 					<Footer />
 				</>
+			) : (
+				<h1>Loading...</h1>
 			)}
 		</div>
 	);
