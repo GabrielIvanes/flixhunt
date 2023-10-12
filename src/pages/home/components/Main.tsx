@@ -83,9 +83,14 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 	useEffect(() => {
 		async function getMoviesByGenresCall() {
 			if (genres && xsrfToken) {
-				await Promise.all(genres.map((genre) => getMoviesByGenre(genre)))
-					.then(() => setIsLoading(false))
-					.catch((err) => console.error(err));
+				try {
+					console.log(genres);
+					const promises = genres.map((genre) => getMoviesByGenre(genre));
+					await Promise.all(promises);
+					setIsLoading(false);
+				} catch (err) {
+					console.error(err);
+				}
 			}
 		}
 		getMoviesByGenresCall();
