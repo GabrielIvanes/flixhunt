@@ -115,6 +115,7 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 				}
 			);
 			if (!elementsListHome.some((list) => list.title.name === genre.name)) {
+				console.log('ok');
 				setElementsListHome((prevElementsList) => [
 					...prevElementsList,
 					{
@@ -224,7 +225,7 @@ function Main({ url, xsrfToken, userId, baseUrlBack }: Props) {
 
 	return (
 		<div className='lists-wrapper'>
-			{!isLoading ? (
+			{!isLoading && elementsListHome ? (
 				<>
 					{elementsListHome.map((list) => (
 						<ListElements
