@@ -9,7 +9,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/logo.png';
+import logo from '/assets/logo.png';
 
 interface Props {
 	setUserId: (id: string) => void;
