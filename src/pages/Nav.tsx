@@ -23,7 +23,16 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 	const [image, setImage] = useState<string>('');
 	const navigate = useNavigate();
 	const [isScrolled, setIsScrolled] = useState(false);
-	const imageDist = require(`/src/assets/${image}`);
+	const [imageSrc, setImageSrc] = useState<string>('');
+
+	useEffect(() => {
+		const loadImage = async () => {
+			const imageModule = await import(`./src/assets/${image}`);
+			setImageSrc(imageModule.default);
+		};
+
+		loadImage();
+	}, [image]);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -64,7 +73,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 
 	const user = {
 		name: username,
-		img: imageDist,
+		img: imageSrc,
 	};
 
 	return (
