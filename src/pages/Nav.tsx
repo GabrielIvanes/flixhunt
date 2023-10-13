@@ -23,6 +23,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 	const [image, setImage] = useState<string>('');
 	const navigate = useNavigate();
 	const [isScrolled, setIsScrolled] = useState(false);
+	const imageDist = require(`../../assets/${image}`);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -63,7 +64,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 
 	const user = {
 		name: username,
-		img: `../../assets/${image}`,
+		img: imageDist,
 	};
 
 	return (
