@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { useState } from 'react';
-import logo from '/assets/logo.png';
+import logo from '../../../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {

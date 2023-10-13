@@ -63,7 +63,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 
 	const user = {
 		name: username,
-		img: `/assets/profile_picture/${image}`,
+		img: `../../assets/${image}`,
 	};
 
 	return (
