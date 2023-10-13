@@ -23,7 +23,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 	const [image, setImage] = useState<string>('');
 	const navigate = useNavigate();
 	const [isScrolled, setIsScrolled] = useState(false);
-	const imageDist = require(`../../assets/${image}`);
+	const imageDist = require(`/src/assets/${image}`);
 
 	useEffect(() => {
 		const handleScroll = () => {
