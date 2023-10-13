@@ -148,7 +148,7 @@ function SignUp({ baseUrlBack }: Props) {
 								/>
 								<FontAwesomeIcon
 									icon={faEyeSlash}
-									onClick={() => setPasswordVisible(!passwordVisible)}
+									onClick={() => setConfirmPasswordVisible(!passwordVisible)}
 									className='visibility'
 								/>
 							</>

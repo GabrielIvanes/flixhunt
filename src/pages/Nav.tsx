@@ -63,7 +63,7 @@ function Nav({ userId, baseUrlBack, xsrfToken }: Props) {
 
 	const user = {
 		name: username,
-		img: `/src/assets/profile_picture/${image}`,
+		img: `https://flixhunt.ivanes.fr/src/assets/profile_picture/${image}`,
 	};
 
 	return (
