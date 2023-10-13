@@ -131,7 +131,9 @@ function SignUp({ baseUrlBack }: Props) {
 								/>
 								<FontAwesomeIcon
 									icon={faEye}
-									onClick={() => setConfirmPasswordVisible(!passwordVisible)}
+									onClick={() =>
+										setConfirmPasswordVisible(!confirmPasswordValue)
+									}
 									className='visibility'
 								/>
 							</>
@@ -148,7 +150,9 @@ function SignUp({ baseUrlBack }: Props) {
 								/>
 								<FontAwesomeIcon
 									icon={faEyeSlash}
-									onClick={() => setConfirmPasswordVisible(!passwordVisible)}
+									onClick={() =>
+										setConfirmPasswordVisible(!confirmPasswordValue)
+									}
 									className='visibility'
 								/>
 							</>
