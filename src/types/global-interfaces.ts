@@ -11,7 +11,7 @@ export interface Element {
     isClickable: boolean;
 }
 
-type ElementType = '' | 'movie';
+type ElementType = 'provider' | 'movie' | 'person';
 
 export interface Genre {
     id: number;

@@ -57,7 +57,6 @@ export interface MovieDetail {
     }
     recommendations: TMDBResponse<Movie>;
     release_dates: {
-        id: number;
         results: ReleaseDate[];
     }
     videos: {
@@ -97,7 +96,7 @@ interface ReleaseDate {
         note: string;
         release_date: string;
         type: 1 | 2 | 3 | 4 | 5 | 6;
-    }
+    }[]
 }
 
 interface Video {

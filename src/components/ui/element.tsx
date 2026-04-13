@@ -11,7 +11,7 @@ interface Props {
     element: ElementInterface
 }
 
-export default function Element( {element }: Props) {
+export default function Element( {element}: Props) {
 
     const [isLoading, setIsLoading] = useState<boolean>(!!element.image);
 

@@ -1,11 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import {MovieDetail} from "@/types/movie-interfaces";
+import {Person} from "@/types/person-interfaces";
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: Promise<{ movieId: string }> }
+    { params }: { params: Promise<{ personId: string }> }
 ) {
-    const { movieId } = await params
+    const { personId } = await params
     const { searchParams } = req.nextUrl;
     const language = searchParams.get('language') || 'en-US';
 
@@ -13,7 +13,7 @@ export async function GET(
         return NextResponse.json({ success: false, data: null, error: "Missing parameter language" }, { status: 400 })
     }
 
-    const url: string = `${process.env.TMDB_BASE_URL}/movie/${movieId}?append_to_response=credits,recommendations,release_dates,videos,watch/providers&language=${language}`;
+        const url: string = `${process.env.TMDB_BASE_URL}/person/${personId}?append_to_response=combined_credits&language=${language}`;
     const options: RequestInit = {
         method: 'GET',
         headers: {
@@ -25,7 +25,7 @@ export async function GET(
 
     try {
         const data = await fetch(url, options);
-        const movie: MovieDetail = await data.json();
+        const movie: Person = await data.json();
         return NextResponse.json({ success: true, data: movie, error: null }, { status: 200 })
     } catch (err) {
         return NextResponse.json({ success: false, data: null, error: err }, { status: 500 })

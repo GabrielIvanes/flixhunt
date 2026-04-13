@@ -3,13 +3,13 @@ import { twMerge } from "tailwind-merge"
 import {Element} from "@/types/global-interfaces";
 import {Movie, MovieDetail, Provider} from "@/types/movie-interfaces";
 import {Configuration} from "@/types/tmdb-interfaces";
-import {Crew} from "@/types/person-interfaces";
+import {Cast, CastCombinedCredits, Crew, CrewCombinedCredits, Person} from "@/types/person-interfaces";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function movieToElement(movie: Movie | MovieDetail, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
+export function movieToElement(movie: Movie | MovieDetail | CastCombinedCredits | CrewCombinedCredits, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
     return {
         id: movie.id,
         type: "movie",
@@ -24,10 +24,10 @@ export function movieToElement(movie: Movie | MovieDetail, configuration: Config
     }
 }
 
-export function providerToElement(provider: Provider, configuration: Configuration, width: number, height: number) {
+export function providerToElement(provider: Provider, configuration: Configuration, width: number, height: number): Element {
     return {
         id: provider.provider_id,
-        type: "",
+        type: "provider",
         image: provider.logo_path ? `${configuration.images.secure_base_url}w500${provider.logo_path}` : '',
         width: width,
         height: height,
@@ -39,8 +39,19 @@ export function providerToElement(provider: Provider, configuration: Configurati
     }
 }
 
-export function getDirectors(crew: Crew) {
-    return crew.filter(c => c.job === "Director");
+export function personToElement(person: Cast | Crew | Person, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
+    return {
+        id: person.id,
+        type: "person",
+        image: person.profile_path ? `${configuration.images.secure_base_url}w500${person.profile_path}` : '',
+        width: width,
+        height: height,
+        tooltip: (person as Crew).job ? (person as Crew).job : (person as Cast).character,
+        name: person.name,
+        isClickable: isClickable,
+        isTooltip: isTooltip,
+        isName: isName
+    }
 }
 
 export function formatTime(runtime: number) {

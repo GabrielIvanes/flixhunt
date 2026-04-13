@@ -52,9 +52,9 @@ export function H4({ text, classname, style }: Props) {
 
 export function P({ text, classname, style }: Props) {
     return (
-        <p className={`text-base text-foreground w-fit ${classname}`} style={style}>
+        <div className={`text-base text-foreground w-fit ${classname}`} style={style}>
             {text}
-        </p>
+        </div>
     );
 }
 

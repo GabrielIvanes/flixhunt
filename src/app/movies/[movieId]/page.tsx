@@ -4,13 +4,16 @@ import Image from "next/image";
 import {getConfiguration} from "@/lib/tmdb";
 import {Configuration} from "@/types/tmdb-interfaces";
 import Element from "@/components/ui/element";
-import {formatTime, getDirectors, movieToElement, providerToElement} from "@/lib/utils";
+import {formatTime, movieToElement, personToElement, providerToElement} from "@/lib/utils";
+import {getCast, getCrew, getDirectors} from "@/services/persons";
 import {H1, H3, Lead, LinkP, MutedP, P} from "@/components/ui/typography";
-import {Genre} from "@/types/global-interfaces";
+import {Genre, Element as ElementInterface} from "@/types/global-interfaces";
 import Separator from "@/components/ui/separator";
 import {Bookmark, Clapperboard, Eye, Heart, List, Play, SquarePen} from "lucide-react"
 import {Button} from "@/components/ui/button";
 import {CarouselList} from "@/components/carousel";
+import {Cast, Crew} from "@/types/person-interfaces";
+import Link from "next/link";
 
 export default async function Movie({params}: { params: Promise<{ movieId: string }> }) {
     const {movieId} = await params;
@@ -22,23 +25,25 @@ export default async function Movie({params}: { params: Promise<{ movieId: strin
     const movie: MovieDetail = await getMovieDetails(movieId);
     console.log(movie);
 
-    const movieElement: Element = movieToElement(movie, configuration, width, height, false, false, false);
-    const directors = getDirectors(movie.credits.crew);
-    const release_date = movie.release_dates?.results.filter(
-        (result) => result.iso_3166_1 === countryCode
-    )[0]?.release_dates[0]?.release_date;
+    const movieElement: ElementInterface = movieToElement(movie, configuration, width, height, false, false, false);
+    const directors: Crew[] = getDirectors(movie.credits.crew);
+    const release_date = movie.release_dates.results.find((result) => result.iso_3166_1 === countryCode)?.release_dates?.find((release_date) => release_date.type === 3)?.release_date
     const releaseDate = release_date ? release_date.split('-')[0] : movie.release_date ? movie.release_date.split('-')[0] : '';
     const duration = formatTime(movie.runtime);
     const voteAverage = movie.vote_average?.toPrecision(2)
     const providers = movie['watch/providers']?.results[countryCode]?.flatrate;
-    const providerElements: Element[] = providers?.map((provider) => providerToElement(provider, configuration, 45, 45));
+    const providerElements: ElementInterface[] = providers?.map((provider) => providerToElement(provider, configuration, 45, 45));
 
-    const recommendationElements: Element[] = movie.recommendations.results.map((recommendation) => movieToElement(recommendation, configuration, 175, 175 * 1.5, true, false, false))
+    const cast: Cast[] = getCast(movie.credits.cast);
+    const crew: Crew[] = getCrew(movie.credits.crew);
+    const castElements: ElementInterface[] = cast.map((c) => personToElement(c, configuration, 175, 175 * 1.5, true, true, true))
+    const crewElements: ElementInterface[] = crew.map((c) => personToElement(c, configuration, 175, 175 * 1.5, true, true, true))
+    const recommendationElements: ElementInterface[] = movie.recommendations.results.map((recommendation) => movieToElement(recommendation, configuration, 175, 175 * 1.5, true, false, false))
 
     return (
         <>
             <div className="top-0 z-0 !bg-neutral-900 fixed inset-0">
-                <Image src={`${configuration.images.secure_base_url}w1280${movie.backdrop_path}`} alt={movie.title}
+                <Image src={`${configuration.images.secure_base_url}original${movie.backdrop_path}`} alt={movie.title}
                        fill={true} sizes={'100vw'} className="object-cover opacity-20"/>
             </div>
             <div className="w-full h-screen flex z-10 mb-10">
@@ -56,12 +61,12 @@ export default async function Movie({params}: { params: Promise<{ movieId: strin
                                         <MutedP text={releaseDate}/>
                                     </div>}
                                 {duration &&
-                                    <div className="flex  items-center gap-1">
+                                    <div className="flex items-center gap-1">
                                         {releaseDate && <Separator/>}
                                         <MutedP text={duration}/>
                                     </div>}
                                 {voteAverage &&
-                                    <div className="flex  items-center gap-1">
+                                    <div className="flex items-center gap-1">
                                         {(releaseDate || duration) && <Separator/>}
                                         <MutedP text={`${voteAverage}/10`}/>
                                     </div>}
@@ -77,7 +82,7 @@ export default async function Movie({params}: { params: Promise<{ movieId: strin
                             <div className="flex items-center">
                                 {directors && directors.length > 0 ? directors.map((director, index: number) => (
                                     <div key={director.id} className="flex">
-                                        <LinkP text={director.name}/>
+                                        <Link href={`/persons/${director.id}`} passHref><LinkP text={director.name}/></Link>
                                         {index != directors.length - 1 && <span>,&nbsp;</span>}
                                     </div>
                                 )) : <P text="There is no director provided."/>}
@@ -127,7 +132,9 @@ export default async function Movie({params}: { params: Promise<{ movieId: strin
                 </div>
             </div>
 
-            <div className="mb-5">
+            <div className="mb-5 z-10 flex flex-col gap-5">
+                <CarouselList elements={castElements} title="Cast" />
+                <CarouselList elements={crewElements} title="Crew" />
                 <CarouselList elements={recommendationElements} title="Recommendations" />
             </div>
         </>
