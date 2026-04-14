@@ -1,7 +1,7 @@
-import {Cast, CastCombinedCredits, CombinedCredits, Crew, CrewCombinedCredits} from "@/types/person-interfaces";
+import {Cast, MediaCastCredit, CombinedCredits, Crew, MediaCrewCredit} from "@/types/person-interfaces";
 import {sort} from "eslint-config-next";
 
-export function getCrew(crew: Crew[] | CrewCombinedCredits[]): Crew[] | CrewCombinedCredits {
+export function getCrew(crew: Crew[] | MediaCrewCredit[]): Crew[] | MediaCrewCredit {
     const crewFilter = new Map<number, Crew>();
 
     for (const c of crew) {
@@ -14,7 +14,7 @@ export function getCrew(crew: Crew[] | CrewCombinedCredits[]): Crew[] | CrewComb
     return Array.from(crewFilter.values());
 }
 
-export function getCast(cast: Cast[] | CastCombinedCredits[]): Cast[] | CombinedCredits[] {
+export function getCast(cast: Cast[] | MediaCastCredit[]): Cast[] | CombinedCredits[] {
     const castFilter = new Map<number, Cast>();
 
     for (const c of cast) {
@@ -27,7 +27,7 @@ export function getCast(cast: Cast[] | CastCombinedCredits[]): Cast[] | Combined
     return Array.from(castFilter.values());
 }
 
-export function getDirectors(crew: Crew[] | CrewCombinedCredits) {
+export function getDirectors(crew: Crew[] | MediaCrewCredit) {
     return crew.filter(c => c.job === "Director");
 }
 
@@ -45,10 +45,10 @@ export function getAge(birthday: string, deathday: string | null) {
     return `${age}`;
 }
 
-export function sortArray(sortBy: "year-descending" | "year-ascending" | "popularity-descending" | "popularity-ascending", person: CastCombinedCredits[] | CrewCombinedCredits[]) {
+export function sortArray(sortBy: "year-descending" | "year-ascending" | "popularity-descending" | "popularity-ascending", person: MediaCastCredit[] | MediaCrewCredit[]) {
     const [field, order] = sortBy.split("-");
 
-    let sortCombinedCredits: CastCombinedCredits[] | CrewCombinedCredits[] = [];
+    let sortCombinedCredits: MediaCastCredit[] | MediaCrewCredit[] = [];
 
     if (field === "year") {
 

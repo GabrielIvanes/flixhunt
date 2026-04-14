@@ -1,4 +1,4 @@
-import {Person} from "@/types/person-interfaces";
+import {PersonDetail} from "@/types/person-interfaces";
 import {MovieDetail} from "@/types/movie-interfaces";
 
 export async function getPerson(personId: string, language?: string) {
@@ -9,7 +9,7 @@ export async function getPerson(personId: string, language?: string) {
     const json = await response.json();
 
     if (json.success) {
-        const person: Person = json.data;
+        const person: PersonDetail = json.data;
         return person;
     } else {
         throw new Error(json.error);

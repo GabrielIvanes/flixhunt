@@ -1,23 +1,24 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import {Element} from "@/types/global-interfaces";
-import {Movie, MovieDetail, Provider} from "@/types/movie-interfaces";
+import {Element, ElementType, Media} from "@/types/global-interfaces";
+import {MovieSummary, MovieDetail, Provider, Movie} from "@/types/movie-interfaces";
 import {Configuration} from "@/types/tmdb-interfaces";
-import {Cast, CastCombinedCredits, Crew, CrewCombinedCredits, Person} from "@/types/person-interfaces";
+import {Cast, MediaCastCredit, Crew, MediaCrewCredit, PersonDetail} from "@/types/person-interfaces";
+import {Tvshow} from "@/types/tvshow-interfaces";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function movieToElement(movie: Movie | MovieDetail | CastCombinedCredits | CrewCombinedCredits, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
+export function mediaToElement(media: Media, mediaType: ElementType, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
     return {
-        id: movie.id,
-        type: "movie",
-        image: movie.poster_path ? `${configuration.images.secure_base_url}w500${movie.poster_path}` : '',
+        id: media.id,
+        type: mediaType,
+        image: media.poster_path ? `${configuration.images.secure_base_url}w500${media.poster_path}` : '',
         width: width,
         height: height,
-        tooltip: movie.title,
-        name: movie.title,
+        tooltip: "name" in media ? (media as Tvshow).name : (media as Movie).title,
+        name: "name" in media ? (media as Tvshow).name : (media as Movie).title,
         isClickable: isClickable,
         isTooltip: isTooltip,
         isName: isName
@@ -39,7 +40,7 @@ export function providerToElement(provider: Provider, configuration: Configurati
     }
 }
 
-export function personToElement(person: Cast | Crew | Person, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
+export function personToElement(person: Cast | Crew | PersonDetail, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
     return {
         id: person.id,
         type: "person",

@@ -1,8 +1,8 @@
-import {Genre} from "@/types/global-interfaces";
+import {Genre, ProductionCompany, ProductionCountry, SpokenLanguage, Video, CountryCode, Provider, WatchOptions} from "@/types/global-interfaces";
 import {Cast, Crew} from "@/types/person-interfaces";
 import {TMDBResponse} from "@/types/tmdb-interfaces";
 
-export interface Movie {
+export interface MovieSummary {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -55,7 +55,7 @@ export interface MovieDetail {
         cast: Cast[];
         crew: Crew[];
     }
-    recommendations: TMDBResponse<Movie>;
+    recommendations: TMDBResponse<MovieSummary>;
     release_dates: {
         results: ReleaseDate[];
     }
@@ -67,24 +67,6 @@ export interface MovieDetail {
         id: number;
         results: Record<CountryCode, WatchOptions>
     }
-}
-
-interface ProductionCompany {
-    id: number;
-    logo_path: string;
-    name: string;
-    origin_country: string;
-}
-
-interface ProductionCountry {
-    iso_3166_1: string;
-    name: string;
-}
-
-interface SpokenLanguage {
-    english_name: string;
-    iso_639_1: string;
-    name: string;
 }
 
 interface ReleaseDate {
@@ -99,41 +81,5 @@ interface ReleaseDate {
     }[]
 }
 
-interface Video {
-    iso_639_1: string;
-    iso_3166_1: string;
-    name: string;
-    key: string;
-    site: string;
-    size: number;
-    type: string;
-    official: boolean;
-    published_at: string;
-    id: string;
-}
+export type Movie = MovieDetail | MovieSummary;
 
-type CountryCode =
-    | "AE" | "AL" | "AR" | "AT" | "AU" | "BA" | "BB" | "BE" | "BG" | "BH"
-    | "BO" | "BR" | "BS" | "CA" | "CH" | "CL" | "CO" | "CR" | "CV" | "CZ"
-    | "DE" | "DK" | "DO" | "EC" | "EE" | "EG" | "ES" | "FI" | "FJ" | "FR"
-    | "GB" | "GF" | "GI" | "GR" | "GT" | "HK" | "HN" | "HR" | "HU" | "ID"
-    | "IE" | "IL" | "IN" | "IQ" | "IS" | "IT" | "JM" | "JO" | "JP" | "KR"
-    | "KW" | "LB" | "LI" | "LT" | "LV" | "MD" | "MK" | "MT" | "MU" | "MX"
-    | "MY" | "MZ" | "NL" | "NO" | "NZ" | "OM" | "PA" | "PE" | "PH" | "PK"
-    | "PL" | "PS" | "PT" | "PY" | "QA" | "RO" | "RS" | "RU" | "SA" | "SE"
-    | "SG" | "SI" | "SK" | "SM" | "SV" | "TH" | "TR" | "TT" | "TW" | "UG"
-    | "US" | "UY" | "VE" | "YE" | "ZA"
-
-export interface Provider {
-    logo_path: string
-    provider_id: number
-    provider_name: string
-    display_priority: number
-}
-
-export interface WatchOptions {
-    link: string
-    flatrate: Provider[]
-    rent: Provider[]
-    buy: Provider[]
-}

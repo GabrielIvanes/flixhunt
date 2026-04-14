@@ -1,5 +1,5 @@
 import {Configuration, TMDBResponse} from "@/types/tmdb-interfaces";
-import {Movie, MovieDetail} from "@/types/movie-interfaces";
+import {MovieSummary, MovieDetail} from "@/types/movie-interfaces";
 
 export async function getPopularMovies(language?: string, page?: number) {
     let url = `${process.env.API_BASE_URL}/movies/popular`;
@@ -16,7 +16,7 @@ export async function getPopularMovies(language?: string, page?: number) {
     const json = await response.json();
 
     if (json.success) {
-        const movies: TMDBResponse<Movie> = json.data;
+        const movies: TMDBResponse<MovieSummary> = json.data;
         return movies;
     } else {
         throw new Error(json.error);

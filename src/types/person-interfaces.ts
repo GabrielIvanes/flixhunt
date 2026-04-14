@@ -1,3 +1,5 @@
+import {MediaCastCredit, MediaCrewCredit} from "@/types/global-interfaces";
+
 export interface Cast {
     adult: boolean;
     gender: number;
@@ -27,7 +29,7 @@ export interface Crew {
     job: string;
 }
 
-export interface Person {
+export interface PersonDetail {
     adult: boolean;
     also_known_as: string[];
     biography: string;
@@ -47,48 +49,45 @@ export interface Person {
 
 export interface CombinedCredits {
     id: number;
-    cast: CastCombinedCredits[];
-    crew: CrewCombinedCredits[];
+    cast: MediaCastCredit[];
+    crew: MediaCrewCredit[];
 }
 
-export interface CastCombinedCredits {
+export interface CastAggregateCredit {
     adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
+    gender: number;
     id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
+    known_for_department: string;
+    name: string;
+    original_name: string;
     popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-    character: string;
-    credit_id: string;
+    profile_path: string;
+    roles: {
+        credit_id: string;
+        character: string;
+        episode_count: number;
+    }[]
+    total_episode_count: number;
     order: number;
-    media_type: string;
 }
 
-export interface CrewCombinedCredits {
+export interface CrewAggregateCredit {
     adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
+    gender: number;
     id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
+    known_for_department: string;
+    name: string;
+    original_name: string;
     popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-    credit_id: string;
+    profile_path: string;
+    jobs: {
+        credit_id: string;
+        job: string;
+        episode_count: number;
+    }[]
     department: string;
-    job: string;
-    media_type: string;
+    total_episode_count: number;
 }
+
+export type Person = Cast | Crew | PersonDetail;
+export type PersonAggregateCredit = CastAggregateCredit | CrewAggregateCredit;
