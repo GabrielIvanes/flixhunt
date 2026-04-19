@@ -11,7 +11,7 @@ export function ModeToggle() {
     const {setTheme} = useTheme()
 
     return (
-        <div className="absolute">
+        <div className="z-100">
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="icon">

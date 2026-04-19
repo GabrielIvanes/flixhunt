@@ -1,5 +1,5 @@
 import {getPerson} from "@/lib/persons";
-import Element from "@/components/ui/element";
+import {Element} from "@/components/ui/element";
 import {personToElement} from "@/lib/utils";
 import {Configuration} from "@/types/tmdb-interfaces";
 import {getConfiguration} from "@/lib/tmdb";
@@ -24,8 +24,8 @@ export default async function Person({params}: { params: Promise<{ personId: str
 
     return (
         <>
-            <div className="w-full h-screen flex z-10">
-                <div className="flex justify-center items-center flex-1/3">
+            <div className="w-full h-screen flex gap-4 z-10">
+                <div className="flex justify-center items-center flex-1/3 pl-5">
                     <Element element={personElement}/>
                 </div>
                 <div className="flex justify-center items-center flex-2/3 pr-16">

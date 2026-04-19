@@ -1,7 +1,8 @@
-import {Configuration, TMDBResponse} from "@/types/tmdb-interfaces";
-import {MovieSummary, MovieDetail} from "@/types/movie-interfaces";
+import { TMDBResponse } from "@/types/tmdb-interfaces";
+import { MovieSummary, MovieDetail } from "@/types/movie-interfaces";
+import { Genre } from "@/types/global-interfaces";
 
-export async function getPopularMovies(language?: string, page?: number) {
+export async function getPopularMovies(language?: string, page?: number, region?: string) {
     let url = `${process.env.API_BASE_URL}/movies/popular`;
     if (language) {
         if (url.includes('?')) url += `&language=${language}`;
@@ -11,8 +12,15 @@ export async function getPopularMovies(language?: string, page?: number) {
         if (url.includes('?')) url += `&page=${page}`;
         else url += `?page=${page}`;
     }
+    if (region) {
+        if (url.includes('?')) url += `&region=${region}`;
+        else url += `?region=${region}`;
+    }
 
     const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
     const json = await response.json();
 
     if (json.success) {
@@ -25,14 +33,85 @@ export async function getPopularMovies(language?: string, page?: number) {
 
 export async function getMovieDetails(movieId: string, language?: string) {
     let url = `${process.env.API_BASE_URL}/movies/${movieId}`;
+
     if (language) url += `?language=${language}`;
 
     const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
     const json = await response.json();
 
     if (json.success) {
         const movie: MovieDetail = json.data;
         return movie;
+    } else {
+        throw new Error(json.error);
+    }
+}
+
+export async function getTheatreMovies(language?: string, page?: number) {
+    let url = `${process.env.API_BASE_URL}/movies/theatre`;
+    if (language) {
+        if (url.includes('?')) url += `&language=${language}`;
+        else url += `?language=${language}`;
+    }
+    if (page) {
+        if (url.includes('?')) url += `&page=${page}`;
+        else url += `?page=${page}`;
+    }
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const json = await response.json();
+
+    if (json.success) {
+        const movies: TMDBResponse<MovieSummary> = json.data;
+        return movies;
+    } else {
+        throw new Error(json.error);
+    }
+}
+
+export async function getTopRatedMovies(language?: string, page?: number, with_genres?: string, decade?: number, year?: number) {
+    const url = new URL(`${process.env.API_BASE_URL}/movies/top-rated`)
+
+    if (language) url.searchParams.set('language', language)
+    if (page) url.searchParams.set('page', page.toString())
+    if (with_genres) url.searchParams.set('with_genres', with_genres)
+    if (decade) url.searchParams.set('decade', decade.toString())
+    if (year) url.searchParams.set('year', year.toString())
+
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const json = await response.json();
+
+    if (json.success) {
+        const movies: TMDBResponse<MovieSummary> = json.data;
+        return movies;
+    } else {
+        throw new Error(json.error);
+    }
+}
+
+export async function getMovieGenres(language?: string) {
+    const url = new URL(`${process.env.API_BASE_URL}/movies/genres`)
+    if (language) url.searchParams.set('language', language)
+
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const json = await response.json();
+
+    if (json.success) {
+        const genres: Genre[] = json.data.genres;
+        return genres;
     } else {
         throw new Error(json.error);
     }

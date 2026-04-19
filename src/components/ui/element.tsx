@@ -2,21 +2,21 @@
 
 import Image from "next/image";
 import {Element as ElementInterface} from "@/types/global-interfaces"
-import {JSX, useState} from "react";
+import {useState} from "react";
 import {Skeleton} from "@/components/ui/skeleton";
-import Link from "next/link";
 import {ImageOff} from "lucide-react";
+import Link from "next/link";
 
 interface Props {
     element: ElementInterface
 }
 
-export default function Element( {element}: Props) {
+export default function Element({element}: Props) {
 
     const [isLoading, setIsLoading] = useState<boolean>(!!element.image);
 
     const div = (
-        <div className="flex flex-col items-center gap-1">
+        <div className="flex flex-col items-center gap-1 group">
             <div className='relative' style={{width: element.width, height: element.height}}>
                 {isLoading &&
                     <Skeleton className="rounded-(--radius)" style={{width: element.width, height: element.height}}/>}
@@ -30,14 +30,15 @@ export default function Element( {element}: Props) {
                     </div>}
             </div>
             {element.isName &&
-                <div className="text-center relative" style={{width: element.width}}>{element.name}</div>}
+                <div className="text-center relative text-muted-foreground group-hover:text-foreground"
+                     style={{width: element.width}}>{element.name}</div>}
         </div>
-    )
+    );
 
     return (
-        element.isClickable ?
-            <Link href={`/${element.type}s/${element.id}`} passHref>
+        element.isClickable ? <Link href={`/${element.type}s/${element.id}`}>
                 {div}
-            </Link> : div
+            </Link>
+            : div
     );
 }

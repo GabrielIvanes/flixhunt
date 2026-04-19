@@ -55,7 +55,7 @@ export interface MovieDetail {
         cast: Cast[];
         crew: Crew[];
     }
-    recommendations: TMDBResponse<MovieSummary>;
+    recommendations: TMDBResponse<MovieSummary & { media_type: string }>;
     release_dates: {
         results: ReleaseDate[];
     }
@@ -82,4 +82,3 @@ interface ReleaseDate {
 }
 
 export type Movie = MovieDetail | MovieSummary;
-

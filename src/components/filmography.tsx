@@ -1,11 +1,11 @@
 'use client'
 
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select"
-import {MediaCastCredit, MediaCrewCredit, PersonDetail} from "@/types/person-interfaces"
-import {Element as ElementInterface} from "@/types/global-interfaces"
+import {PersonDetail} from "@/types/person-interfaces"
+import {Element as ElementInterface, MediaCastCredit, MediaCrewCredit} from "@/types/global-interfaces"
 import {useMemo, useState} from "react";
 import {getCast, getCrew, getDirectors, sortArray} from "@/services/persons";
-import {mediaToElement, personToElement} from "@/lib/utils";
+import {mediaToElement} from "@/lib/utils";
 import Element from "@/components/ui/element";
 import {Configuration} from "@/types/tmdb-interfaces";
 import {H3} from "@/components/ui/typography";
@@ -24,23 +24,21 @@ export default function Filmography({person, configuration}: Props) {
     const crewMovies: MediaCrewCredit[] = getCrew(person.combined_credits.crew)
     const directorMovies: MediaCrewCredit[] = getDirectors(person.combined_credits.crew)
 
-    const movieElements: ElementInterface = useMemo(() => {
+    const movieElements: ElementInterface[] = useMemo(() => {
         let data: MediaCastCredit[] | MediaCrewCredit[] = []
 
-        if (role === "cast") data = castMovies
-        else if (role === "crew") data = crewMovies
-        else data = directorMovies
-
-        data = sortArray(sortBy, data)
+        if (role === "cast") data = sortArray(sortBy, castMovies)
+        else if (role === "crew") data = sortArray(sortBy, crewMovies)
+        else data = sortArray(sortBy, directorMovies)
 
         return data.map((d) => mediaToElement(d, d.media_type === "tv" ? "tv-show" : d.media_type, configuration, 225, 225 * 1.5, true, true, false))
-    }, [role, sortBy]);
+    }, [role, sortBy, configuration, castMovies, crewMovies, directorMovies]);
 
     return (
         <>
             <div className="w-full flex gap-5 mb-5">
-                <Select value={role} onValueChange={(value) => setRole(value)}>
-                    <SelectTrigger className="w-[180px]">
+                <Select value={role} onValueChange={(value: "cast" | "crew" | "director") => setRole(value)}>
+                    <SelectTrigger className="w-45">
                         <SelectValue/>
                     </SelectTrigger>
                     <SelectContent position={"popper"}>
@@ -52,8 +50,8 @@ export default function Filmography({person, configuration}: Props) {
                     </SelectContent>
                 </Select>
 
-                <Select value={sortBy} onValueChange={(value) => setSortBy(value)}>
-                    <SelectTrigger className="w-[220px]">
+                <Select value={sortBy} onValueChange={(value: "year-descending" | "year-ascending" | "popularity-descending" | "popularity-ascending") => setSortBy(value)}>
+                    <SelectTrigger className="w-55">
                         <SelectValue/>
                     </SelectTrigger>
                     <SelectContent position={"popper"}>
@@ -66,7 +64,7 @@ export default function Filmography({person, configuration}: Props) {
                     </SelectContent>
                 </Select>
             </div>
-            {movieElements && movieElements.length > 0 ? <div className="flex flex-wrap gap-4">
+            {movieElements && movieElements.length > 0 ? <div className="flex flex-wrap gap-5">
                 {movieElements.map(movieElement => (
                     <div key={movieElement.id}>
                         <Element element={movieElement}/>

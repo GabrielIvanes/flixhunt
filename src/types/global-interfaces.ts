@@ -8,13 +8,13 @@ export interface Element {
     height: number;
     tooltip: string;
     name: string;
-    type: ElementType;
+    type: string;
     isTooltip: boolean;
     isName: boolean;
     isClickable: boolean;
 }
 
-type ElementType = 'provider' | 'movie' | 'person' | 'tv-show';
+export type ElementType = 'provider' | 'movie' | 'person' | 'tv-show';
 
 export interface Genre {
     id: number;
@@ -118,6 +118,16 @@ export interface MediaCrewCredit {
     department: string;
     job: string;
     media_type: string;
+}
+
+export interface MediaActions {
+    showVideo: boolean;
+    isFavorite: boolean;
+    isWatchlist: boolean;
+    isWatched: boolean;
+    isTheatreWatched: boolean;
+    list: number[] | null;
+    comment: string | null;
 }
 
 export type MediaPersonCredit = MediaCastCredit | MediaCrewCredit;

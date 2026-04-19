@@ -23,7 +23,8 @@ export function CarouselList({elements, title, loop}: Props) {
             >
                 <CarouselContent className="-ml-3">
                     {elements.map((element) => (
-                        <CarouselItem key={element.id} className="pl-3 basis-auto">
+                        <CarouselItem key={element.id}
+                                      className="pl-3 basis-auto">
                             <Element element={element}/>
                         </CarouselItem>
                     ))}

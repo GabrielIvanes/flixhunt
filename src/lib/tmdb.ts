@@ -3,6 +3,9 @@ import {Configuration} from "@/types/tmdb-interfaces";
 export async function getConfiguration() {
     const url = `${process.env.API_BASE_URL}/tmdb/configuration`
     const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
     const json = await response.json();
 
     if (json.success) {

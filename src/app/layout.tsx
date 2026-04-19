@@ -1,21 +1,28 @@
 import type {Metadata} from "next";
-import {Geist, Geist_Mono, Inter} from "next/font/google";
+import {Lexend, Montserrat, Rubik} from 'next/font/google';
 import "./globals.css";
 import {cn} from "@/lib/utils";
 import React from "react";
 import {ThemeProvider} from "@/components/theme-provider"
-import {ModeToggle} from "@/components/toggle-mode";
+import Header from "@/components/header";
+import {TooltipProvider} from "@/components/ui/tooltip";
 
-const inter = Inter({subsets: ['latin'], variable: '--font-sans'});
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
+const montserrat = Montserrat({
+    variable: '--font-montserrat',
+    weight: 'variable',
+    subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
+const rubik = Rubik({
+    variable: '--font-rubik',
+    weight: 'variable',
+    subsets: ['latin'],
+});
+
+const lexend = Lexend({
+    variable: '--font-lexend',
+    weight: 'variable',
+    subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
@@ -31,19 +38,22 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+            className={cn("h-full", "antialiased" )}
             suppressHydrationWarning
         >
-        <body className="min-h-full flex flex-col">
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-        >
-            <ModeToggle />
-            {children}
-        </ThemeProvider></body>
+        <body className={`min-h-full flex flex-col ${lexend.className} ${rubik.className} ${montserrat.className} font-sans`}>
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+            >
+                <TooltipProvider>
+                    <Header/>
+                    {children}
+                </TooltipProvider>
+            </ThemeProvider>
+        </body>
 
         </html>
     );
