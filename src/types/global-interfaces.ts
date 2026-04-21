@@ -1,5 +1,5 @@
-import {MovieSummary, MovieDetail, Movie} from "@/types/movie-interfaces";
-import {TvshowSummary, TvshowDetail, Tvshow} from "@/types/tvshow-interfaces";
+import { MovieSummary, MovieDetail, Movie } from '@/types/movie-interfaces';
+import { TvshowSummary, TvshowDetail, Tvshow } from '@/types/tvshow-interfaces';
 
 export interface Element {
     id: number;
@@ -53,29 +53,124 @@ export interface Video {
 }
 
 export type CountryCode =
-    | "AE" | "AL" | "AR" | "AT" | "AU" | "BA" | "BB" | "BE" | "BG" | "BH"
-    | "BO" | "BR" | "BS" | "CA" | "CH" | "CL" | "CO" | "CR" | "CV" | "CZ"
-    | "DE" | "DK" | "DO" | "EC" | "EE" | "EG" | "ES" | "FI" | "FJ" | "FR"
-    | "GB" | "GF" | "GI" | "GR" | "GT" | "HK" | "HN" | "HR" | "HU" | "ID"
-    | "IE" | "IL" | "IN" | "IQ" | "IS" | "IT" | "JM" | "JO" | "JP" | "KR"
-    | "KW" | "LB" | "LI" | "LT" | "LV" | "MD" | "MK" | "MT" | "MU" | "MX"
-    | "MY" | "MZ" | "NL" | "NO" | "NZ" | "OM" | "PA" | "PE" | "PH" | "PK"
-    | "PL" | "PS" | "PT" | "PY" | "QA" | "RO" | "RS" | "RU" | "SA" | "SE"
-    | "SG" | "SI" | "SK" | "SM" | "SV" | "TH" | "TR" | "TT" | "TW" | "UG"
-    | "US" | "UY" | "VE" | "YE" | "ZA"
+    | 'AE'
+    | 'AL'
+    | 'AR'
+    | 'AT'
+    | 'AU'
+    | 'BA'
+    | 'BB'
+    | 'BE'
+    | 'BG'
+    | 'BH'
+    | 'BO'
+    | 'BR'
+    | 'BS'
+    | 'CA'
+    | 'CH'
+    | 'CL'
+    | 'CO'
+    | 'CR'
+    | 'CV'
+    | 'CZ'
+    | 'DE'
+    | 'DK'
+    | 'DO'
+    | 'EC'
+    | 'EE'
+    | 'EG'
+    | 'ES'
+    | 'FI'
+    | 'FJ'
+    | 'FR'
+    | 'GB'
+    | 'GF'
+    | 'GI'
+    | 'GR'
+    | 'GT'
+    | 'HK'
+    | 'HN'
+    | 'HR'
+    | 'HU'
+    | 'ID'
+    | 'IE'
+    | 'IL'
+    | 'IN'
+    | 'IQ'
+    | 'IS'
+    | 'IT'
+    | 'JM'
+    | 'JO'
+    | 'JP'
+    | 'KR'
+    | 'KW'
+    | 'LB'
+    | 'LI'
+    | 'LT'
+    | 'LV'
+    | 'MD'
+    | 'MK'
+    | 'MT'
+    | 'MU'
+    | 'MX'
+    | 'MY'
+    | 'MZ'
+    | 'NL'
+    | 'NO'
+    | 'NZ'
+    | 'OM'
+    | 'PA'
+    | 'PE'
+    | 'PH'
+    | 'PK'
+    | 'PL'
+    | 'PS'
+    | 'PT'
+    | 'PY'
+    | 'QA'
+    | 'RO'
+    | 'RS'
+    | 'RU'
+    | 'SA'
+    | 'SE'
+    | 'SG'
+    | 'SI'
+    | 'SK'
+    | 'SM'
+    | 'SV'
+    | 'TH'
+    | 'TR'
+    | 'TT'
+    | 'TW'
+    | 'UG'
+    | 'US'
+    | 'UY'
+    | 'VE'
+    | 'YE'
+    | 'ZA';
 
 export interface Provider {
-    logo_path: string
-    provider_id: number
-    provider_name: string
-    display_priority: number
+    logo_path: string;
+    provider_id: number;
+    provider_name: string;
+    display_priority: number;
+}
+
+export interface Providers {
+    results: {
+        display_priorities: Record<CountryCode, number>;
+        logo_path: string;
+        provider_id: number;
+        provider_name: string;
+        display_priority: number;
+    }[];
 }
 
 export interface WatchOptions {
-    link: string
-    flatrate: Provider[]
-    rent: Provider[]
-    buy: Provider[]
+    link: string;
+    flatrate: Provider[];
+    rent: Provider[];
+    buy: Provider[];
 }
 
 export interface MediaCastCredit {
@@ -132,4 +227,4 @@ export interface MediaActions {
 
 export type MediaPersonCredit = MediaCastCredit | MediaCrewCredit;
 
-export type Media = Movie | Tvshow | MediaPersonCredit
+export type Media = Movie | Tvshow | MediaPersonCredit;

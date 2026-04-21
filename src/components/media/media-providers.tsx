@@ -1,7 +1,11 @@
-import {Element as ElementInterface} from "@/types/global-interfaces"
-import {Element} from "@/components/ui/element"
-import {H3} from "@/components/ui/typography";
-import {Tooltip, TooltipContent, TooltipTrigger,} from "@/components/ui/tooltip"
+import { Element as ElementInterface } from '@/types/global-interfaces';
+import Element from '@/components/ui/element';
+import { H3 } from '@/components/ui/typography';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 interface Props {
     providerElements: ElementInterface[];
 }

@@ -9,14 +9,12 @@ export async function GET(
     const genres = searchParams.get('with_genres');
     const decade = searchParams.get('decade');
     const year = searchParams.get('year');
+    const rateGte = searchParams.get('rate_gte');
+    const rateLte = searchParams.get('rate_lte');
+    const voteGte = searchParams.get('vote_gte') || '8000';
+    const providers = searchParams.get('with_providers');
 
 
-    const voteGte = searchParams.get('vote-gte') || '8000';
-    const rateGte = searchParams.get('rate-gte');
-    const rateLte = searchParams.get('rate-lte');
-    const dateGte = searchParams.get('date-gte');
-    const dateLte = searchParams.get('date-lte');
-    const providers = searchParams.get('providers');
     const region = searchParams.get('region') || 'FR';
     const keywords = searchParams.get('keywords');
     const cast = searchParams.get('cast');
@@ -37,7 +35,13 @@ export async function GET(
     if (decade) url.searchParams.set('primary_release_date.lte', `${Number(decade) + 9}-12-31`);
     if (genres) url.searchParams.set('with_genres', genres);
     if (year) url.searchParams.set('primary_release_year', year);
+    if (rateGte) url.searchParams.set('vote_average.gte', rateGte);
+    if (rateLte) url.searchParams.set('vote_average.lte', rateLte);
     if (voteGte) url.searchParams.set('vote_count.gte', voteGte);
+    if (providers && region) {
+        url.searchParams.set('with_watch_providers', providers);
+        url.searchParams.set('watch_region', region);
+    }
 
     const options: RequestInit = {
         method: 'GET',
