@@ -78,11 +78,11 @@ export default function FiltersMedia({
 
     const pageParam = Number(searchParams.get('page')) || 1;
     const withGenres: string = searchParams.get('with_genres') || '';
-    const decadeParam = searchParams.get('decade');
-    const yearParam = searchParams.get('year');
-    const rateGte = searchParams.get('rate_gte');
-    const rateLte = searchParams.get('rate_lte');
-    const voteGte = searchParams.get('vote_gte');
+    const decadeParam = Number(searchParams.get('decade')) || null;
+    const yearParam = Number(searchParams.get('year')) || null;
+    const rateGte = Number(searchParams.get('rate_gte')) || 1;
+    const rateLte = Number(searchParams.get('rate_lte')) || 10;
+    const voteGte = Number(searchParams.get('vote_gte')) || 8000;
     const withProviders: string = searchParams.get('with_providers') || '';
 
     const currentYear = new Date().getFullYear();
@@ -97,13 +97,10 @@ export default function FiltersMedia({
         selectedGenres: withGenres
             ? withGenres.split(',').map(Number).filter(Boolean)
             : [],
-        selectedDecade: decadeParam ? Number(decadeParam) : null,
-        selectedYear: yearParam ? Number(yearParam) : null,
-        selectedVoteAverage: [
-            rateGte ? Number(rateGte) : 1,
-            rateLte ? Number(rateLte) : 10,
-        ],
-        selectedVoteCount: [voteGte ? Number(voteGte) : 8000],
+        selectedDecade: decadeParam,
+        selectedYear: yearParam,
+        selectedVoteAverage: [rateGte, rateLte],
+        selectedVoteCount: [voteGte],
         selectProviders: withProviders
             ? withProviders.split('|').map(Number).filter(Boolean)
             : [],
