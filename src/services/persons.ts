@@ -1,5 +1,7 @@
-import {MediaCastCredit, MediaCrewCredit} from "@/types/global-interfaces"
-import {CastAggregateCredit, CrewAggregateCredit} from "@/types/person-interfaces";
+import {
+    CastAggregateCredit,
+    CrewAggregateCredit,
+} from '@/types/person-interfaces';
 
 export function getCrew<T extends { id: number; job: string }>(crew: T[]): T[] {
     const crewFilter = new Map<number, T>();
@@ -14,7 +16,7 @@ export function getCrew<T extends { id: number; job: string }>(crew: T[]): T[] {
     return Array.from(crewFilter.values());
 }
 
-export function getAggregateCrew (crew: CrewAggregateCredit[]) {
+export function getAggregateCrew(crew: CrewAggregateCredit[]) {
     const crewFilter = new Map<number, CrewAggregateCredit>();
 
     for (const c of crew) {
@@ -24,14 +26,15 @@ export function getAggregateCrew (crew: CrewAggregateCredit[]) {
             for (const job of cf.jobs) {
                 if (!cf.jobs.some((j) => j.job === job.job)) cf.jobs.push(job);
             }
-        }
-        else crewFilter.set(c.id, { ...c, jobs: [...c.jobs] })
+        } else crewFilter.set(c.id, { ...c, jobs: [...c.jobs] });
     }
 
     return Array.from(crewFilter.values());
 }
 
-export function getCast<T extends { id: number; character: string }>(cast: T[]): T[] {
+export function getCast<T extends { id: number; character: string }>(
+    cast: T[]
+): T[] {
     const castFilter = new Map<number, T>();
 
     for (const c of cast) {
@@ -44,7 +47,7 @@ export function getCast<T extends { id: number; character: string }>(cast: T[]):
     return Array.from(castFilter.values());
 }
 
-export function getAggregateCast (cast: CastAggregateCredit[]) {
+export function getAggregateCast(cast: CastAggregateCredit[]) {
     const castFilter = new Map<number, CastAggregateCredit>();
 
     for (const c of cast) {
@@ -52,17 +55,17 @@ export function getAggregateCast (cast: CastAggregateCredit[]) {
 
         if (cf) {
             for (const role of cf.roles) {
-                if (!cf.roles.some((j) => j.character === role.character)) cf.roles.push(role);
+                if (!cf.roles.some((j) => j.character === role.character))
+                    cf.roles.push(role);
             }
-        }
-        else castFilter.set(c.id, { ...c, roles: [...c.roles] })
+        } else castFilter.set(c.id, { ...c, roles: [...c.roles] });
     }
 
     return Array.from(castFilter.values());
 }
 
 export function getDirectors<T extends { job: string }>(crew: T[]): T[] {
-    return crew.filter(c => c.job === "Director");
+    return crew.filter((c) => c.job === 'Director');
 }
 
 export function getAge(birthday: string, deathday: string | null) {
@@ -74,33 +77,52 @@ export function getAge(birthday: string, deathday: string | null) {
     let age = lastDate.getFullYear() - firstDate.getFullYear();
 
     if (lastDate.getMonth() - firstDate.getMonth() < 0) age -= 1;
-    else if (lastDate.getMonth() - lastDate.getMonth() === 0 && lastDate.getDate() - firstDate.getDate() < 0) age -= 1;
+    else if (
+        lastDate.getMonth() - lastDate.getMonth() === 0 &&
+        lastDate.getDate() - firstDate.getDate() < 0
+    )
+        age -= 1;
 
     return `${age}`;
 }
 
-export function sortArray<T extends { vote_average: number, vote_count: number, release_date: string }>(sortBy: "year-descending" | "year-ascending" | "popularity-descending" | "popularity-ascending", person: T[]) {
-    const [field, order] = sortBy.split("-");
+export function sortArray<
+    T extends {
+        vote_average: number;
+        vote_count: number;
+        release_date?: string;
+        first_air_date?: string;
+    },
+>(
+    sortBy:
+        | 'year-descending'
+        | 'year-ascending'
+        | 'popularity-descending'
+        | 'popularity-ascending',
+    person: T[]
+) {
+    const [field, order] = sortBy.split('-');
 
-    let sortCombinedCredits: MediaCastCredit[] | MediaCrewCredit[] = [];
+    if (field === 'year') {
+        return [...person].sort((a, b) => {
+            const dateA = a.release_date ? new Date(a.release_date) : a.first_air_date ? new Date(a.first_air_date) : null;
+            const dateB = b.release_date ? new Date(b.release_date) : b.first_air_date ? new Date(b.first_air_date) : null;
 
-    if (field === "year") {
+            if (!dateA || isNaN(dateA.getTime())) return order === 'ascending' ? -1 : 1;
+            if (!dateB || isNaN(dateB.getTime())) return order === 'ascending' ? 1 : -1;
 
-        return ([...person].sort((a, b) => {
-          const dateA = new Date(a.release_date);
-          const dateB = new Date(b.release_date);
-
-          if (isNaN(dateA.getTime())) return order === 'ascending' ? -1 : 1;
-          if (isNaN(dateB.getTime())) return order === 'ascending' ? 1 : -1;
-
-          return order === "ascending" ? dateA.getTime() - dateB.getTime() : dateB.getTime() - dateA.getTime();
-        }));
+            return order === 'ascending'
+                ? dateA.getTime() - dateB.getTime()
+                : dateB.getTime() - dateA.getTime();
+        });
     } else {
         return [...person].sort((a, b) => {
-            const popularityA = a.vote_average * a.vote_count
-            const popularityB = b.vote_average * b.vote_count
+            const popularityA = a.vote_average * a.vote_count;
+            const popularityB = b.vote_average * b.vote_count;
 
-            return  order === "ascending" ? popularityA - popularityB : popularityB - popularityA;
-        })
+            return order === 'ascending'
+                ? popularityA - popularityB
+                : popularityB - popularityA;
+        });
     }
 }

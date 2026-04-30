@@ -1,6 +1,15 @@
-import {Genre, ProductionCompany, ProductionCountry, SpokenLanguage, Video, CountryCode, Provider, WatchOptions} from "@/types/global-interfaces";
-import {Cast, Crew} from "@/types/person-interfaces";
-import {TMDBResponse} from "@/types/tmdb-interfaces";
+import {
+    Genre,
+    ProductionCompany,
+    ProductionCountry,
+    SpokenLanguage,
+    Video,
+    CountryCode,
+    WatchOptions,
+} from '@/types/global-interfaces';
+import { Cast, Crew } from '@/types/person-interfaces';
+import { TMDBResponse } from '@/types/tmdb-interfaces';
+import { TvshowSummary } from './tvshow-interfaces';
 
 export interface MovieSummary {
     adult: boolean;
@@ -27,7 +36,7 @@ export interface MovieDetail {
         name: string;
         poster_path: string;
         backdrop_path: string;
-    }
+    };
     budget: number;
     genres: Genre[];
     homepage: string;
@@ -54,19 +63,21 @@ export interface MovieDetail {
     credits: {
         cast: Cast[];
         crew: Crew[];
-    }
-    recommendations: TMDBResponse<MovieSummary & { media_type: string }>;
+    };
+    recommendations: TMDBResponse<
+        (MovieSummary | TvshowSummary) & { media_type: 'movie' | 'tv' }
+    >;
     release_dates: {
         results: ReleaseDate[];
-    }
+    };
     videos: {
         id: number;
         results: Video[];
-    }
-   'watch/providers': {
+    };
+    'watch/providers': {
         id: number;
-        results: Record<CountryCode, WatchOptions>
-    }
+        results: Record<CountryCode, WatchOptions>;
+    };
 }
 
 interface ReleaseDate {
@@ -78,7 +89,7 @@ interface ReleaseDate {
         note: string;
         release_date: string;
         type: 1 | 2 | 3 | 4 | 5 | 6;
-    }[]
+    }[];
 }
 
 export type Movie = MovieDetail | MovieSummary;

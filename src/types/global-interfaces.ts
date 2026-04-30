@@ -1,20 +1,19 @@
-import { MovieSummary, MovieDetail, Movie } from '@/types/movie-interfaces';
-import { TvshowSummary, TvshowDetail, Tvshow } from '@/types/tvshow-interfaces';
+import { Movie, MovieSummary } from '@/types/movie-interfaces';
+import { Tvshow, TvshowSummary } from '@/types/tvshow-interfaces';
 
 export interface Element {
     id: number;
+    name: string;
     image: string;
+    type: ElementType;
     width: number;
     height: number;
     tooltip: string;
-    name: string;
-    type: string;
-    isTooltip: boolean;
-    isName: boolean;
+    information: string;
     isClickable: boolean;
 }
 
-export type ElementType = 'provider' | 'movie' | 'person' | 'tv-show';
+export type ElementType = 'provider' | 'movie' | 'person' | 'tv';
 
 export interface Genre {
     id: number;
@@ -173,47 +172,33 @@ export interface WatchOptions {
     buy: Provider[];
 }
 
-export interface MediaCastCredit {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-    character: string;
-    credit_id: string;
-    order: number;
-    media_type: string;
-}
+export type MediaCastCredit =
+    | (MovieSummary & {
+          media_type: 'movie';
+          character: string;
+          credit_id: string;
+          order: number;
+      })
+    | (TvshowSummary & {
+          media_type: 'tv';
+          character: string;
+          credit_id: string;
+          order: number;
+      });
 
-export interface MediaCrewCredit {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-    credit_id: string;
-    department: string;
-    job: string;
-    media_type: string;
-}
+export type MediaCrewCredit =
+    | (MovieSummary & {
+          credit_id: string;
+          department: string;
+          job: string;
+          media_type: 'movie';
+      })
+    | (TvshowSummary & {
+          credit_id: string;
+          department: string;
+          job: string;
+          media_type: 'tv';
+      });
 
 export interface MediaActions {
     showVideo: boolean;
@@ -223,6 +208,15 @@ export interface MediaActions {
     isTheatreWatched: boolean;
     list: number[] | null;
     comment: string | null;
+}
+
+export interface Filters {
+    selectedGenres: number[];
+    selectedDecade: number | null;
+    selectedYear: number | null;
+    selectedVoteAverage: number[];
+    selectedVoteCount: number[];
+    selectProviders: number[];
 }
 
 export type MediaPersonCredit = MediaCastCredit | MediaCrewCredit;

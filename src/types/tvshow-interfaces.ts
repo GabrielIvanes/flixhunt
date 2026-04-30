@@ -4,10 +4,15 @@ import {
     ProductionCompany,
     ProductionCountry,
     SpokenLanguage,
-    Video, WatchOptions
-} from "@/types/global-interfaces";
-import {TMDBResponse} from "@/types/tmdb-interfaces";
-import {CastAggregateCredit, CrewAggregateCredit} from "@/types/person-interfaces";
+    Video,
+    WatchOptions,
+} from '@/types/global-interfaces';
+import { TMDBResponse } from '@/types/tmdb-interfaces';
+import {
+    CastAggregateCredit,
+    CrewAggregateCredit,
+} from '@/types/person-interfaces';
+import { MovieSummary } from '@/types/movie-interfaces';
 
 export interface TvshowSummary {
     adult: boolean;
@@ -60,27 +65,29 @@ export interface TvshowDetail {
     vote_average: number;
     vote_count: number;
     aggregate_credits: {
-        cast: CastAggregateCredit[]
-        crew: CrewAggregateCredit[]
+        cast: CastAggregateCredit[];
+        crew: CrewAggregateCredit[];
         id: number;
-    }
-    recommendations: TMDBResponse<TvshowSummary>;
+    };
+    recommendations: TMDBResponse<
+        (MovieSummary | TvshowSummary) & { media_type: 'movie' | 'tv' }
+    >;
     videos: {
         id: number;
         results: Video[];
-    }
+    };
     content_ratings: {
         id: number;
         results: {
             descriptors: string[];
             iso_3166_1: string;
             rating: string;
-        }
-    }
+        };
+    };
     'watch/providers': {
         id: number;
-        results: Record<CountryCode, WatchOptions>
-    }
+        results: Record<CountryCode, WatchOptions>;
+    };
 }
 
 interface Episode {

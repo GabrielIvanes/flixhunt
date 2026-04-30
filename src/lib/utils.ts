@@ -1,80 +1,34 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-import { Element, ElementType, Provider, Media, MediaCastCredit, MediaCrewCredit } from "@/types/global-interfaces";
-import { Movie } from "@/types/movie-interfaces";
-import { Configuration } from "@/types/tmdb-interfaces";
-import {
-    Cast,
-    CastAggregateCredit,
-    Crew,
-    CrewAggregateCredit,
-    PersonDetail
-} from "@/types/person-interfaces";
-import { Tvshow } from "@/types/tvshow-interfaces";
+import { Element } from '@/types/global-interfaces';
 
 export function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs));
 }
 
-export function mediaToElement(media: Media, mediaType: string, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean, information?: string): Element {
+export function mediaToElement(
+    id: number,
+    name: string,
+    image: string,
+    mediaType: 'movie' | 'tv' | 'person' | 'provider',
+    width: number,
+    height: number,
+    tooltip: string,
+    information: string,
+    isClickable: boolean
+): Element {
     return {
-        id: media.id,
+        id: id,
+        name: name,
+        image: image,
         type: mediaType,
-        image: media.poster_path ? `${configuration.images.secure_base_url}w500${media.poster_path}` : '',
         width: width,
         height: height,
-        tooltip: "name" in media ? (media as Tvshow).name : (media as Movie).title,
-        name: information ? information : "name" in media ? (media as Tvshow).name : (media as Movie).title,
+        tooltip: tooltip,
+        information: information,
         isClickable: isClickable,
-        isTooltip: isTooltip,
-        isName: isName
-    }
-}
-
-export function providerToElement(provider: Provider, configuration: Configuration, width: number, height: number): Element {
-    return {
-        id: provider.provider_id,
-        type: "provider",
-        image: provider.logo_path ? `${configuration.images.secure_base_url}w500${provider.logo_path}` : '',
-        width: width,
-        height: height,
-        tooltip: provider.provider_name,
-        name: provider.provider_name,
-        isClickable: false,
-        isTooltip: true,
-        isName: false
-    }
-}
-
-export function personToElement(person: Cast | Crew | PersonDetail, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
-    return {
-        id: person.id,
-        type: "person",
-        image: person.profile_path ? `${configuration.images.secure_base_url}w500${person.profile_path}` : '',
-        width: width,
-        height: height,
-        tooltip: (person as Crew).job ? (person as Crew).job : (person as Cast).character,
-        name: person.name,
-        isClickable: isClickable,
-        isTooltip: isTooltip,
-        isName: isName
-    }
-}
-
-export function personAggregateToElement(person: CastAggregateCredit | CrewAggregateCredit, configuration: Configuration, width: number, height: number, isClickable: boolean, isTooltip: boolean, isName: boolean): Element {
-    return {
-        id: person.id,
-        type: "person",
-        image: person.profile_path ? `${configuration.images.secure_base_url}w500${person.profile_path}` : '',
-        width: width,
-        height: height,
-        tooltip: (person as CrewAggregateCredit).jobs ? (person as CrewAggregateCredit).jobs.map((job) => job.job).join(', ') : (person as CastAggregateCredit).roles.map((role) => role.character).join(', '),
-        name: person.name,
-        isClickable: isClickable,
-        isTooltip: isTooltip,
-        isName: isName
-    }
+    };
 }
 
 export function formatTime(runtime: number) {

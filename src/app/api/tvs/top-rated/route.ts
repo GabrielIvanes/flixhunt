@@ -30,20 +30,19 @@ export async function GET(req: NextRequest) {
             { status: 400 }
         );
 
-    const url = new URL(`${process.env.TMDB_BASE_URL}discover/movie`);
+    const url = new URL(`${process.env.TMDB_BASE_URL}discover/tv`);
     url.searchParams.set('include_adult', 'false');
     url.searchParams.set('sort_by', 'vote_average.desc');
     if (language) url.searchParams.set('language', language);
     if (page) url.searchParams.set('page', page);
-    if (decade)
-        url.searchParams.set('primary_release_date.gte', `${decade}-01-01`);
+    if (decade) url.searchParams.set('first_air_date.gte', `${decade}-01-01`);
     if (decade)
         url.searchParams.set(
-            'primary_release_date.lte',
+            'first_air_date.lte',
             `${Number(decade) + 9}-12-31`
         );
     if (genres) url.searchParams.set('with_genres', genres);
-    if (year) url.searchParams.set('primary_release_year', year);
+    if (year) url.searchParams.set('first_air_date_year', year);
     if (rateGte) url.searchParams.set('vote_average.gte', rateGte);
     if (rateLte) url.searchParams.set('vote_average.lte', rateLte);
     if (voteGte) url.searchParams.set('vote_count.gte', voteGte);
@@ -63,9 +62,9 @@ export async function GET(req: NextRequest) {
 
     try {
         const data = await fetch(url, options);
-        const movies = await data.json();
+        const tvshows = await data.json();
         return NextResponse.json(
-            { success: true, data: movies, error: null },
+            { success: true, data: tvshows, error: null },
             { status: 200 }
         );
     } catch (err) {
