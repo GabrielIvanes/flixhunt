@@ -26,6 +26,8 @@ export default function Pagination({
     searchParams,
     router,
 }: Props) {
+    if (totalPages > 500) totalPages = 500;
+
     return (
         <PaginationWrapper>
             <PaginationContent>

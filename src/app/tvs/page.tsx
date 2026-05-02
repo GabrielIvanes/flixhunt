@@ -77,6 +77,7 @@ export default async function Tvshows({
                 defaultVoteGte={defaultVoteGte}
                 totalPages={tvshows.total_pages}
                 providers={providers}
+                showFilters={true}
             />
         </div>
     );
