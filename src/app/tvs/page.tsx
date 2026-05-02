@@ -69,7 +69,7 @@ export default async function Tvshows({
     console.log(providers);
 
     return (
-        <div className="pt-12 pb-5">
+        <div className="mt-30 pb-5">
             <FiltersMedia
                 mediaElements={tvshowElements}
                 mediaType="tv"

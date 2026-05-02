@@ -70,8 +70,10 @@ export interface TvshowDetail {
         id: number;
     };
     recommendations: TMDBResponse<
-        (MovieSummary | TvshowSummary) & { media_type: 'movie' | 'tv' }
+        | (MovieSummary & { media_type: 'movie' })
+        | (TvshowSummary & { media_type: 'tv' })
     >;
+    similar: TMDBResponse<TvshowSummary>;
     videos: {
         id: number;
         results: Video[];

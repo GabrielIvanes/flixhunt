@@ -14,7 +14,7 @@ interface Props {
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
-export default function filtersDate({ filters, setFilters }: Props) {
+export default function FiltersDate({ filters, setFilters }: Props) {
     const currentYear = new Date().getFullYear();
     const startYear = 1895;
     const years = Array.from(
@@ -24,7 +24,7 @@ export default function filtersDate({ filters, setFilters }: Props) {
     const decades = getDecades(startYear, currentYear);
 
     return (
-        <div className="mb-5">
+        <div>
             <H3 text="Dates" />
             <div className="flex gap-2 mt-2">
                 <div className="flex flex-col gap-2">

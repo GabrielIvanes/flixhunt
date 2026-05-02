@@ -4,7 +4,7 @@ import { Filters, Genre, Providers } from '@/types/global-interfaces';
 interface Props {
     filters: Filters;
     providersMap: Map<number, Providers['results'][number]>;
-    genres: Genre[];
+    genres: Genre[] | null;
     defaultVoteGte: number;
 }
 
@@ -34,7 +34,7 @@ export default function FiltersBadges({
                     {'Genres: '}
                     {filters.selectedGenres
                         .map((genreId: number) => {
-                            const genre = genres.find((g) => g.id === genreId);
+                            const genre = genres?.find((g) => g.id === genreId);
                             return genre?.name;
                         })
                         .join(', ')}

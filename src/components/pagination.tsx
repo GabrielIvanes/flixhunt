@@ -14,7 +14,7 @@ import { ReadonlyURLSearchParams } from 'next/navigation';
 interface Props {
     totalPages: number;
     page: number;
-    media: 'movies' | 'tvs';
+    media: 'movies' | 'tvs' | 'persons';
     searchParams: ReadonlyURLSearchParams;
     router: AppRouterInstance;
 }

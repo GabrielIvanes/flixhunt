@@ -64,8 +64,10 @@ export interface MovieDetail {
         cast: Cast[];
         crew: Crew[];
     };
+    similar: TMDBResponse<MovieSummary>;
     recommendations: TMDBResponse<
-        (MovieSummary | TvshowSummary) & { media_type: 'movie' | 'tv' }
+        | (MovieSummary & { media_type: 'movie' })
+        | (TvshowSummary & { media_type: 'tv' })
     >;
     release_dates: {
         results: ReleaseDate[];

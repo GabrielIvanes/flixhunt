@@ -1,4 +1,3 @@
-import { Genre } from '@/types/global-interfaces';
 import { TMDBResponse } from '@/types/tmdb-interfaces';
 import { TvshowDetail, TvshowSummary } from '@/types/tvshow-interfaces';
 
@@ -57,10 +56,10 @@ export async function getTopRatedTvshows(
     }
 }
 
-export async function getTvshowGenres(language?: string) {
-    const url = new URL(`${process.env.API_BASE_URL}/tvs/genres`);
+export async function getTrendingTvshows(language?: string, page?: number) {
+    const url = new URL(`${process.env.API_BASE_URL}/tvs/trending`);
     if (language) url.searchParams.set('language', language);
-
+    if (page) url.searchParams.set('page', page.toString());
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -68,8 +67,26 @@ export async function getTvshowGenres(language?: string) {
     const json = await response.json();
 
     if (json.success) {
-        const genres: Genre[] = json.data.genres;
-        return genres;
+        const tvshows: TMDBResponse<TvshowSummary> = json.data;
+        return tvshows;
+    } else {
+        throw new Error(json.error);
+    }
+}
+
+export async function getPopularTvshows(language?: string, page?: number) {
+    const url = new URL(`${process.env.API_BASE_URL}/tvs/popular`);
+    if (language) url.searchParams.set('language', language);
+    if (page) url.searchParams.set('page', page.toString());
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const json = await response.json();
+
+    if (json.success) {
+        const tvshows: TMDBResponse<TvshowSummary> = json.data;
+        return tvshows;
     } else {
         throw new Error(json.error);
     }

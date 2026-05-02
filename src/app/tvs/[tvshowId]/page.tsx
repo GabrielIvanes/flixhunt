@@ -128,8 +128,22 @@ export default async function Tvshow({
                 true
             )
         );
-
-    console.log(castElements);
+    const similarElements: ElementInterface[] = tvshow.similar.results.map(
+        (similar) =>
+            mediaToElement(
+                similar.id,
+                similar.name,
+                similar.poster_path
+                    ? `${configuration.images.secure_base_url}w500${similar.poster_path}`
+                    : '',
+                'tv',
+                175,
+                175 * 1.5,
+                '',
+                '',
+                true
+            )
+    );
 
     return (
         <>
@@ -142,7 +156,7 @@ export default async function Tvshow({
                     className="object-cover opacity-20"
                 />
             </div>
-            <div className="w-full h-screen flex gap-4 z-10">
+            <div className="w-full h-screen flex gap-4 z-10 border border-red-900">
                 <div className="flex justify-center items-center flex-1/3 pl-5">
                     <Element element={tvShowElement} />
                 </div>
@@ -271,6 +285,7 @@ export default async function Tvshow({
                 castElements={castElements}
                 crewElements={crewElements}
                 recommendationElements={recommendationElements}
+                similarElements={similarElements}
             />
         </>
     );

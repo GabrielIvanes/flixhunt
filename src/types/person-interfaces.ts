@@ -1,4 +1,6 @@
-import {MediaCastCredit, MediaCrewCredit} from "@/types/global-interfaces";
+import { MediaCastCredit, MediaCrewCredit } from '@/types/global-interfaces';
+import { MovieSummary } from './movie-interfaces';
+import { TvshowSummary } from './tvshow-interfaces';
 
 export interface Cast {
     adult: boolean;
@@ -47,6 +49,19 @@ export interface PersonDetail {
     combined_credits: CombinedCredits;
 }
 
+export interface PersonSummary {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for:
+        | (MovieSummary & { media_type: 'movie' })
+        | (TvshowSummary & { media_type: 'tv' })[];
+    known_for_department: string;
+    name: string;
+    popularity: number;
+    profile_path: string;
+}
+
 export interface CombinedCredits {
     id: number;
     cast: MediaCastCredit[];
@@ -66,7 +81,7 @@ export interface CastAggregateCredit {
         credit_id: string;
         character: string;
         episode_count: number;
-    }[]
+    }[];
     total_episode_count: number;
     order: number;
 }
@@ -84,7 +99,7 @@ export interface CrewAggregateCredit {
         credit_id: string;
         job: string;
         episode_count: number;
-    }[]
+    }[];
     department: string;
     total_episode_count: number;
 }

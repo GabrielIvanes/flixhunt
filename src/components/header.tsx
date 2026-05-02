@@ -38,7 +38,7 @@ export default function Header() {
     ];
 
     return (
-        <div className="z-20 sticky top-5 mx-10 h-16 border border-border bg-card text-card-foreground rounded-(--radius) flex justify-between items-center px-3">
+        <div className="z-20 fixed top-5 left-0 right-0 mx-10 h-16 border border-border bg-card text-card-foreground rounded-(--radius) flex justify-between items-center px-3">
             <div
                 className={`${pathname === '/' ? 'text-card-foreground' : 'text-muted-foreground'} hover:text-card-foreground text-2xl cursor-pointer transition-colors`}
             >

@@ -3,17 +3,17 @@ import { H3 } from '@/components/ui/typography';
 import { Filters, Genre } from '@/types/global-interfaces';
 
 interface Props {
-    genres: Genre[];
+    genres: Genre[] | null;
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }
 
-export default function filtersGenres({ genres, filters, setFilters }: Props) {
+export default function FiltersGenres({ genres, filters, setFilters }: Props) {
     return (
-        <div className="mb-5">
+        <div>
             <H3 text="Genres" />
             <div className="flex gap-2 flex-wrap">
-                {genres.map((genre) => (
+                {genres?.map((genre) => (
                     <Button
                         variant={
                             filters.selectedGenres.includes(genre.id)

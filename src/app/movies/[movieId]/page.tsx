@@ -1,5 +1,5 @@
 import { getMovieDetails } from '@/lib/movies';
-import { MovieDetail, MovieSummary } from '@/types/movie-interfaces';
+import { MovieDetail } from '@/types/movie-interfaces';
 import Image from 'next/image';
 import { getConfiguration } from '@/lib/tmdb';
 import { Configuration } from '@/types/tmdb-interfaces';
@@ -14,7 +14,6 @@ import Link from 'next/link';
 import MediaActions from '@/components/media/media-actions';
 import MediaCarousels from '@/components/media/media-carousels';
 import MediaProviders from '@/components/media/media-providers';
-import { TvshowSummary } from '@/types/tvshow-interfaces';
 
 export default async function Movie({
     params,
@@ -28,7 +27,6 @@ export default async function Movie({
 
     const configuration: Configuration = await getConfiguration();
     const movie: MovieDetail = await getMovieDetails(movieId);
-    console.log(movie);
 
     const movieElement: ElementInterface = mediaToElement(
         movie.id,
@@ -90,7 +88,6 @@ export default async function Movie({
             true
         )
     );
-    console.log(castElements);
     const crewElements: ElementInterface[] = crew.map((c) =>
         mediaToElement(
             c.id,
@@ -111,8 +108,8 @@ export default async function Movie({
             mediaToElement(
                 recommendation.id,
                 recommendation.media_type === 'movie'
-                    ? (recommendation as MovieSummary).title
-                    : (recommendation as TvshowSummary).name,
+                    ? recommendation.title
+                    : recommendation.name,
                 recommendation.poster_path
                     ? `${configuration.images.secure_base_url}w500${recommendation.poster_path}`
                     : '',
@@ -124,6 +121,22 @@ export default async function Movie({
                 true
             )
         );
+    const similarElements: ElementInterface[] = movie.similar.results.map(
+        (similar) =>
+            mediaToElement(
+                similar.id,
+                similar.title,
+                similar.poster_path
+                    ? `${configuration.images.secure_base_url}w500${similar.poster_path}`
+                    : '',
+                'movie',
+                175,
+                175 * 1.5,
+                '',
+                '',
+                true
+            )
+    );
 
     return (
         <>
@@ -136,7 +149,7 @@ export default async function Movie({
                     className="object-cover opacity-20"
                 />
             </div>
-            <div className="w-full h-screen flex gap-4 z-10">
+            <div className="w-full h-screen flex gap-4 z-10 mt-0!">
                 <div className="flex justify-center items-center flex-1/3 pl-5">
                     <Element element={movieElement} />
                 </div>
@@ -241,6 +254,7 @@ export default async function Movie({
                 castElements={castElements}
                 crewElements={crewElements}
                 recommendationElements={recommendationElements}
+                similarElements={similarElements}
             />
         </>
     );

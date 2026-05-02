@@ -5,12 +5,12 @@ import { Slider } from '../ui/slider';
 interface Props {
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-    mediaType: 'movie' | 'tv';
+    mediaType: 'movie' | 'tv' | 'person';
 }
 
 export default function FiltersVote({ filters, setFilters, mediaType }: Props) {
     return (
-        <div className="mb-5 flex justify-between gap-6">
+        <div className="flex justify-between gap-6">
             <div className="flex flex-1 flex-col gap-2">
                 <H3 text="Vote average" />
                 <div className="mx-auto grid w-full max-w-xs gap-3">
@@ -51,8 +51,20 @@ export default function FiltersVote({ filters, setFilters, mediaType }: Props) {
                             }))
                         }
                         min={0}
-                        max={mediaType === 'movie' ? 40000 : 27000}
-                        step={mediaType === 'movie' ? 500 : 200}
+                        max={
+                            mediaType === 'movie'
+                                ? 40000
+                                : mediaType === 'tv'
+                                  ? 27000
+                                  : 0
+                        }
+                        step={
+                            mediaType === 'movie'
+                                ? 500
+                                : mediaType === 'tv'
+                                  ? 200
+                                  : 0
+                        }
                     />
                 </div>
             </div>

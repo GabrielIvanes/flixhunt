@@ -15,7 +15,7 @@ import { Filters, Providers } from '@/types/global-interfaces';
 import * as React from 'react';
 
 interface Props {
-    providers: Providers;
+    providers: Providers | null;
     providersMap: Map<number, Providers['results'][number]>;
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
@@ -30,13 +30,13 @@ export default function FiltersProviders({
     anchor,
 }: Props) {
     return (
-        <div className="mb-5 max-w-full">
+        <div className="max-w-full">
             <H3 text="Providers" />
             <div className="mt-2 max-w-full flex justify-between items-stretch gap-2">
                 <Combobox
                     multiple
                     autoHighlight
-                    items={providers.results}
+                    items={providers?.results}
                     value={filters.selectProviders}
                     onValueChange={(values: number[]) =>
                         setFilters((prev) => ({

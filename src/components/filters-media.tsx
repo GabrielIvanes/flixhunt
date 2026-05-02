@@ -13,30 +13,30 @@ import {
     Dialog,
     DialogClose,
     DialogContent,
-    DialogDescription,
     DialogFooter,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { H1 } from './ui/typography';
+import { H1 } from '@/components/ui/typography';
 import { useState, useMemo, useEffect } from 'react';
 import { useComboboxAnchor } from '@/components/ui/combobox';
 import { handleFilterChange } from '@/services/media';
-import FiltersGenres from './filters/filters-genres';
-import FiltersDate from './filters/filters-date';
-import FiltersVote from './filters/filters-vote';
-import FiltersProviders from './filters/filters-providers';
-import FiltersBadges from './filters/filters-badges';
+import FiltersGenres from '@/components/filters/filters-genres';
+import FiltersDate from '@/components/filters/filters-date';
+import FiltersVote from '@/components/filters/filters-vote';
+import FiltersProviders from '@/components/filters/filters-providers';
+import FiltersBadges from '@/components/filters/filters-badges';
+import { Separator } from '@/components/ui/separator';
+import { SlidersHorizontal } from 'lucide-react';
 
 interface Props {
     mediaElements: ElementInterface[];
-    mediaType: 'movie' | 'tv';
-    genres: Genre[];
-    providers: Providers;
+    mediaType: 'movie' | 'tv' | 'person';
+    genres: Genre[] | null;
+    providers: Providers | null;
     defaultVoteGte: number;
     totalPages: number;
+    showFilters: boolean;
 }
 
 export default function FiltersMedia({
@@ -46,14 +46,15 @@ export default function FiltersMedia({
     providers,
     defaultVoteGte,
     totalPages,
+    showFilters,
 }: Props) {
     const router = useRouter();
     const searchParams = useSearchParams();
     const anchor = useComboboxAnchor();
 
     const providersMap = useMemo(() => {
-        return new Map(providers.results.map((p) => [p.provider_id, p]));
-    }, [providers.results]);
+        return new Map(providers?.results.map((p) => [p.provider_id, p]) || []);
+    }, [providers?.results]);
 
     const pageParam = Number(searchParams.get('page')) || 1;
     const withGenres = searchParams.get('with_genres') || '';
@@ -137,94 +138,113 @@ export default function FiltersMedia({
 
     return (
         <>
-            <Dialog>
-                <DialogTrigger
-                    render={<Button variant="outline">Filters</Button>}
-                />
-                <DialogContent showCloseButton={false} className="max-h-[90vh] max-w-[90vh]! w-140 flex flex-col">
-                    <DialogHeader>
-                        <DialogTitle>Filters</DialogTitle>
-                        <DialogDescription>Change filters</DialogDescription>
-                    </DialogHeader>
-                    <div className="overflow-y-auto flex-1 pr-5">
-                        <FiltersGenres
-                            genres={genres}
-                            filters={filters}
-                            setFilters={setFilters}
-                        />
-
-                        <FiltersDate
-                            filters={filters}
-                            setFilters={setFilters}
-                        />
-
-                        <FiltersVote
-                            filters={filters}
-                            setFilters={setFilters}
-                            mediaType={mediaType}
-                        />
-
-                        <FiltersProviders
-                            providers={providers}
-                            providersMap={providersMap}
-                            filters={filters}
-                            setFilters={setFilters}
-                            anchor={anchor}
-                        />
-                    </div>
-                    <DialogFooter className="flex justify-between! items-center">
-                        <DialogClose
-                            render={
-                                <Button
-                                    type="reset"
-                                    variant="destructive"
-                                    onClick={resetFilters}
-                                >
-                                    Reset
-                                </Button>
-                            }
-                        ></DialogClose>
-                        <div className="flex gap-2">
-                            <DialogClose
+            {showFilters && (
+                <>
+                    <Dialog>
+                        <div className="w-30 ml-10 mb-5">
+                            <DialogTrigger
+                                className="w-full mx-auto"
                                 render={
                                     <Button
-                                        type="submit"
-                                        onClick={() =>
-                                            handleFilterChange(
-                                                `${mediaType}s`,
-                                                filters,
-                                                defaultVoteGte,
-                                                searchParams,
-                                                router
-                                            )
-                                        }
+                                        variant="outline"
+                                        className="flex justify-center items-center gap-2 w-20 cursor-pointer"
                                     >
-                                        Apply
-                                    </Button>
-                                }
-                            />
-
-                            <DialogClose
-                                render={
-                                    <Button
-                                        type="button"
-                                        onClick={cancelNewFilters}
-                                    >
-                                        Cancel
+                                        <SlidersHorizontal />
+                                        Filters
                                     </Button>
                                 }
                             />
                         </div>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-            <FiltersBadges
-                filters={filters}
-                genres={genres}
-                providersMap={providersMap}
-                defaultVoteGte={defaultVoteGte}
-            />
-            <div className="flex flex-wrap justify-center gap-10">
+                        <DialogContent
+                            showCloseButton={false}
+                            className="max-h-[90vh] max-w-[90vh]! w-140 flex flex-col"
+                        >
+                            <div className="overflow-y-auto flex-1 pr-5">
+                                <FiltersGenres
+                                    genres={genres}
+                                    filters={filters}
+                                    setFilters={setFilters}
+                                />
+                                <Separator className="mb-5 mt-5" />
+
+                                <FiltersDate
+                                    filters={filters}
+                                    setFilters={setFilters}
+                                />
+                                <Separator className="mb-5 mt-5" />
+
+                                <FiltersVote
+                                    filters={filters}
+                                    setFilters={setFilters}
+                                    mediaType={mediaType}
+                                />
+                                <Separator className="mb-5 mt-5" />
+
+                                <FiltersProviders
+                                    providers={providers}
+                                    providersMap={providersMap}
+                                    filters={filters}
+                                    setFilters={setFilters}
+                                    anchor={anchor}
+                                />
+                            </div>
+                            <DialogFooter className="flex justify-between! items-center">
+                                <DialogClose
+                                    render={
+                                        <Button
+                                            type="reset"
+                                            variant="destructive"
+                                            onClick={resetFilters}
+                                        >
+                                            Reset
+                                        </Button>
+                                    }
+                                ></DialogClose>
+                                <div className="flex gap-2">
+                                    <DialogClose
+                                        render={
+                                            <Button
+                                                type="submit"
+                                                onClick={() =>
+                                                    handleFilterChange(
+                                                        `${mediaType}s`,
+                                                        filters,
+                                                        defaultVoteGte,
+                                                        searchParams,
+                                                        router
+                                                    )
+                                                }
+                                            >
+                                                Apply
+                                            </Button>
+                                        }
+                                    />
+
+                                    <DialogClose
+                                        render={
+                                            <Button
+                                                type="button"
+                                                onClick={cancelNewFilters}
+                                            >
+                                                Cancel
+                                            </Button>
+                                        }
+                                    />
+                                </div>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
+                    <div className="ml-10">
+                        <FiltersBadges
+                            filters={filters}
+                            genres={genres}
+                            providersMap={providersMap}
+                            defaultVoteGte={defaultVoteGte}
+                        />
+                    </div>
+                </>
+            )}
+            <div className="flex flex-wrap justify-center gap-10 my-5">
                 {mediaElements.length > 0 ? (
                     mediaElements.map((media) => (
                         <Element key={media.id} element={media} />

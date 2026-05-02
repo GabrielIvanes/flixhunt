@@ -114,3 +114,21 @@ export async function getTopRatedMovies(
         throw new Error(json.error);
     }
 }
+
+export async function getTrendingMovies(language?: string, page?: number) {
+    const url = new URL(`${process.env.API_BASE_URL}/movies/trending`);
+    if (language) url.searchParams.set('language', language);
+    if (page) url.searchParams.set('page', page.toString());
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    const json = await response.json();
+
+    if (json.success) {
+        const movies: TMDBResponse<MovieSummary> = json.data;
+        return movies;
+    } else {
+        throw new Error(json.error);
+    }
+}

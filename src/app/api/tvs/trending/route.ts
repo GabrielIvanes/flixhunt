@@ -1,13 +1,9 @@
 import { type NextRequest, NextResponse } from 'next/server';
-import { TvshowDetail } from '@/types/tvshow-interfaces';
 
-export async function GET(
-    req: NextRequest,
-    { params }: { params: Promise<{ tvshowId: string }> }
-) {
-    const { tvshowId } = await params;
+export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
     const language = searchParams.get('language') || 'en-US';
+    const page = searchParams.get('page') || 1;
 
     if (!language) {
         return NextResponse.json(
@@ -16,7 +12,14 @@ export async function GET(
         );
     }
 
-    const url: string = `${process.env.TMDB_BASE_URL}/tv/${tvshowId}?append_to_response=aggregate_credits,watch/providers,recommendations,similar,content_ratings,videos&language=${language}`;
+    if (!page) {
+        return NextResponse.json(
+            { success: false, data: null, error: 'Missing parameter page' },
+            { status: 400 }
+        );
+    }
+
+    const url: string = `${process.env.TMDB_BASE_URL}/trending/tv/week`;
     const options: RequestInit = {
         method: 'GET',
         headers: {
@@ -28,9 +31,9 @@ export async function GET(
 
     try {
         const data = await fetch(url, options);
-        const tvshow: TvshowDetail = await data.json();
+        const tvshows = await data.json();
         return NextResponse.json(
-            { success: true, data: tvshow, error: null },
+            { success: true, data: tvshows, error: null },
             { status: 200 }
         );
     } catch (err) {

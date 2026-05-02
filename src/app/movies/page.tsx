@@ -67,7 +67,7 @@ export default async function Movies({
     console.log(providers);
 
     return (
-        <div className="pt-12 pb-5">
+        <div className="pb-5 mt-30">
             <FiltersMedia
                 mediaElements={movieElements}
                 mediaType="movie"
@@ -75,6 +75,7 @@ export default async function Movies({
                 defaultVoteGte={8000}
                 totalPages={movies.total_pages}
                 providers={providers}
+                showFilters={true}
             />
         </div>
     );

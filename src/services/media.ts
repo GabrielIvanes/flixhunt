@@ -24,7 +24,7 @@ export function getTvshowAirDates(
 
 export function handlePageChange(
     page: number,
-    media: 'movies' | 'tvs',
+    media: 'movies' | 'tvs' | 'persons',
     searchParams: ReadonlyURLSearchParams,
     router: AppRouterInstance
 ) {
@@ -32,13 +32,11 @@ export function handlePageChange(
     if (page != 1) params.set('page', page.toString());
     else params.delete('page');
 
-    console.log('page:', page);
-
     router.push(`/${media}${params.toString() ? `?${params.toString()}` : ''}`);
 }
 
 export function handleFilterChange(
-    media: 'movies' | 'tvs',
+    media: 'movies' | 'tvs' | 'persons',
     filters: Filters,
     defaultVoteGte: number,
     searchParams: ReadonlyURLSearchParams,
