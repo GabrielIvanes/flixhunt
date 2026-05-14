@@ -6,7 +6,7 @@ import {
     Genre,
     Providers,
 } from '@/types/global-interfaces';
-import Element from '@/components/ui/element';
+import Element from '@/shared/ui/element';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/pagination';
 import {
@@ -15,18 +15,18 @@ import {
     DialogContent,
     DialogFooter,
     DialogTrigger,
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { H1 } from '@/components/ui/typography';
+} from '@/shared/ui/dialog';
+import { Button } from '@/shared/ui/button';
+import { H1 } from '@/shared/ui/typography';
 import { useState, useMemo, useEffect } from 'react';
-import { useComboboxAnchor } from '@/components/ui/combobox';
+import { useComboboxAnchor } from '@/shared/ui/combobox';
 import { handleFilterChange } from '@/services/media';
 import FiltersGenres from '@/components/filters/filters-genres';
 import FiltersDate from '@/components/filters/filters-date';
 import FiltersVote from '@/components/filters/filters-vote';
 import FiltersProviders from '@/components/filters/filters-providers';
 import FiltersBadges from '@/components/filters/filters-badges';
-import { Separator } from '@/components/ui/separator';
+import { Separator } from '@/shared/ui/separator';
 import { SlidersHorizontal } from 'lucide-react';
 
 interface Props {

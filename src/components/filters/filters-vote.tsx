@@ -1,6 +1,6 @@
-import { H3 } from '@/components/ui/typography';
+import { H3 } from '@/shared/ui/typography';
 import { Filters } from '@/types/global-interfaces';
-import { Slider } from '../ui/slider';
+import { Slider } from '../../shared/ui/slider';
 
 interface Props {
     filters: Filters;

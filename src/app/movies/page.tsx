@@ -6,7 +6,7 @@ import {
     Genre,
     Providers,
 } from '@/types/global-interfaces';
-import { mediaToElement } from '@/lib/utils';
+import { mediaToElement } from '@/shared/lib/utils';
 import { getConfiguration, getGenres, getProviders } from '@/lib/tmdb';
 import FiltersMedia from '@/components/filters-media';
 
@@ -55,11 +55,11 @@ export default async function Movies({
                 ? `${configuration.images.secure_base_url}w500${movie.poster_path}`
                 : '',
             'movie',
+            `/movies/${movie.id}`,
             250,
             250 * 1.5,
             '',
-            `${movie.title} ${movie.release_date ? '(' + movie.release_date.split('-')[0] + ')' : ''}`,
-            true
+            `${movie.title} ${movie.release_date ? '(' + movie.release_date.split('-')[0] + ')' : ''}`
         )
     );
     console.log(genres);

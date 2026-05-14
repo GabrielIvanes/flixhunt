@@ -1,14 +1,13 @@
 import { getMovieDetails } from '@/lib/movies';
 import { MovieDetail } from '@/types/movie-interfaces';
 import Image from 'next/image';
-import { getConfiguration } from '@/lib/tmdb';
 import { Configuration } from '@/types/tmdb-interfaces';
-import Element from '@/components/ui/element';
-import { formatTime, mediaToElement } from '@/lib/utils';
+import Element from '@/shared/ui/element';
+import { formatTime, mediaToElement } from '@/shared/lib/utils';
 import { getCast, getCrew, getDirectors } from '@/services/persons';
-import { H1, H3, Lead, LinkP, MutedP, P } from '@/components/ui/typography';
+import { H1, H3, Lead, P } from '@/shared/ui/typography';
 import { Element as ElementInterface, Genre } from '@/types/global-interfaces';
-import PointSeparator from '@/components/ui/point-separator';
+import PointSeparator from '@/shared/ui/point-separator';
 import { Cast, Crew } from '@/types/person-interfaces';
 import Link from 'next/link';
 import MediaActions from '@/components/media/media-actions';
@@ -35,11 +34,11 @@ export default async function Movie({
             ? `${configuration.images.secure_base_url}w500${movie.poster_path}`
             : '',
         'movie',
+        '',
         width,
         height,
         '',
-        '',
-        false
+        ''
     );
     const directors: Crew[] = getDirectors(movie.credits.crew);
     const release_date = movie.release_dates.results
@@ -63,11 +62,11 @@ export default async function Movie({
                 ? `${configuration.images.secure_base_url}w500${provider.logo_path}`
                 : '',
             'provider',
+            '',
             45,
             45,
             provider.provider_name,
-            '',
-            false
+            ''
         )
     );
 
@@ -81,11 +80,11 @@ export default async function Movie({
                 ? `${configuration.images.secure_base_url}w500${c.profile_path}`
                 : '',
             'person',
+            `/persons/${c.id}`,
             175,
             175 * 1.5,
             c.character,
-            c.name,
-            true
+            c.name
         )
     );
     const crewElements: ElementInterface[] = crew.map((c) =>
@@ -96,11 +95,11 @@ export default async function Movie({
                 ? `${configuration.images.secure_base_url}w500${c.profile_path}`
                 : '',
             'person',
+            `/persons/${c.id}`,
             175,
             175 * 1.5,
             c.job,
-            c.name,
-            true
+            c.name
         )
     );
     const recommendationElements: ElementInterface[] =
@@ -114,11 +113,11 @@ export default async function Movie({
                     ? `${configuration.images.secure_base_url}w500${recommendation.poster_path}`
                     : '',
                 recommendation.media_type,
+                `/${recommendation.media_type}s/${recommendation.id}`,
                 175,
                 175 * 1.5,
                 '',
-                '',
-                true
+                ''
             )
         );
     const similarElements: ElementInterface[] = movie.similar.results.map(
@@ -130,11 +129,11 @@ export default async function Movie({
                     ? `${configuration.images.secure_base_url}w500${similar.poster_path}`
                     : '',
                 'movie',
+                `/movies/${movie.id}`,
                 175,
                 175 * 1.5,
                 '',
-                '',
-                true
+                ''
             )
     );
 

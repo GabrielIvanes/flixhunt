@@ -1,5 +1,5 @@
-import { H3 } from '@/components/ui/typography';
-import { Button } from '@/components/ui/button';
+import { H3 } from '@/shared/ui/typography';
+import { Button } from '@/shared/ui/button';
 import {
     Combobox,
     ComboboxChip,
@@ -10,7 +10,7 @@ import {
     ComboboxItem,
     ComboboxList,
     ComboboxValue,
-} from '@/components/ui/combobox';
+} from '@/shared/ui/combobox';
 import { Filters, Providers } from '@/types/global-interfaces';
 import * as React from 'react';
 

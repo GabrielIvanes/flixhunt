@@ -5,8 +5,8 @@ import {
     Genre,
     Providers,
 } from '@/types/global-interfaces';
-import { mediaToElement } from '@/lib/utils';
-import { getConfiguration, getGenres, getProviders } from '@/lib/tmdb';
+import { mediaToElement } from '@/shared/lib/utils';
+import { getGenres, getProviders } from '@/lib/tmdb';
 import FiltersMedia from '@/components/filters-media';
 import { getTopRatedTvshows } from '@/lib/tvshows';
 
@@ -57,11 +57,11 @@ export default async function Tvshows({
                 ? `${configuration.images.secure_base_url}w500${tvshow.poster_path}`
                 : '',
             'tv',
+            `/tvs/${tvshow.id}`,
             250,
             250 * 1.5,
             '',
-            `${tvshow.name} ${tvshow.first_air_date ? '(' + tvshow.first_air_date.split('-')[0] + ')' : ''}`,
-            true
+            `${tvshow.name} ${tvshow.first_air_date ? '(' + tvshow.first_air_date.split('-')[0] + ')' : ''}`
         )
     );
     console.log(genres);

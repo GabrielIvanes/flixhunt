@@ -8,12 +8,18 @@ export interface Element {
     type: ElementType;
     width: number;
     height: number;
+    link: string;
     tooltip: string;
     information: string;
-    isClickable: boolean;
 }
 
-export type ElementType = 'provider' | 'movie' | 'person' | 'tv';
+export type ElementType =
+    | 'provider'
+    | 'movie'
+    | 'person'
+    | 'tv'
+    | 'season'
+    | 'episode';
 
 export interface Genre {
     id: number;

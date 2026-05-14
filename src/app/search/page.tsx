@@ -1,7 +1,7 @@
 import SearchMedia from '@/components/search-media';
 import { searchMedia } from '@/lib/search';
 import { getConfiguration } from '@/lib/tmdb';
-import { mediaToElement } from '@/lib/utils';
+import { mediaToElement } from '@/shared/lib/utils';
 import { MovieSummary } from '@/types/movie-interfaces';
 import { PersonSummary } from '@/types/person-interfaces';
 import { TMDBResponse } from '@/types/tmdb-interfaces';
@@ -41,11 +41,11 @@ export default async function Search({
                 ? `${configuration.images.secure_base_url}w500${movie.poster_path}`
                 : '',
             'movie',
+            `/movies/${movie.id}`,
             175,
             175 * 1.5,
             '',
-            `${movie.title} ${movie.release_date ? '(' + movie.release_date.split('-')[0] + ')' : ''}`,
-            true
+            `${movie.title} ${movie.release_date ? '(' + movie.release_date.split('-')[0] + ')' : ''}`
         )
     );
     const tvshowElements: Element[] = tvs.results.map((tvshow) =>
@@ -56,11 +56,11 @@ export default async function Search({
                 ? `${configuration.images.secure_base_url}w500${tvshow.poster_path}`
                 : '',
             'tv',
+            `/tvs/${tvshow.id}`,
             175,
             175 * 1.5,
             '',
-            `${tvshow.name} ${tvshow.first_air_date ? '(' + tvshow.first_air_date.split('-')[0] + ')' : ''}`,
-            true
+            `${tvshow.name} ${tvshow.first_air_date ? '(' + tvshow.first_air_date.split('-')[0] + ')' : ''}`
         )
     );
     const personElements: Element[] = persons.results.map((person) =>
@@ -71,11 +71,11 @@ export default async function Search({
                 ? `${configuration.images.secure_base_url}w500${person.profile_path}`
                 : '',
             'person',
+            `/persons/${person.id}`,
             175,
             175 * 1.5,
             '',
-            `${person.name}`,
-            true
+            `${person.name}`
         )
     );
     const multiElements: Element[] = multi.results.map((m) =>
@@ -90,6 +90,7 @@ export default async function Search({
                   ? `${configuration.images.secure_base_url}w500${m.profile_path}`
                   : '',
             m.media_type,
+            `/${m.media_type}s/${m.id}`,
             175,
             175 * 1.5,
             '',
@@ -97,8 +98,7 @@ export default async function Search({
                 ? `${m.title} ${m.release_date ? '(' + m.release_date.split('-')[0] + ')' : ''}`
                 : m.media_type === 'tv'
                   ? `${m.name} ${m.first_air_date ? '(' + m.first_air_date.split('-')[0] + ')' : ''}`
-                  : m.name,
-            true
+                  : m.name
         )
     );
 

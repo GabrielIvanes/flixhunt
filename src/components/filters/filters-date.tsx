@@ -1,12 +1,12 @@
-import { H3, H4 } from '../ui/typography';
+import { H3, H4 } from '../../shared/ui/typography';
 import {
     Select,
     SelectContent,
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/components/ui/select';
-import { getDecades } from '@/lib/utils';
+} from '@/shared/ui/select';
+import { getDecades } from '@/shared/lib/utils';
 import { Filters } from '@/types/global-interfaces';
 
 interface Props {

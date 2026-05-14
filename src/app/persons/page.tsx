@@ -1,6 +1,6 @@
 import { getPopularPersons } from '@/lib/persons';
 import { getConfiguration } from '@/lib/tmdb';
-import { mediaToElement } from '@/lib/utils';
+import { mediaToElement } from '@/shared/lib/utils';
 import { PersonSummary } from '@/types/person-interfaces';
 import { TMDBResponse } from '@/types/tmdb-interfaces';
 import FiltersMedia from '@/components/filters-media';
@@ -29,11 +29,11 @@ export default async function Persons({
                 ? `${configuration.images.secure_base_url}w500${person.profile_path}`
                 : '',
             'person',
+            `/persons/${person.id}`,
             250,
             250 * 1.5,
             '',
-            person.name,
-            true
+            person.name
         )
     );
 

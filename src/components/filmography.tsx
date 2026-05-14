@@ -7,7 +7,7 @@ import {
     SelectItem,
     SelectTrigger,
     SelectValue,
-} from '@/components/ui/select';
+} from '@/shared/ui/select';
 import { PersonDetail } from '@/types/person-interfaces';
 import {
     Element as ElementInterface,
@@ -16,10 +16,10 @@ import {
 } from '@/types/global-interfaces';
 import { useMemo, useState } from 'react';
 import { getCast, getCrew, getDirectors, sortArray } from '@/services/persons';
-import { mediaToElement } from '@/lib/utils';
-import Element from '@/components/ui/element';
+import { mediaToElement } from '@/shared/lib/utils';
+import Element from '@/shared/ui/element';
 import { Configuration } from '@/types/tmdb-interfaces';
-import { H3 } from '@/components/ui/typography';
+import { H3 } from '@/shared/ui/typography';
 
 interface Props {
     person: PersonDetail;
@@ -66,13 +66,13 @@ export default function Filmography({ person, configuration }: Props) {
                     ? `${configuration.images.secure_base_url}w500${d.poster_path}`
                     : '',
                 d.media_type,
+                `/${d.media_type}s/${d.id}`,
                 225,
                 225 * 1.5,
                 (d as MediaCastCredit).character
                     ? (d as MediaCastCredit).character
                     : (d as MediaCrewCredit).job,
-                '',
-                true
+                ''
             )
         );
     }, [role, sortBy, configuration, castMovies, crewMovies, directorMovies]);

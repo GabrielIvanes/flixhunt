@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button';
-import { H3 } from '@/components/ui/typography';
+import { Button } from '@/shared/ui/button';
+import { H3 } from '@/shared/ui/typography';
 import { Filters, Genre } from '@/types/global-interfaces';
 
 interface Props {

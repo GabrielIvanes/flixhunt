@@ -1,14 +1,14 @@
 import { getTvshowDetail } from '@/lib/tvshows';
 import { TvshowDetail, TvshowSummary } from '@/types/tvshow-interfaces';
 import Image from 'next/image';
-import Element from '@/components/ui/element';
+import Element from '@/shared/ui/element';
 import { Element as ElementInterface, Genre } from '@/types/global-interfaces';
-import { H1, H3, Lead, LinkP, MutedP, P } from '@/components/ui/typography';
-import { mediaToElement } from '@/lib/utils';
+import { H1, H3, Lead, LinkP, MutedP, P } from '@/shared/ui/typography';
+import { mediaToElement } from '@/shared/lib/utils';
 import { Configuration } from '@/types/tmdb-interfaces';
 import { getConfiguration } from '@/lib/tmdb';
 import { getTvshowAirDates } from '@/services/media';
-import PointSeparator from '@/components/ui/point-separator';
+import PointSeparator from '@/shared/ui/point-separator';
 import Link from 'next/link';
 import {
     CastAggregateCredit,
@@ -41,11 +41,11 @@ export default async function Tvshow({
             ? `${configuration.images.secure_base_url}w500${tvshow.poster_path}`
             : '',
         'tv',
+        '',
         width,
         height,
         '',
-        '',
-        false
+        ''
     );
     const airDate = getTvshowAirDates(
         tvshow.first_air_date,
@@ -62,11 +62,11 @@ export default async function Tvshow({
                 ? `${configuration.images.secure_base_url}w500${provider.logo_path}`
                 : '',
             'provider',
+            '',
             45,
             45,
             provider.provider_name,
-            '',
-            false
+            ''
         )
     );
 
@@ -76,6 +76,22 @@ export default async function Tvshow({
     const crew: CrewAggregateCredit[] = getAggregateCrew(
         tvshow.aggregate_credits.crew
     );
+
+    const seasonElements: ElementInterface[] = tvshow.seasons.map((season) =>
+        mediaToElement(
+            season.id,
+            season.name,
+            season.poster_path
+                ? `${configuration.images.secure_base_url}w500${season.poster_path}`
+                : '',
+            'tv',
+            `/tvs/${tvshow.id}/seasons/${season.season_number}`,
+            175,
+            175 * 1.5,
+            `season ${season.season_number}`,
+            season.name
+        )
+    );
     const castElements: ElementInterface[] = cast.map((c) =>
         mediaToElement(
             c.id,
@@ -84,13 +100,13 @@ export default async function Tvshow({
                 ? `${configuration.images.secure_base_url}w500${c.profile_path}`
                 : '',
             'person',
+            `/persons/${c.id}`,
             175,
             175 * 1.5,
             c.roles && c.roles.length > 0
                 ? c.roles.map((role) => role.character).join(', ')
                 : '',
-            '',
-            true
+            ''
         )
     );
     const crewElements: ElementInterface[] = crew.map((c) =>
@@ -101,13 +117,13 @@ export default async function Tvshow({
                 ? `${configuration.images.secure_base_url}w500${c.profile_path}`
                 : '',
             'person',
+            `/persons/${c.id}`,
             175,
             175 * 1.5,
             c.jobs && c.jobs.length > 0
                 ? c.jobs.map((job) => job.job).join(', ')
                 : '',
-            '',
-            true
+            ''
         )
     );
     const recommendationElements: ElementInterface[] =
@@ -121,11 +137,11 @@ export default async function Tvshow({
                     ? `${configuration.images.secure_base_url}w500${recommendation.poster_path}`
                     : '',
                 recommendation.media_type,
+                `/${recommendation.media_type}s/${recommendation.id}`,
                 175,
                 175 * 1.5,
                 '',
-                '',
-                true
+                ''
             )
         );
     const similarElements: ElementInterface[] = tvshow.similar.results.map(
@@ -137,11 +153,11 @@ export default async function Tvshow({
                     ? `${configuration.images.secure_base_url}w500${similar.poster_path}`
                     : '',
                 'tv',
+                `/tvs/${similar.id}`,
                 175,
                 175 * 1.5,
                 '',
-                '',
-                true
+                ''
             )
     );
 
@@ -156,7 +172,7 @@ export default async function Tvshow({
                     className="object-cover opacity-20"
                 />
             </div>
-            <div className="w-full h-screen flex gap-4 z-10 border border-red-900">
+            <div className="w-full h-screen flex gap-4 z-10">
                 <div className="flex justify-center items-center flex-1/3 pl-5">
                     <Element element={tvShowElement} />
                 </div>
@@ -282,6 +298,7 @@ export default async function Tvshow({
                 </div>
             </div>
             <MediaCarousels
+                seasonElements={seasonElements}
                 castElements={castElements}
                 crewElements={crewElements}
                 recommendationElements={recommendationElements}

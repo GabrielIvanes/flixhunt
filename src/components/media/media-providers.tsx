@@ -1,6 +1,6 @@
 import { Element as ElementInterface } from '@/types/global-interfaces';
-import Element from '@/components/ui/element';
-import { H3 } from '@/components/ui/typography';
+import Element from '@/shared/ui/element';
+import { H3 } from '@/shared/ui/typography';
 interface Props {
     providerElements: ElementInterface[];
 }

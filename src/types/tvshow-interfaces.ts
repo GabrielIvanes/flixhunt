@@ -9,7 +9,9 @@ import {
 } from '@/types/global-interfaces';
 import { TMDBResponse } from '@/types/tmdb-interfaces';
 import {
+    Cast,
     CastAggregateCredit,
+    Crew,
     CrewAggregateCredit,
 } from '@/types/person-interfaces';
 import { MovieSummary } from '@/types/movie-interfaces';
@@ -131,6 +133,53 @@ interface Season {
     poster_path: string;
     season_number: number;
     vote_average: number;
+}
+
+export interface SeasonDetail {
+    _id: string;
+    air_date: string;
+    episodes: SeasonEpisode[];
+    name: string;
+    networks: Network[];
+    overview: string;
+    id: number;
+    poster_path: string;
+    season_number: number;
+    vote_average: number;
+    aggregate_credits: {
+        cast: CastAggregateCredit[];
+        crew: CrewAggregateCredit[];
+        id: number;
+    };
+    'watch/providers': {
+        id: number;
+        results: Record<CountryCode, WatchOptions>;
+    };
+}
+
+interface Network {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+}
+
+interface SeasonEpisode {
+    aid_date: string;
+    episode_number: number;
+    episode_type: string;
+    id: number;
+    name: string;
+    overview: string;
+    production_code: string;
+    runtime: number;
+    season_number: number;
+    show_id: number;
+    still_path: string;
+    vote_average: number;
+    vote_count: number;
+    crew: Crew;
+    guest_starts: Cast;
 }
 
 export type Tvshow = TvshowDetail | TvshowSummary;

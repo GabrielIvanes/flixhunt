@@ -4,13 +4,13 @@ import {
     InputGroupAddon,
     InputGroupButton,
     InputGroupInput,
-} from '@/components/ui/input-group';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+} from '@/shared/ui/input-group';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/ui/tabs';
 import { SearchIcon } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, useTransition } from 'react';
 import { Element as ElementInterface } from '@/types/global-interfaces';
-import Element from '@/components/ui/element';
+import Element from '@/shared/ui/element';
 
 interface Props {
     movieElements: ElementInterface[];

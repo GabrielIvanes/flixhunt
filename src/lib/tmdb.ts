@@ -1,21 +1,4 @@
 import { Genre, Providers } from '@/types/global-interfaces';
-import { Configuration } from '@/types/tmdb-interfaces';
-
-export async function getConfiguration() {
-    const url = `${process.env.API_BASE_URL}/tmdb/configuration`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    const json = await response.json();
-
-    if (json.success) {
-        const configuration: Configuration = json.data;
-        return configuration;
-    } else {
-        throw new Error(json.error);
-    }
-}
 
 export async function getProviders(
     mediaType: 'movie' | 'tv',

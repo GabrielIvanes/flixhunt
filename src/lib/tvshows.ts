@@ -1,5 +1,9 @@
 import { TMDBResponse } from '@/types/tmdb-interfaces';
-import { TvshowDetail, TvshowSummary } from '@/types/tvshow-interfaces';
+import {
+    SeasonDetail,
+    TvshowDetail,
+    TvshowSummary,
+} from '@/types/tvshow-interfaces';
 
 export async function getTvshowDetail(tvshowId: string, language?: string) {
     let url = `${process.env.API_BASE_URL}/tvs/${tvshowId}`;
@@ -56,10 +60,14 @@ export async function getTopRatedTvshows(
     }
 }
 
-export async function getTrendingTvshows(language?: string, page?: number) {
-    const url = new URL(`${process.env.API_BASE_URL}/tvs/trending`);
-    if (language) url.searchParams.set('language', language);
-    if (page) url.searchParams.set('page', page.toString());
+export async function getSeasonDetail(
+    tvshowId: string,
+    seasonNumber: string,
+    language?: string
+) {
+    let url = `${process.env.API_BASE_URL}/tvs/${tvshowId}/seasons/${seasonNumber}`;
+    if (language) url += `?language=${language}`;
+
     const response = await fetch(url);
     if (!response.ok) {
         throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -67,26 +75,8 @@ export async function getTrendingTvshows(language?: string, page?: number) {
     const json = await response.json();
 
     if (json.success) {
-        const tvshows: TMDBResponse<TvshowSummary> = json.data;
-        return tvshows;
-    } else {
-        throw new Error(json.error);
-    }
-}
-
-export async function getPopularTvshows(language?: string, page?: number) {
-    const url = new URL(`${process.env.API_BASE_URL}/tvs/popular`);
-    if (language) url.searchParams.set('language', language);
-    if (page) url.searchParams.set('page', page.toString());
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    const json = await response.json();
-
-    if (json.success) {
-        const tvshows: TMDBResponse<TvshowSummary> = json.data;
-        return tvshows;
+        const season: SeasonDetail = json.data;
+        return season;
     } else {
         throw new Error(json.error);
     }

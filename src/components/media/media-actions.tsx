@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/shared/ui/button';
 import {
     Bookmark,
     Clapperboard,
@@ -13,11 +13,7 @@ import {
 } from 'lucide-react';
 import { MediaActions as MediaActionsInterface } from '@/types/global-interfaces';
 import { useState } from 'react';
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 
 interface Props {
     showVideo: boolean;

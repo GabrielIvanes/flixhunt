@@ -1,12 +1,12 @@
 import { getPerson } from '@/lib/persons';
-import Element from '@/components/ui/element';
+import Element from '@/shared/ui/element';
 import { Configuration } from '@/types/tmdb-interfaces';
 import { getConfiguration } from '@/lib/tmdb';
-import { H1, H3, MutedP, P } from '@/components/ui/typography';
+import { H1, H3, MutedP, P } from '@/shared/ui/typography';
 import { getAge } from '@/services/persons';
-import PointSeparator from '@/components/ui/point-separator';
+import PointSeparator from '@/shared/ui/point-separator';
 import Filmography from '@/components/filmography';
-import { mediaToElement } from '@/lib/utils';
+import { mediaToElement } from '@/shared/lib/utils';
 import { PersonDetail } from '@/types/person-interfaces';
 
 export default async function Person({
@@ -27,11 +27,11 @@ export default async function Person({
             ? `${configuration.images.secure_base_url}w500${person.profile_path}`
             : '',
         'person',
+        '',
         width,
         height,
         '',
-        '',
-        false
+        ''
     );
     console.log(person);
 

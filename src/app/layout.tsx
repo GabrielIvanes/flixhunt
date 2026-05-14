@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Lexend, Montserrat, Rubik } from 'next/font/google';
 import './globals.css';
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/lib/utils';
 import React from 'react';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/header';
-import { TooltipProvider } from '@/components/ui/tooltip';
+import { TooltipProvider } from '@/shared/ui/tooltip';
 
 const montserrat = Montserrat({
     variable: '--font-montserrat',
@@ -42,7 +42,7 @@ export default function RootLayout({
             suppressHydrationWarning
         >
             <body
-                className={`min-h-full flex flex-col ${lexend.className} ${rubik.className} ${montserrat.className} font-sans`}
+                className={`${lexend.className} ${rubik.className} ${montserrat.className} font-sans`}
             >
                 <ThemeProvider
                     attribute="class"
@@ -51,8 +51,12 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <TooltipProvider>
-                        <Header />
-                        {children}
+                        <div className="relative min-h-screen w-full">
+                            <Header />
+                            <main className="pt-30 min-h-screen">
+                                {children}
+                            </main>
+                        </div>
                     </TooltipProvider>
                 </ThemeProvider>
             </body>
