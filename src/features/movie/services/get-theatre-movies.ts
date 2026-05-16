@@ -1,7 +1,7 @@
-import { mapTmdbMovie } from '@/entities/movie/movie.mapper';
-import { TmdbMoviesPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.movie.schema';
+import { mapTmdbMovie } from '@/entities/movie/mappers/movie.mapper';
+import { TmdbMoviesPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
 import { PaginatedResponse } from '@/shared/types/paginated-response.types';
-import { Movie } from '@/entities/movie/movie.types';
+import { Movie } from '@/entities/movie/types/movie.types';
 
 export async function getTheatreMovies(
     language?: string,

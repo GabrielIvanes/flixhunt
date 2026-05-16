@@ -1,8 +1,8 @@
-import { TmdbTvshowDTO } from '@/lib/tmdb/types/tmdb.tvshow.types';
+import { TmdbTvshowDto } from '@/entities/tvshow/tvshow.schema';
 import { buildUrl } from '@/lib/tmdb/tmdb.image';
 import { Tvshow } from '@/entities/tvshow/tvshow.types';
 
-export async function mapTmdbTvshow(dto: TmdbTvshowDTO): Promise<Tvshow> {
+export async function mapTmdbTvshow(dto: TmdbTvshowDto): Promise<Tvshow> {
     return {
         adult: dto.adult,
         backdropUrl: await buildUrl(dto.backdrop_path, 'w1280'),

@@ -1,9 +1,8 @@
 import { z } from 'zod';
 
-export const TmdbMovieSchema = z.object({
+export const TmdbMovieBaseSchema = z.object({
     adult: z.boolean(),
     backdrop_path: z.string().nullable(),
-    genre_ids: z.array(z.number()),
     id: z.number(),
     original_language: z.string(),
     original_title: z.string(),
@@ -16,3 +15,10 @@ export const TmdbMovieSchema = z.object({
     vote_average: z.number(),
     vote_count: z.number(),
 });
+
+export const TmdbMovieSchema = TmdbMovieBaseSchema.extend({
+    genre_ids: z.array(z.number()),
+});
+
+export type TmdbMovieBaseDto = z.infer<typeof TmdbMovieBaseSchema>;
+export type TmdbMovieDto = z.infer<typeof TmdbMovieSchema>;

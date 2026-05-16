@@ -16,3 +16,5 @@ export const TmdbTvshowSchema = z.object({
     vote_average: z.number(),
     vote_count: z.number(),
 });
+
+export type TmdbTvshowDto = z.infer<typeof TmdbTvshowSchema>;

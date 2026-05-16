@@ -1,7 +1,7 @@
 import { getTheatreMovies } from '@/features/movie/services/get-theatre-movies';
 import MoviesCarousel from '@/features/media/components/movies-carousel';
 import { PaginatedResponse } from '@/shared/types/paginated-response.types';
-import { Movie } from '@/entities/movie/movie.types';
+import { Movie } from '@/entities/movie/types/movie.types';
 
 export default async function TheatreMoviesSection() {
     const theatreMovies: PaginatedResponse<Movie> = await getTheatreMovies();

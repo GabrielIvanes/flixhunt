@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import MovieCard from '@/entities/movie/components/movie-card';
-import type { Movie } from '@/entities/movie/movie.types';
+import type { Movie } from '@/entities/movie/types/movie.types';
 import {
     Carousel,
     CarouselContent,

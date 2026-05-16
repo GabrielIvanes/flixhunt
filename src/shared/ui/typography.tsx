@@ -104,3 +104,17 @@ export function Small({ className, children, ...props }: ParagraphProps) {
         </p>
     );
 }
+
+export function Accent({ className, children, ...props }: ParagraphProps) {
+    return (
+        <p
+            className={cn(
+                'text-sm text-primary transition-colors duration-300 hover:text-accent-foreground',
+                className
+            )}
+            {...props}
+        >
+            {children}
+        </p>
+    );
+}

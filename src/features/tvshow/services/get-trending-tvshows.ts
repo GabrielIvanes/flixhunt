@@ -1,5 +1,5 @@
 import { mapTmdbTvshow } from '@/entities/tvshow/tvshow.mapper';
-import { TmdbTvshowPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.tvshow.schema';
+import { TmdbTvshowPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
 
 export async function getTrendingTvshows(language?: string, page?: number) {
     const url = new URL(`${process.env.API_BASE_URL}/tvs/trending`);

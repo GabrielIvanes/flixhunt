@@ -1,8 +1,6 @@
 import { getPerson } from '@/lib/persons';
 import Element from '@/shared/ui/element';
 import { Configuration } from '@/types/tmdb-interfaces';
-import { getConfiguration } from '@/lib/tmdb';
-import { H1, H3, MutedP, P } from '@/shared/ui/typography';
 import { getAge } from '@/services/persons';
 import PointSeparator from '@/shared/ui/point-separator';
 import Filmography from '@/components/filmography';

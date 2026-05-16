@@ -1,11 +1,11 @@
-import { Movie } from '@/entities/movie/movie.types';
+import { MovieBase } from '@/entities/movie/types/movie.types';
 import { ImageOff } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
 type Props = {
-    movie: Movie;
+    movie: MovieBase;
     href?: string;
     info?: ReactNode;
     width?: number;

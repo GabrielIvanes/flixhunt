@@ -1,5 +1,5 @@
-import { mapTmdbMovie } from '@/entities/movie/movie.mapper';
-import { TmdbMoviesPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.movie.schema';
+import { mapTmdbMovie } from '@/entities/movie/mappers/movie.mapper';
+import { TmdbMoviesPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
 
 export async function getPopularMovies(
     language?: string,

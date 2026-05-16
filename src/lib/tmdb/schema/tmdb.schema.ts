@@ -1,6 +1,8 @@
+import { TmdbMovieSchema } from '@/entities/movie/schemas/movie.schema';
+import { TmdbTvshowSchema } from '@/entities/tvshow/tvshow.schema';
 import { z } from 'zod';
 
-export function tmdbPaginatedResponseSchema<T extends z.ZodTypeAny>(
+export function CreateTmdbPaginatedResponseSchema<T extends z.ZodTypeAny>(
     itemSchema: T
 ) {
     return z.object({
@@ -10,3 +12,9 @@ export function tmdbPaginatedResponseSchema<T extends z.ZodTypeAny>(
         total_results: z.number(),
     });
 }
+
+export const TmdbMoviesPaginatedResponseSchema =
+    CreateTmdbPaginatedResponseSchema(TmdbMovieSchema);
+
+export const TmdbTvshowPaginatedResponseSchema =
+    CreateTmdbPaginatedResponseSchema(TmdbTvshowSchema);
