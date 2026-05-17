@@ -1,13 +1,16 @@
-import { Cast } from './cast.types';
+import { CreditCastBase } from '../credit/credit.types';
 
-export function getCast(cast: Cast[]) {
-    const castFilter = new Map<number, Cast>();
+export function mergeCastCharacters<T extends CreditCastBase>(cast: T[]): T[] {
+    const castFilter = new Map<number, T>();
 
     for (const c of cast) {
-        const cf = castFilter.get(c.id);
+        const existingCast = castFilter.get(c.id);
 
-        if (cf) cf.character = `${cf.character}, ${c.character}`;
-        else castFilter.set(c.id, { ...c });
+        if (existingCast) {
+            existingCast.character = `${existingCast.character}, ${c.character}`;
+        } else {
+            castFilter.set(c.id, { ...c });
+        }
     }
 
     return Array.from(castFilter.values());

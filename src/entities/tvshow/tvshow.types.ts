@@ -14,3 +14,9 @@ export type Tvshow = {
     voteAverage: number;
     voteCount: number;
 };
+
+export type TvshowCardBase = {
+    id: number;
+    name: string;
+    posterUrl: string | null;
+};

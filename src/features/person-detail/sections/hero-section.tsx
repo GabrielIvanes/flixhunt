@@ -11,11 +11,11 @@ type Props = {
 };
 export default function HeroSection({ person, width }: Props) {
     return (
-        <section className="h-[calc(100vh-7.5rem)] w-full flex gap-2 px-10">
-            <div className="flex-1/3 flex justify-center items-center">
+        <section className="h-[calc(100vh-7.5rem)] w-full flex gap-10">
+            <div className="flex items-center">
                 <PersonCard person={person} width={width} />
             </div>
-            <div className="flex-2/3 flex min-h-0 justify-center items-center">
+            <div className="flex-1 flex min-h-0 justify-center items-center">
                 <div
                     style={{ height: `${width * 1.5}px` }}
                     className="w-full flex min-h-0 flex-col justify-between overflow-hidden"

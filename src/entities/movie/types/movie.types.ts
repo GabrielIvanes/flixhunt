@@ -21,6 +21,12 @@ export type MovieBase = {
     voteCount: number;
 };
 
+export type MovieCardBase = {
+    id: number;
+    posterUrl: string | null;
+    title: string;
+};
+
 export type Movie = MovieBase & {
     genreIds: number[];
 };

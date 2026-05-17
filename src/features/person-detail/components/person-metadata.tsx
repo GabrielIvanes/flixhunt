@@ -1,7 +1,5 @@
-import { Genre } from '@/entities/genre/genre.types';
 import PointSeparator from '@/shared/ui/point-separator';
-import { Accent, Muted } from '@/shared/ui/typography';
-import Link from 'next/link';
+import { Muted } from '@/shared/ui/typography';
 
 type Props = {
     PlaceOfBirth?: string | null;

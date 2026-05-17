@@ -1,5 +1,4 @@
 import { getPopularPersons } from '@/lib/persons';
-import { getConfiguration } from '@/lib/tmdb';
 import { mediaToElement } from '@/shared/lib/utils';
 import { PersonSummary } from '@/types/person-interfaces';
 import { TMDBResponse } from '@/types/tmdb-interfaces';

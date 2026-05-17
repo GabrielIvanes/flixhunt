@@ -4,7 +4,7 @@ export const TmdbPersonBaseSchema = z.object({
     adult: z.boolean(),
     gender: z.number(),
     id: z.number(),
-    known_for_department: z.string(),
+    known_for_department: z.string().nullable(),
     name: z.string(),
     popularity: z.number(),
     profile_path: z.string().nullable(),
@@ -48,7 +48,7 @@ const TmdbPersonTvCastCreditSchema = z.object({
     vote_count: z.number(),
     character: z.string(),
     credit_id: z.string(),
-    episode_count: z.number(),
+    episode_count: z.number().default(0),
     media_type: z.literal('tv'),
 });
 
@@ -90,7 +90,7 @@ const TmdbPersonTvCrewCreditSchema = z.object({
     vote_count: z.number(),
     credit_id: z.string(),
     department: z.string(),
-    episode_count: z.number(),
+    episode_count: z.number().default(0),
     job: z.string(),
     media_type: z.literal('tv'),
 });

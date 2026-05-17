@@ -7,7 +7,7 @@ type Props = {
 export default function MediaComment({ comment }: Props) {
     if (!comment) return null;
     return (
-        <section className="px-20 mb-5">
+        <section className="mb-5 px-20">
             <H1>Your comment</H1>
             <P>{comment}</P>
         </section>

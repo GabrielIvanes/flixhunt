@@ -1,17 +1,16 @@
-import { MovieBase } from '@/entities/movie/types/movie.types';
 import { ImageOff } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
+import { MovieCardBase } from '../types/movie.types';
 
 type Props = {
-    movie: MovieBase;
+    movie: MovieCardBase;
     href?: string;
     info?: ReactNode;
     width?: number;
 };
-
-export default function MovieCard({ movie, href, info, width = 175 }: Props) {
+export default function MovieCard({ movie, href, info, width }: Props) {
     const card = (
         <div className="group" style={{ width: width }}>
             <div className="relative aspect-2/3 w-full overflow-hidden rounded-(--radius) bg-muted">

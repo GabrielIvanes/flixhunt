@@ -2,10 +2,10 @@ import { ImageOff } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { Tvshow } from '@/entities/tvshow/tvshow.types';
+import { TvshowCardBase } from '../tvshow.types';
 
 type Props = {
-    tvshow: Tvshow;
+    tvshow: TvshowCardBase;
     href?: string;
     info?: ReactNode;
     width?: number;

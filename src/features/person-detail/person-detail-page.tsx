@@ -1,6 +1,7 @@
 import { PersonDetail } from '@/entities/person/person.types';
 import { getPersonDetail } from './services/get-person-detail';
 import HeroSection from './sections/hero-section';
+import PersonFilmography from './sections/person-filmography';
 
 type Props = {
     personId: number;
@@ -12,8 +13,9 @@ export default async function PersonDetailPage({ personId }: Props) {
     console.log(person);
 
     return (
-        <div>
+        <div className="px-10">
             <HeroSection person={person} width={width} />
+            <PersonFilmography person={person} />
         </div>
     );
 }

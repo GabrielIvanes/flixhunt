@@ -1,13 +1,13 @@
+import { mergeCastCharacters } from '@/entities/cast/cast.utils';
 import { MovieDetail } from '@/entities/movie/types/movie.types';
 import CastCarousel from '@/features/media/components/cast-carousel';
-import { getCast } from '@/services/persons';
 
 type Props = {
     movie: MovieDetail;
 };
 
 export default function CastSection({ movie }: Props) {
-    const cast = getCast(movie.credits.cast);
+    const cast = mergeCastCharacters(movie.credits.cast);
 
     return (
         <section className="pb-5">

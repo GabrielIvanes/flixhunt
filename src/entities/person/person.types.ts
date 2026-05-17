@@ -2,7 +2,7 @@ export type PersonBase = {
     adult: boolean;
     gender: number;
     id: number;
-    knownForDepartment: string;
+    knownForDepartment: string | null;
     name: string;
     popularity: number;
     profileUrl: string | null;

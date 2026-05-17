@@ -1,17 +1,20 @@
-import { Crew } from './crew.types';
+import { CreditCrewBase } from '../credit/credit.types';
 
-export function getDirectors(crew: Crew[]) {
+export function getDirectors<T extends CreditCrewBase>(crew: T[]): T[] {
     return crew.filter((c) => c.job === 'Director');
 }
 
-export function getCrew(crew: Crew[]) {
-    const crewFilter = new Map<number, Crew>();
+export function mergeCrewJobs<T extends CreditCrewBase>(crew: T[]): T[] {
+    const crewFilter = new Map<number, T>();
 
     for (const c of crew) {
-        const cf = crewFilter.get(c.id);
+        const existingCrew = crewFilter.get(c.id);
 
-        if (cf) cf.job = `${cf.job}, ${c.job}`;
-        else crewFilter.set(c.id, { ...c });
+        if (existingCrew) {
+            existingCrew.job = `${existingCrew.job}, ${c.job}`;
+        } else {
+            crewFilter.set(c.id, { ...c });
+        }
     }
 
     return Array.from(crewFilter.values());
