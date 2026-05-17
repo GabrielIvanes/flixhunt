@@ -10,7 +10,7 @@ import {
 import MovieDirectors from '../components/movie-directors';
 import MovieOverview from '@/features/movie/components/movie-overview';
 import MovieProviders from '../components/movie-providers';
-import MediaActions from '@/entities/media/components/media-actions/media-actions';
+import MediaActions from '@/features/media/components/media-actions/media-actions';
 import { getTrailer } from '@/entities/media/media.utils';
 
 type Props = {

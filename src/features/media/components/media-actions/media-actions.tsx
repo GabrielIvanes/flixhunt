@@ -3,9 +3,9 @@
 import { useState } from 'react';
 import { Bookmark, Clapperboard, Eye, EyeOff, Heart, List } from 'lucide-react';
 
-import type { MediaActionsState } from '../../media.types';
+import type { MediaActionsState } from '../../../../entities/media/media.types';
 import MediaActionButton from './media-action-button';
-import MediaVideo from '../media-video';
+import MediaVideo from '../../../../entities/media/components/media-video';
 import MediaActionComment from './media-action-comment';
 
 type Props = {

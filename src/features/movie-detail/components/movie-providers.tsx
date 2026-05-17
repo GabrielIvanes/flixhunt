@@ -19,9 +19,9 @@ export default function MovieProviders({ movie, countryCode }: Props) {
             <div className="flex gap-1">
                 {providers.map((provider) => (
                     <Tooltip key={provider.id}>
-                        <TooltipTrigger
-                            render={<ProviderCard provider={provider} />}
-                        />
+                        <TooltipTrigger>
+                            <ProviderCard provider={provider} />
+                        </TooltipTrigger>
                         <TooltipContent>{provider.name}</TooltipContent>
                     </Tooltip>
                 ))}
