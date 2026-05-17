@@ -7,7 +7,6 @@ import {
     Providers,
 } from '@/types/global-interfaces';
 import { mediaToElement } from '@/shared/lib/utils';
-import { getConfiguration, getGenres, getProviders } from '@/lib/tmdb';
 import FiltersMedia from '@/components/filters-media';
 
 export default async function Movies({

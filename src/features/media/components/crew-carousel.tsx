@@ -10,7 +10,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 import { H1 } from '@/shared/ui/typography';
 import { Crew } from '@/entities/crew/crew.types';
-import CrewCard from '@/entities/crew/components/crew-card';
+import PersonCard from '@/entities/person/components/person-card';
 
 type Props = {
     crew: Crew[];
@@ -42,8 +42,8 @@ export default function CrewCarousel({
                 <CarouselContent className="-ml-3">
                     {crew.map((c) => {
                         const card = (
-                            <CrewCard
-                                crew={c}
+                            <PersonCard
+                                person={c}
                                 href={`/persons/${c.id}`}
                                 width={width}
                                 info={getInfo?.(c)}

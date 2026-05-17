@@ -16,7 +16,7 @@ export default function MovieDetailClient({
     width,
     countryCode,
 }: Props) {
-    const [comment, setComment] = useState<string | null>(null);
+    const [comment, setComment] = useState<string | null>('This comment');
 
     return (
         <>

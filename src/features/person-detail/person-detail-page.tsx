@@ -13,7 +13,7 @@ export default async function PersonDetailPage({ personId }: Props) {
 
     return (
         <div>
-            <HeroSection person={person} />
+            <HeroSection person={person} width={width} />
         </div>
     );
 }

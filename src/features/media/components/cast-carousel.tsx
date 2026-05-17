@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
 
-import CastCard from '@/entities/cast/components/cast-card';
 import {
     Carousel,
     CarouselContent,
@@ -11,6 +10,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 import { H1 } from '@/shared/ui/typography';
 import { Cast } from '@/entities/cast/cast.types';
+import PersonCard from '@/entities/person/components/person-card';
 
 type Props = {
     cast: Cast[];
@@ -42,8 +42,8 @@ export default function CastCarousel({
                 <CarouselContent className="-ml-3">
                     {cast.map((c) => {
                         const card = (
-                            <CastCard
-                                cast={c}
+                            <PersonCard
+                                person={c}
                                 href={`/persons/${c.id}`}
                                 width={width}
                                 info={getInfo?.(c)}
