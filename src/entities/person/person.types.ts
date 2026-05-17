@@ -1,18 +1,21 @@
-export type Person = {
+export type PersonBase = {
     adult: boolean;
+    gender: number;
+    id: number;
+    knownForDepartment: string;
+    name: string;
+    popularity: number;
+    profileUrl: string | null;
+};
+
+export type Person = PersonBase & {
     alsoKnownAs: string[];
     biography: string;
     birthday: string | null;
     deathday: string | null;
-    gender: number;
     homepage: string | null;
-    id: number;
     imdbId: string | null;
-    knownForDepartment: string;
-    name: string;
     placeOfBirth: string | null;
-    popularity: number;
-    profileUrl: string | null;
 };
 
 export type PersonMovieCastCredit = {

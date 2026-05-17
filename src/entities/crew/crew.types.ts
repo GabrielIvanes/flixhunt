@@ -1,12 +1,7 @@
-export type Crew = {
-    adult: boolean;
-    gender: number;
-    id: number;
-    knownForDepartment: string;
-    name: string;
+import type { PersonBase } from '@/entities/person/person.types';
+
+export type Crew = PersonBase & {
     originalName: string;
-    popularity: number;
-    profileUrl: string | null;
     department: string;
     job: string;
     creditId: string;

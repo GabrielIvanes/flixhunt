@@ -1,4 +1,5 @@
-import { PersonDetail } from '@/entities/person/person.types';
+import PersonCard from '@/entities/person/components/person-card';
+import type { PersonDetail } from '@/entities/person/person.types';
 
 type Props = {
     person: PersonDetail;
@@ -8,7 +9,7 @@ export default function HeroSection({ person, width }: Props) {
     return (
         <section className="h-[calc(100vh-7.5rem)] w-full flex gap-2 px-10">
             <div className="flex-1/3 flex justify-center items-center">
-                <MovieCard person={Person} width={width} />
+                <PersonCard person={person} width={width} />
             </div>
             <div className="flex-2/3 flex justify-center items-center">
                 <div

@@ -1,14 +1,8 @@
 import { z } from 'zod';
+import { TmdbPersonBaseSchema } from '@/entities/person/person.schema';
 
-export const TmdbCastSchema = z.object({
-    adult: z.boolean(),
-    gender: z.number(),
-    id: z.number(),
-    known_for_department: z.string(),
-    name: z.string(),
+export const TmdbCastSchema = TmdbPersonBaseSchema.extend({
     original_name: z.string(),
-    popularity: z.number(),
-    profile_path: z.string().nullable(),
     cast_id: z.number(),
     character: z.string(),
     credit_id: z.string(),

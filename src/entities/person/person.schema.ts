@@ -1,18 +1,11 @@
 import { z } from 'zod';
 
-const TmdbPersonBaseSchema = z.object({
+export const TmdbPersonBaseSchema = z.object({
     adult: z.boolean(),
-    also_known_as: z.array(z.string()),
-    biography: z.string(),
-    birthday: z.string().nullable(),
-    deathday: z.string().nullable(),
     gender: z.number(),
-    homepage: z.string().nullable(),
     id: z.number(),
-    imdb_id: z.string().nullable(),
     known_for_department: z.string(),
     name: z.string(),
-    place_of_birth: z.string().nullable(),
     popularity: z.number(),
     profile_path: z.string().nullable(),
 });
@@ -113,6 +106,13 @@ export const TmdbPersonCombinedCrewCreditSchema = z.discriminatedUnion(
 );
 
 export const TmdbPersonDetailSchema = TmdbPersonBaseSchema.extend({
+    also_known_as: z.array(z.string()),
+    biography: z.string(),
+    birthday: z.string().nullable(),
+    deathday: z.string().nullable(),
+    homepage: z.string().nullable(),
+    imdb_id: z.string().nullable(),
+    place_of_birth: z.string().nullable(),
     combined_credits: z.object({
         cast: z.array(TmdbPersonCombinedCastCreditSchema),
         crew: z.array(TmdbPersonCombinedCrewCreditSchema),
