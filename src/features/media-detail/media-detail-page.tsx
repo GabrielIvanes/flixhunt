@@ -1,17 +1,18 @@
 import { MovieDetail } from '@/entities/movie/types/movie.types';
 import { getMovieDetail } from '../movie/services/get-movie-detail';
 import MediaBackdrop from '@/entities/media/components/media-backdrop';
-import RecommendationSection from './sections/recommendation-section';
-import SimilarSection from './sections/similar-section';
-import MovieDetailClient from './movie-detail-client';
-import CastSection from './sections/cast-section';
-import CrewSection from './sections/crew-section';
+import MovieDetailClient from '../movie-detail/movie-detail-client';
+import CastSection from '../movie-detail/sections/cast-section';
+import CrewSection from '../movie-detail/sections/crew-section';
+import RecommendationSection from '../movie-detail/sections/recommendation-section';
+import SimilarSection from '../movie-detail/sections/similar-section';
 
 type Props = {
+    media: MovieDetail | TvshowDetail
     movieId: number;
 };
 
-export default async function MovieDetailPage({ movieId }: Props) {
+export default async function MediaDetailPage({ movieId }: Props) {
     const movie: MovieDetail = await getMovieDetail(movieId);
     const width: number = 370;
     const countryCode = 'FR';
@@ -25,8 +26,8 @@ export default async function MovieDetailPage({ movieId }: Props) {
                 width={width}
                 countryCode={countryCode}
             />
-            <CastSection cast={movie.credits.cast} />
-            <CrewSection crew={movie.credits.crew} />
+            <CastSection movie={movie} />
+            <CrewSection movie={movie} />
             <RecommendationSection movie={movie} />
             <SimilarSection movie={movie} />
         </div>

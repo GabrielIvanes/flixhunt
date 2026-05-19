@@ -119,10 +119,44 @@ export const TmdbPersonDetailSchema = TmdbPersonBaseSchema.extend({
     }),
 });
 
+export const TmdbPersonCastAggregateCreditSchema = TmdbPersonBaseSchema.extend({
+    original_name: z.string(),
+    roles: z.array(
+        z.object({
+            credit_id: z.string(),
+            character: z.string(),
+            episode_count: z.number().default(0),
+        })
+    ),
+    total_episode_count: z.number().default(0),
+    order: z.number(),
+});
+
+export const TmdbPersonCrewAggregateCreditSchema = TmdbPersonBaseSchema.extend({
+    original_name: z.string(),
+    jobs: z.array(
+        z.object({
+            credit_id: z.string(),
+            job: z.string(),
+            episode_count: z.number().default(0),
+        })
+    ),
+    department: z.string(),
+    total_episode_count: z.number().default(0),
+});
+
+export type TmdbPersonBaseDto = z.infer<typeof TmdbPersonBaseSchema>;
 export type TmdbPersonDetailDto = z.infer<typeof TmdbPersonDetailSchema>;
 export type TmdbPersonCombinedCastCreditDto = z.infer<
     typeof TmdbPersonCombinedCastCreditSchema
 >;
 export type TmdbPersonCombinedCrewCreditDto = z.infer<
     typeof TmdbPersonCombinedCrewCreditSchema
+>;
+export type TmdbPersonCastAggregateCreditDto = z.infer<
+    typeof TmdbPersonCastAggregateCreditSchema
+>;
+
+export type TmdbPersonCrewAggregateCreditDto = z.infer<
+    typeof TmdbPersonCrewAggregateCreditSchema
 >;

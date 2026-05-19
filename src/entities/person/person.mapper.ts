@@ -1,32 +1,46 @@
 import type {
+    TmdbPersonBaseDto,
+    TmdbPersonCastAggregateCreditDto,
     TmdbPersonCombinedCastCreditDto,
     TmdbPersonCombinedCrewCreditDto,
+    TmdbPersonCrewAggregateCreditDto,
     TmdbPersonDetailDto,
 } from './person.schema';
 import type {
     Person,
+    PersonBase,
+    PersonCastAggregateCredit,
     PersonCombinedCastCredit,
     PersonCombinedCrewCredit,
+    PersonCrewAggregateCredit,
     PersonDetail,
 } from './person.types';
 import { buildUrl } from '@/lib/tmdb/tmdb.image';
 
-export async function mapTmdbPerson(dto: TmdbPersonDetailDto): Promise<Person> {
+export async function mapTmdbPersonBase(
+    dto: TmdbPersonBaseDto
+): Promise<PersonBase> {
     return {
         adult: dto.adult,
+        gender: dto.gender,
+        id: dto.id,
+        knownForDepartment: dto.known_for_department,
+        name: dto.name,
+        popularity: dto.popularity,
+        profileUrl: await buildUrl(dto.profile_path, 'w500'),
+    };
+}
+
+export async function mapTmdbPerson(dto: TmdbPersonDetailDto): Promise<Person> {
+    return {
+        ...(await mapTmdbPersonBase(dto)),
         alsoKnownAs: dto.also_known_as,
         biography: dto.biography,
         birthday: dto.birthday,
         deathday: dto.deathday,
-        gender: dto.gender,
         homepage: dto.homepage,
-        id: dto.id,
         imdbId: dto.imdb_id,
-        knownForDepartment: dto.known_for_department,
-        name: dto.name,
         placeOfBirth: dto.place_of_birth,
-        popularity: dto.popularity,
-        profileUrl: await buildUrl(dto.profile_path, 'w500'),
     };
 }
 
@@ -121,5 +135,37 @@ export async function mapTmdbPersonDetail(
                 dto.combined_credits.crew.map(mapTmdbPersonCombinedCrewCredit)
             ),
         },
+    };
+}
+
+export async function mapTmdbPersonCastAggregateCredit(
+    dto: TmdbPersonCastAggregateCreditDto
+): Promise<PersonCastAggregateCredit> {
+    return {
+        ...(await mapTmdbPersonBase(dto)),
+        originalName: dto.original_name,
+        roles: dto.roles.map((role) => ({
+            creditId: role.credit_id,
+            character: role.character,
+            episodeCount: role.episode_count,
+        })),
+        totalEpisodeCount: dto.total_episode_count,
+        order: dto.order,
+    };
+}
+
+export async function mapTmdbPersonCrewAggregateCredit(
+    dto: TmdbPersonCrewAggregateCreditDto
+): Promise<PersonCrewAggregateCredit> {
+    return {
+        ...(await mapTmdbPersonBase(dto)),
+        originalName: dto.original_name,
+        jobs: dto.jobs.map((job) => ({
+            creditId: job.credit_id,
+            job: job.job,
+            episodeCount: job.episode_count,
+        })),
+        department: dto.department,
+        totalEpisodeCount: dto.total_episode_count,
     };
 }

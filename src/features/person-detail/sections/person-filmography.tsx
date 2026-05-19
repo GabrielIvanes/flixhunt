@@ -5,14 +5,6 @@ import { getDirectors, mergeCrewJobs } from '@/entities/crew/crew.utils';
 import { PersonDetail } from '@/entities/person/person.types';
 import { useMemo, useState } from 'react';
 import { sortArray } from '../person-detail.utils';
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/shared/ui/select';
 import MovieCard from '@/entities/movie/components/movie-card';
 import { H1 } from '@/shared/ui/typography';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
@@ -54,6 +46,8 @@ export default function PersonFilmography({ person }: Props) {
         () => getDirectors(person.combinedCredits.crew),
         [person.combinedCredits.crew]
     );
+
+    console.log(directorsMedia);
 
     const media = useMemo(() => {
         switch (role) {

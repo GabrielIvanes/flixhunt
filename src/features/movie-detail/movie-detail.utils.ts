@@ -35,7 +35,3 @@ export function getVoteAverage(voteAverage: number | null): number | null {
 
     return Number(voteAverage.toFixed(1));
 }
-
-export function getProviders(movie: MovieDetail, countryCode: string) {
-    return movie.watchProviders[countryCode]?.flatrate;
-}

@@ -1,5 +1,5 @@
 import { mapTmdbMovieDetail } from '@/entities/movie/mappers/movie.mapper';
-import { TmdbMovieDetailSchema } from '@/entities/movie/schemas/movie.detail.schema';
+import { TmdbMovieDetailSchema } from '@/entities/movie/schemas/movie-detail.schema';
 import { MovieDetail } from '@/entities/movie/types/movie.types';
 
 export async function getMovieDetail(

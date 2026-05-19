@@ -1,7 +1,12 @@
 import type { Cast } from '@/entities/cast/cast.types';
 import type { Crew } from '@/entities/crew/crew.types';
 import type { Genre } from '@/entities/genre/genre.types';
-import { Provider } from '@/entities/provider/provider.types';
+import {
+    ProductionCompany,
+    ProductionCountry,
+    SpokenLanguage,
+    WatchProviderOptions,
+} from '@/entities/media/media.types';
 import { Video } from '@/entities/video/video.types';
 import type { PaginatedResponse } from '@/shared/types/paginated-response.types';
 
@@ -31,38 +36,11 @@ export type Movie = MovieBase & {
     genreIds: number[];
 };
 
-export type ProductionCompany = {
-    id: number;
-    logoUrl: string | null;
-    name: string;
-    originCountry: string;
-};
-
-export type ProductionCountry = {
-    iso_3166_1: string;
-    name: string;
-};
-
-export type SpokenLanguage = {
-    englishName: string;
-    iso_639_1: string;
-    name: string;
-};
-
 export type MovieCollection = {
     id: number;
     name: string;
     posterUrl: string | null;
     backdropUrl: string | null;
-};
-
-export type WatchProviderOptions = {
-    link: string;
-    flatrate: Provider[];
-    rent: Provider[];
-    buy: Provider[];
-    ads: Provider[];
-    free: Provider[];
 };
 
 export type ReleaseDate = {

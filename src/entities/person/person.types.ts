@@ -93,6 +93,28 @@ export type PersonTvCrewCredit = {
     job: string;
 };
 
+export type PersonCastAggregateCredit = PersonBase & {
+    originalName: string;
+    roles: {
+        creditId: string;
+        character: string;
+        episodeCount: number;
+    }[];
+    totalEpisodeCount: number;
+    order: number;
+};
+
+export type PersonCrewAggregateCredit = PersonBase & {
+    originalName: string;
+    jobs: {
+        creditId: string;
+        job: string;
+        episodeCount: number;
+    }[];
+    department: string;
+    totalEpisodeCount: number;
+};
+
 export type PersonCombinedCastCredit =
     | PersonMovieCastCredit
     | PersonTvCastCredit;

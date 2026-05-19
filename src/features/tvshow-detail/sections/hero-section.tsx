@@ -1,28 +1,25 @@
-import MovieCard from '@/entities/movie/components/movie-card';
-import { MovieDetail } from '@/entities/movie/types/movie.types';
-import MovieMetadata from '@/features/movie-detail/components/movie-metadata';
 import { H1, Lead } from '@/shared/ui/typography';
-import {
-    getReleaseDate,
-    getRuntimeString,
-    getVoteAverage,
-} from '../movie-detail.utils';
-import MovieDirectors from '../components/movie-directors';
-import MovieOverview from '@/entities/media/components/media-overview';
 import MediaActions from '@/features/media/components/media-actions/media-actions';
 import { getTrailer } from '@/entities/media/media.utils';
+import TvshowCard from '@/entities/tvshow/components/tvshow-card';
+import { TvshowDetail } from '@/entities/tvshow/types/tvshow.types';
+import TvshowMetadata from '../components/tvshow-metadata';
+import TvshowCreators from '../components/tvshow-creators';
 import MediaProviders from '@/features/media-detail/components/media-providers';
+import { getVoteAverage } from '@/features/movie-detail/movie-detail.utils';
+import MediaOverview from '@/entities/media/components/media-overview';
 import { getProviders } from '@/features/media-detail/media-detail.utils';
+import { getTvshowAirDates } from '../tvshow-detail.utils';
 
 type Props = {
-    movie: MovieDetail;
+    tvshow: TvshowDetail;
     width: number;
     countryCode: string;
     initialComment: string | null;
     onSaveComment: (comment: string | null) => void;
 };
 export default function HeroSection({
-    movie,
+    tvshow,
     width,
     countryCode,
     initialComment,
@@ -31,7 +28,7 @@ export default function HeroSection({
     return (
         <section className="h-[calc(100vh-7.5rem)] w-full flex gap-5 px-10">
             <div className="flex items-center">
-                <MovieCard movie={movie} width={width} />
+                <TvshowCard tvshow={tvshow} width={width} />
             </div>
 
             <div className="flex-1 flex justify-center items-center">
@@ -40,19 +37,24 @@ export default function HeroSection({
                     className="w-full flex flex-col justify-between"
                 >
                     <div className="flex flex-col gap-2">
-                        <H1>{movie.title}</H1>
-                        <MovieMetadata
-                            genres={movie.genres}
-                            releaseDate={getReleaseDate(movie, countryCode)}
-                            duration={getRuntimeString(movie.runtime)}
-                            voteAverage={getVoteAverage(movie.voteAverage)}
+                        <H1>{tvshow.name}</H1>
+                        <TvshowMetadata
+                            genres={tvshow.genres}
+                            airDate={getTvshowAirDates(
+                                tvshow.firstAirDate,
+                                tvshow.lastAirDate,
+                                tvshow.status
+                            )}
+                            numberOfEpisodes={tvshow.numberOfEpisodes}
+                            numberOfSeasons={tvshow.numberOfSeasons}
+                            voteAverage={getVoteAverage(tvshow.voteAverage)}
                         />
-                        <MovieDirectors movie={movie} />
-                        <Lead>{movie.tagline}</Lead>
-                        <MovieOverview overview={movie.overview} />
+                        <TvshowCreators tvshow={tvshow} />
+                        <Lead>{tvshow.tagline}</Lead>
+                        <MediaOverview overview={tvshow.overview} />
                         <MediaActions
                             initialActions={{
-                                video: getTrailer(movie.videos),
+                                video: getTrailer(tvshow.videos),
                                 isFavorite: false,
                                 isWatchlist: false,
                                 isWatched: false,
@@ -66,7 +68,7 @@ export default function HeroSection({
 
                     <MediaProviders
                         providers={getProviders(
-                            movie.watchProviders,
+                            tvshow.watchProviders,
                             countryCode
                         )}
                     />

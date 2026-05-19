@@ -1,5 +1,5 @@
 import { TmdbMovieSchema } from '@/entities/movie/schemas/movie.schema';
-import { TmdbTvshowSchema } from '@/entities/tvshow/tvshow.schema';
+import { TmdbTvshowSchema } from '@/entities/tvshow/schemas/tvshow.schema';
 import { z } from 'zod';
 
 export function CreateTmdbPaginatedResponseSchema<T extends z.ZodTypeAny>(

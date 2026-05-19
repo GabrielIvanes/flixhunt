@@ -1,17 +1,13 @@
-import { MovieDetail } from '@/entities/movie/types/movie.types';
-import { getProviders } from '../movie-detail.utils';
 import { H2 } from '@/shared/ui/typography';
 import ProviderCard from '@/entities/provider/components/provider-card';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
+import { Provider } from '@/entities/provider/provider.types';
 
 type Props = {
-    movie: MovieDetail;
-    countryCode: string;
+    providers: Provider[] | null;
 };
 
-export default function MovieProviders({ movie, countryCode }: Props) {
-    const providers = getProviders(movie, countryCode);
-
+export default function MediaProviders({ providers }: Props) {
     if (!providers || providers.length === 0) return null;
     return (
         <div>

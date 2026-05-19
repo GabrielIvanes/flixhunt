@@ -1,4 +1,4 @@
-import { mapTmdbTvshow } from '@/entities/tvshow/tvshow.mapper';
+import { mapTmdbTvshow } from '@/entities/tvshow/mappers/tvshow.mapper';
 import { TmdbTvshowPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
 
 export async function getTrendingTvshows(language?: string, page?: number) {

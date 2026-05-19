@@ -1,19 +1,15 @@
 import { mapTmdbCast } from '@/entities/cast/cast.mapper';
 import { mapTmdbCrew } from '@/entities/crew/crew.mapper';
 import { mapTmdbGenre } from '@/entities/genre/genre.mapper';
-import { mapTmdbProvider } from '@/entities/provider/provider.mapper';
-import type {
-    Movie,
-    MovieDetail,
-    WatchProviderOptions,
-} from '@/entities/movie/types/movie.types';
+import type { Movie, MovieDetail } from '@/entities/movie/types/movie.types';
 import type {
     TmdbMovieBaseDto,
     TmdbMovieDto,
 } from '@/entities/movie/schemas/movie.schema';
-import type { TmdbMovieDetailDto } from '@/entities/movie/schemas/movie.detail.schema';
+import type { TmdbMovieDetailDto } from '@/entities/movie/schemas/movie-detail.schema';
 import { buildUrl } from '@/lib/tmdb/tmdb.image';
 import { mapTmdbVideo } from '@/entities/video/video.mapper';
+import { mapWatchProviders } from '@/entities/media/media.mapper';
 
 async function mapTmdbMovieBase(dto: TmdbMovieBaseDto) {
     return {
@@ -40,40 +36,6 @@ export async function mapTmdbMovie(dto: TmdbMovieDto): Promise<Movie> {
         ...baseMovie,
         genreIds: dto.genre_ids,
     };
-}
-
-async function mapWatchProviders(
-    providers: TmdbMovieDetailDto['watch/providers']
-): Promise<Record<string, WatchProviderOptions>> {
-    const entries = await Promise.all(
-        Object.entries(providers.results).map(
-            async ([countryCode, options]) => {
-                return [
-                    countryCode,
-                    {
-                        link: options.link,
-                        flatrate: await Promise.all(
-                            (options.flatrate ?? []).map(mapTmdbProvider)
-                        ),
-                        rent: await Promise.all(
-                            (options.rent ?? []).map(mapTmdbProvider)
-                        ),
-                        buy: await Promise.all(
-                            (options.buy ?? []).map(mapTmdbProvider)
-                        ),
-                        ads: await Promise.all(
-                            (options.ads ?? []).map(mapTmdbProvider)
-                        ),
-                        free: await Promise.all(
-                            (options.free ?? []).map(mapTmdbProvider)
-                        ),
-                    },
-                ] as const;
-            }
-        )
-    );
-
-    return Object.fromEntries(entries);
 }
 
 export async function mapTmdbMovieDetail(

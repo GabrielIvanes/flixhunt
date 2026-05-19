@@ -109,13 +109,7 @@ interface Episode {
     still_path: string;
 }
 
-interface CreatedBy {
-    id: number;
-    credit_id: string;
-    name: string;
-    gender: number;
-    profile_path: string;
-}
+
 
 interface Network {
     id: number;

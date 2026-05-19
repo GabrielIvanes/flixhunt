@@ -9,7 +9,7 @@ import {
 } from '@/shared/ui/carousel';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 import { H1 } from '@/shared/ui/typography';
-import { Tvshow } from '@/entities/tvshow/tvshow.types';
+import { Tvshow } from '@/entities/tvshow/types/tvshow.types';
 import TvshowCard from '@/entities/tvshow/components/tvshow-card';
 
 type Props = {

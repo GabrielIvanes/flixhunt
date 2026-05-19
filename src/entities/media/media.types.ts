@@ -1,3 +1,4 @@
+import { Provider } from '../provider/provider.types';
 import { Video } from '../video/video.types';
 
 export type CountryCode =
@@ -105,4 +106,31 @@ export type MediaActionsState = {
     isTheatreWatched: boolean;
     listIds: number[];
     comment: string | null;
+};
+
+export type ProductionCompany = {
+    id: number;
+    logoUrl: string | null;
+    name: string;
+    originCountry: string;
+};
+
+export type ProductionCountry = {
+    iso_3166_1: string;
+    name: string;
+};
+
+export type SpokenLanguage = {
+    englishName: string;
+    iso_639_1: string;
+    name: string;
+};
+
+export type WatchProviderOptions = {
+    link: string;
+    flatrate: Provider[];
+    rent: Provider[];
+    buy: Provider[];
+    ads: Provider[];
+    free: Provider[];
 };
