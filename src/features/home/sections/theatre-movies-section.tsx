@@ -1,5 +1,5 @@
 import { getTheatreMovies } from '@/features/movie/services/get-theatre-movies';
-import MoviesCarousel from '@/features/media/components/movies-carousel';
+import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 import { PaginatedResponse } from '@/shared/types/paginated-response.types';
 import { Movie } from '@/entities/movie/types/movie.types';
 

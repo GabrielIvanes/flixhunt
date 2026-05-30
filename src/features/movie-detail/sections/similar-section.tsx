@@ -1,5 +1,5 @@
 import { MovieDetail } from '@/entities/movie/types/movie.types';
-import MoviesCarousel from '@/features/media/components/movies-carousel';
+import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 
 type Props = {
     movie: MovieDetail;

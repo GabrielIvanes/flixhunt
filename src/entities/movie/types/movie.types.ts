@@ -6,7 +6,7 @@ import {
     ProductionCountry,
     SpokenLanguage,
     WatchProviderOptions,
-} from '@/entities/media/media.types';
+} from '@/entities/media/types/media.types';
 import { Video } from '@/entities/video/video.types';
 import type { PaginatedResponse } from '@/shared/types/paginated-response.types';
 
@@ -24,12 +24,6 @@ export type MovieBase = {
     video: boolean;
     voteAverage: number;
     voteCount: number;
-};
-
-export type MovieCardBase = {
-    id: number;
-    posterUrl: string | null;
-    title: string;
 };
 
 export type Movie = MovieBase & {

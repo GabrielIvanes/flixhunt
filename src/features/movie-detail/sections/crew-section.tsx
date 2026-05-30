@@ -4,7 +4,7 @@ import {
     mergeCrewJobs,
 } from '@/entities/crew/crew.utils';
 import { PersonCrewAggregateCredit } from '@/entities/person/person.types';
-import CrewCarousel from '@/features/media/components/crew-carousel';
+import CrewCarousel from '@/features/media/components/carousels/crew-carousel';
 
 type Props = {
     crew?: Crew[];

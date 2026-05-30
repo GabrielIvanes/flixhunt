@@ -1,5 +1,5 @@
 import { getTrendingMovies } from '@/features/movie/services/get-trending-movies';
-import MoviesCarousel from '@/features/media/components/movies-carousel';
+import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 
 export default async function TrendingMoviesSection() {
     const trendingMovies = await getTrendingMovies();

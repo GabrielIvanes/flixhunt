@@ -4,7 +4,7 @@ import {
     mergeCastCharacters,
 } from '@/entities/cast/cast.utils';
 import { PersonCastAggregateCredit } from '@/entities/person/person.types';
-import CastCarousel from '@/features/media/components/cast-carousel';
+import CastCarousel from '@/features/media/components/carousels/cast-carousel';
 
 type Props = {
     cast?: Cast[];

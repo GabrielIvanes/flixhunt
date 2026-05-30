@@ -9,7 +9,7 @@ import {
 } from '../movie-detail.utils';
 import MovieDirectors from '../components/movie-directors';
 import MovieOverview from '@/entities/media/components/media-overview';
-import MediaActions from '@/features/media/components/media-actions/media-actions';
+import MediaActions from '@/features/media-detail/components/media-actions/media-actions';
 import { getTrailer } from '@/entities/media/media.utils';
 import MediaProviders from '@/features/media-detail/components/media-providers';
 import { getProviders } from '@/features/media-detail/media-detail.utils';

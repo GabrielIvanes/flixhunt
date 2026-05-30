@@ -12,7 +12,7 @@ import { TmdbVideosSchema } from '@/entities/video/video.schema';
 
 import { CreateTmdbPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
 
-import { TmdbWatchProvidersSchema } from '@/entities/media/watch-provider.schema';
+import { TmdbWatchProvidersSchema } from '@/entities/media/schemas/watch-provider.schema';
 import {
     TmdbPersonCastAggregateCreditSchema,
     TmdbPersonCrewAggregateCreditSchema,

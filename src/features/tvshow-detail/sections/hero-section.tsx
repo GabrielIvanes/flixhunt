@@ -1,5 +1,5 @@
 import { H1, Lead } from '@/shared/ui/typography';
-import MediaActions from '@/features/media/components/media-actions/media-actions';
+import MediaActions from '@/features/media-detail/components/media-actions/media-actions';
 import { getTrailer } from '@/entities/media/media.utils';
 import TvshowCard from '@/entities/tvshow/components/tvshow-card';
 import { TvshowDetail } from '@/entities/tvshow/types/tvshow.types';

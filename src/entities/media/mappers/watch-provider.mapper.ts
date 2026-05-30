@@ -1,6 +1,6 @@
-import { mapTmdbProvider } from '../provider/provider.mapper';
-import { WatchProviderOptions } from './media.types';
-import { TmdbWatchProvidersDto } from './watch-provider.schema';
+import { TmdbWatchProvidersDto } from '@/entities/media/schemas/watch-provider.schema';
+import { WatchProviderOptions } from '@/entities/media/types/media.types';
+import { mapTmdbProvider } from '@/entities/provider/provider.mapper';
 
 export async function mapWatchProviders(
     providers: TmdbWatchProvidersDto

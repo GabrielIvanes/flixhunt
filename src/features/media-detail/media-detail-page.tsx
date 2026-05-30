@@ -8,7 +8,7 @@ import RecommendationSection from '../movie-detail/sections/recommendation-secti
 import SimilarSection from '../movie-detail/sections/similar-section';
 
 type Props = {
-    media: MovieDetail | TvshowDetail
+    media: MovieDetail;
     movieId: number;
 };
 
@@ -26,8 +26,8 @@ export default async function MediaDetailPage({ movieId }: Props) {
                 width={width}
                 countryCode={countryCode}
             />
-            <CastSection movie={movie} />
-            <CrewSection movie={movie} />
+            <CastSection cast={movie.credits.cast} />
+            <CrewSection crew={movie.credits.crew} />
             <RecommendationSection movie={movie} />
             <SimilarSection movie={movie} />
         </div>

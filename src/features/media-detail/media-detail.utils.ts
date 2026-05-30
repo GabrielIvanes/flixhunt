@@ -1,4 +1,4 @@
-import { WatchProviderOptions } from '@/entities/media/media.types';
+import { WatchProviderOptions } from '@/entities/media/types/media.types';
 import { Provider } from '@/entities/provider/provider.types';
 
 export function getProviders(

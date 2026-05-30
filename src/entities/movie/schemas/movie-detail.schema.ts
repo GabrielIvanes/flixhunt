@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { TmdbCastSchema } from '@/entities/cast/cast.schema';
 import { TmdbCrewSchema } from '@/entities/crew/crew.schema';
 import { CreateTmdbPaginatedResponseSchema } from '@/lib/tmdb/schema/tmdb.schema';
-import { TmdbWatchProvidersSchema } from '@/entities/media/watch-provider.schema';
+import { TmdbWatchProvidersSchema } from '@/entities/media/schemas/watch-provider.schema';
 import {
     TmdbMovieBaseSchema,
     TmdbMovieSchema,

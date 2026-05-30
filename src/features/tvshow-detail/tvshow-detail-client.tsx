@@ -3,7 +3,7 @@
 import { TvshowDetail } from '@/entities/tvshow/types/tvshow.types';
 import { useState } from 'react';
 import HeroSection from './sections/hero-section';
-import MediaComment from '../media/components/media-comment';
+import MediaComment from '../media-detail/components/media-comment';
 
 type Props = {
     tvshow: TvshowDetail;

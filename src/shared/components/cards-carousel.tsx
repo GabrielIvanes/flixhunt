@@ -9,58 +9,47 @@ import {
 } from '@/shared/ui/carousel';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip';
 import { H1 } from '@/shared/ui/typography';
-import { Tvshow } from '@/entities/tvshow/types/tvshow.types';
-import TvshowCard from '@/entities/tvshow/components/tvshow-card';
 
-type Props = {
-    tvshows: Tvshow[];
+type Props<T> = {
+    items: T[];
+    getKey: (item: T) => number;
+    renderItem: (item: T) => ReactNode;
     loop?: boolean;
     title?: string;
-    width?: number;
-    getTooltip?: (tvshow: Tvshow) => ReactNode;
-    getInfo?: (tvshow: Tvshow) => ReactNode;
+    getTooltip?: (item: T) => ReactNode;
 };
 
-export default function TvshowsCarousel({
-    tvshows,
+export default function CardsCarousel<T>({
+    items,
+    getKey,
+    renderItem,
     loop = false,
     title,
-    width = 175,
     getTooltip,
-    getInfo,
-}: Props) {
+}: Props<T>) {
     return (
         <section className="px-20">
             {title && <H1 className="mb-4">{title}</H1>}
 
-            <Carousel
-                opts={{
-                    align: 'start',
-                    loop,
-                }}
-            >
+            <Carousel opts={{ align: 'start', loop }}>
                 <CarouselContent className="-ml-3">
-                    {tvshows.map((tvshow) => {
-                        const card = (
-                            <TvshowCard
-                                tvshow={tvshow}
-                                href={`/tvshows/${tvshow.id}`}
-                                width={width}
-                                info={getInfo?.(tvshow)}
-                            />
-                        );
+                    {items.map((item) => {
+                        const card = renderItem(item);
+                        const tooltip = getTooltip?.(item);
 
                         return (
                             <CarouselItem
-                                key={tvshow.id}
+                                key={getKey(item)}
                                 className="basis-auto pl-3"
                             >
-                                {getTooltip ? (
+                                {tooltip ? (
                                     <Tooltip>
-                                        <TooltipTrigger render={card} />
+                                        <TooltipTrigger
+                                            render={<div>{card}</div>}
+                                        />
                                         <TooltipContent>
                                             <div className="text-center">
-                                                {getTooltip(tvshow)}
+                                                {tooltip}
                                             </div>
                                         </TooltipContent>
                                     </Tooltip>

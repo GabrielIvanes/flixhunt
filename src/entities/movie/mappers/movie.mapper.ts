@@ -9,7 +9,7 @@ import type {
 import type { TmdbMovieDetailDto } from '@/entities/movie/schemas/movie-detail.schema';
 import { buildUrl } from '@/lib/tmdb/tmdb.image';
 import { mapTmdbVideo } from '@/entities/video/video.mapper';
-import { mapWatchProviders } from '@/entities/media/media.mapper';
+import { mapWatchProviders } from '@/entities/media/mappers/watch-provider.mapper';
 
 async function mapTmdbMovieBase(dto: TmdbMovieBaseDto) {
     return {

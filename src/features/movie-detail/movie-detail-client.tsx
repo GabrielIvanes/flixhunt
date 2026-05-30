@@ -2,7 +2,7 @@
 
 import { MovieDetail } from '@/entities/movie/types/movie.types';
 import HeroSection from '@/features/movie-detail/sections/hero-section';
-import MediaComment from '@/features/media/components/media-comment';
+import MediaComment from '@/features/media-detail/components/media-comment';
 import { useState } from 'react';
 
 type Props = {

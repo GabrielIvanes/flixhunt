@@ -15,7 +15,7 @@ import {
 import { TmdbTvshowBaseDto, TmdbTvshowDto } from '../schemas/tvshow.schema';
 import { Tvshow, TvshowBase, TvshowDetail } from '../types/tvshow.types';
 import { TmdbTvshowDetailDto } from '../schemas/tvshow-detail.schema';
-import { mapWatchProviders } from '@/entities/media/media.mapper';
+import { mapWatchProviders } from '@/entities/media/mappers/watch-provider.mapper';
 
 export async function mapTmdbTvshowBase(
     dto: TmdbTvshowBaseDto

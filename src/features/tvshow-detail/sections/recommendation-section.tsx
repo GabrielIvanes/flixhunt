@@ -1,5 +1,5 @@
 import { TvshowDetail } from '@/entities/tvshow/types/tvshow.types';
-import TvshowsCarousel from '@/features/media/components/tvshows-carousel';
+import TvshowsCarousel from '@/features/tvshow-detail/components/tvshows-carousel';
 
 type Props = {
     tvshow: TvshowDetail;

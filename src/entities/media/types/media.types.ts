@@ -1,5 +1,5 @@
-import { Provider } from '../provider/provider.types';
-import { Video } from '../video/video.types';
+import { Provider } from '../../provider/provider.types';
+import { Video } from '../../video/video.types';
 
 export type CountryCode =
     | 'AE'

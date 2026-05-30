@@ -5,7 +5,7 @@ import {
     ProductionCountry,
     SpokenLanguage,
     WatchProviderOptions,
-} from '@/entities/media/media.types';
+} from '@/entities/media/types/media.types';
 import {
     PersonCastAggregateCredit,
     PersonCrewAggregateCredit,
@@ -28,12 +28,6 @@ export type TvshowBase = {
     firstAirDate: string;
     voteAverage: number;
     voteCount: number;
-};
-
-export type TvshowCardBase = {
-    id: number;
-    name: string;
-    posterUrl: string | null;
 };
 
 export type Tvshow = TvshowBase & {
