@@ -1,4 +1,4 @@
-import { Cast } from '@/entities/cast/cast.types';
+import { GuestStar } from '@/entities/cast/cast.types';
 import {
     castAggregateCreditToCast,
     mergeCastCharacters,
@@ -7,12 +7,12 @@ import { PersonCastAggregateCredit } from '@/entities/person/person.types';
 import CastCarousel from '@/features/media/components/carousels/cast-carousel';
 
 type Props = {
-    cast?: Cast[];
+    cast?: GuestStar[];
     aggregateCast?: PersonCastAggregateCredit[];
 };
 
 export default function CastSection({ cast, aggregateCast }: Props) {
-    const c: Cast[] = cast
+    const c: GuestStar[] = cast
         ? mergeCastCharacters(cast)
         : aggregateCast
           ? mergeCastCharacters(aggregateCast.map(castAggregateCreditToCast))

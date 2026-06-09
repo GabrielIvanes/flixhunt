@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import { TvshowCardBase } from '../types/tvshow.types';
 import PosterCard from '@/shared/components/poster-card';
+import { TvshowBase } from '../types/tvshow.types';
 
 type Props = {
-    tvshow: TvshowCardBase;
+    tvshow: TvshowBase;
     href?: string;
     info?: ReactNode;
     width?: number;

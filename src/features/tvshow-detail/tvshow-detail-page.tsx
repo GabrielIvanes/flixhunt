@@ -5,6 +5,7 @@ import CastSection from '../movie-detail/sections/cast-section';
 import CrewSection from '../movie-detail/sections/crew-section';
 import RecommendationSection from './sections/recommendation-section';
 import SimilarSection from './sections/similar-section';
+import SeasonsSection from './sections/season-section';
 
 type Props = {
     tvshowId: number;
@@ -27,6 +28,7 @@ export default async function TvshowDetailPage({ tvshowId }: Props) {
                 width={width}
                 countryCode={countryCode}
             />
+            <SeasonsSection tvshow={tvshow} />
             <CastSection aggregateCast={tvshow.aggregateCredits.cast} />
             <CrewSection aggregateCrew={tvshow.aggregateCredits.crew} />
             <RecommendationSection tvshow={tvshow} />

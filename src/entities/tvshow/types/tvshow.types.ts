@@ -80,7 +80,7 @@ type CreatedBy = {
     profileUrl: string | null;
 };
 
-type Network = {
+export type Network = {
     id: number;
     logoUrl: string | null;
     name: string;

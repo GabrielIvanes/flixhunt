@@ -11,7 +11,7 @@ type Props = {
     info?: ReactNode;
     width?: number;
     scale?: boolean;
-    aspectClass?: 'square' | 'poster';
+    aspectClass?: 'square' | 'poster' | 'rectangle';
 };
 
 export default function PosterCard({
@@ -26,6 +26,7 @@ export default function PosterCard({
     const aspectRatioClasses = {
         poster: 'aspect-2/3',
         square: 'aspect-square',
+        rectangle: 'aspect-16/9',
     };
 
     const card = (

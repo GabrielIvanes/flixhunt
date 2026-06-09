@@ -1,14 +1,26 @@
-export type Episode = {
+import { GuestStar } from "../cast/cast.types";
+import { Crew } from "../crew/crew.types";
+
+export type EpisodeBase = {
+    airDate: string;
+    episodeNumber: number;
     id: number;
     name: string;
     overview: string;
-    voteAverage: number;
-    voteCount: number;
-    airDate: string;
-    episodeNumber: number;
     productionCode: string;
     runtime: number;
     seasonNumber: number;
-    showId: number;
     stillUrl: string | null;
+    voteAverage: number;
+    voteCount: number;
+}
+
+export type Episode = EpisodeBase & {
+    episodeType: string | null;
+    showId: number;
 };
+
+export type EpisodeDetail = EpisodeBase & {
+    crew: Crew[];
+    guestStars: GuestStar[];
+}

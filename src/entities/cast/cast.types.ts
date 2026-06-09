@@ -1,9 +1,12 @@
 import type { PersonBase } from '@/entities/person/person.types';
 
-export type Cast = PersonBase & {
+export type GuestStar = PersonBase & {
     originalName: string;
-    castId: number;
     character: string;
     creditId: string;
     order: number;
+};
+
+export type Cast = GuestStar & {
+    castId: number;
 };

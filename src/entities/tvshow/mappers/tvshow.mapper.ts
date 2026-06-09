@@ -135,7 +135,9 @@ export async function mapTmdbTvshowDetail(
 
         numberOfSeasons: dto.number_of_seasons,
 
-        seasons: await Promise.all(dto.seasons.map(mapTmdbSeason)),
+        seasons: await Promise.all(
+            dto.seasons.map((season) => mapTmdbSeason(season, dto.id))
+        ),
 
         status: dto.status,
 

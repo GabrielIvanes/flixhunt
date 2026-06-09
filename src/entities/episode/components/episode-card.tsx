@@ -1,21 +1,28 @@
 import { ReactNode } from 'react';
 import PosterCard from '@/shared/components/poster-card';
-import { MovieBase } from '../types/movie.types';
+import { EpisodeBase } from '../episode.types';
 
 type Props = {
-    movie: MovieBase;
+    episode: EpisodeBase;
     href?: string;
     info?: ReactNode;
     width?: number;
 };
-export default function MovieCard({ movie, href, info, width }: Props) {
+
+export default function EpisodeCard({
+    episode,
+    href,
+    info,
+    width = 250,
+}: Props) {
     return (
         <PosterCard
-            title={movie.title}
-            imageUrl={movie.posterUrl}
+            title={episode.name}
+            imageUrl={episode.stillUrl}
             href={href}
             info={info}
             width={width}
+            aspectClass="rectangle"
         />
     );
 }

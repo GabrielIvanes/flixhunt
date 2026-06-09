@@ -1,16 +1,16 @@
 import type { ReactNode } from 'react';
 
-import type { Cast } from '@/entities/cast/cast.types';
+import type { GuestStar } from '@/entities/cast/cast.types';
 import PersonCard from '@/entities/person/components/person-card';
 import CardsCarousel from '@/shared/components/cards-carousel';
 
 type Props = {
-    cast: Cast[];
+    cast: GuestStar[];
     loop?: boolean;
     title?: string;
     width?: number;
-    getTooltip?: (cast: Cast) => ReactNode;
-    getInfo?: (cast: Cast) => ReactNode;
+    getTooltip?: (cast: GuestStar) => ReactNode;
+    getInfo?: (cast: GuestStar) => ReactNode;
 };
 
 export default function CastCarousel({

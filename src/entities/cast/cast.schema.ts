@@ -9,4 +9,12 @@ export const TmdbCastSchema = TmdbPersonBaseSchema.extend({
     order: z.number(),
 });
 
+export const TmdbGuestStarSchema = TmdbPersonBaseSchema.extend({
+    original_name: z.string(),
+    character: z.string(),
+    credit_id: z.string(),
+    order: z.number(),
+});
+
 export type TmdbCastDto = z.infer<typeof TmdbCastSchema>;
+export type TmdbGuestStarDto = z.infer<typeof TmdbGuestStarSchema>;
