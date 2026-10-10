@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { TmdbMovieSchema } from '../movie/schemas/movie.schema';
+import { TmdbTvshowSchema } from '../tvshow/schemas/tvshow.schema';
 
 export const TmdbPersonBaseSchema = z.object({
     adult: z.boolean(),
@@ -105,6 +107,20 @@ export const TmdbPersonCombinedCrewCreditSchema = z.discriminatedUnion(
     [TmdbPersonMovieCrewCreditSchema, TmdbPersonTvCrewCreditSchema]
 );
 
+const TmdbKnownForMovieSchema = TmdbMovieSchema.extend({
+    media_type: z.literal('movie'),
+});
+
+const TmdbKnownForTvSchema = TmdbTvshowSchema.extend({
+    media_type: z.literal('tv'),
+});
+
+export const TmdbPersonSchema = TmdbPersonBaseSchema.extend({
+    known_for: z.array(
+        z.discriminatedUnion('media_type', [TmdbKnownForMovieSchema, TmdbKnownForTvSchema])
+    ),
+});
+
 export const TmdbPersonDetailSchema = TmdbPersonBaseSchema.extend({
     also_known_as: z.array(z.string()),
     biography: z.string(),
@@ -160,3 +176,5 @@ export type TmdbPersonCastAggregateCreditDto = z.infer<
 export type TmdbPersonCrewAggregateCreditDto = z.infer<
     typeof TmdbPersonCrewAggregateCreditSchema
 >;
+
+export type TmdbPersonDto = z.infer<typeof TmdbPersonSchema>;

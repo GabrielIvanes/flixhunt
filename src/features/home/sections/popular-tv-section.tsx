@@ -1,4 +1,4 @@
-import { getPopularTvshows } from '@/features/tvshow/services/get-popular-tvshows';
+import { getPopularTvshows } from '@/features/tvshows/services/get-popular-tvshows';
 import TvshowsCarousel from '@/features/tvshow-detail/components/tvshows-carousel';
 
 export default async function PopularTvSection() {

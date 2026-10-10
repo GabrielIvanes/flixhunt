@@ -1,4 +1,4 @@
-import { getTrendingMovies } from '@/features/movie/services/get-trending-movies';
+import { getTrendingMovies } from '@/features/movies/services/get-trending-movies';
 import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 
 export default async function TrendingMoviesSection() {

@@ -1,4 +1,5 @@
 import { TmdbMovieSchema } from '@/entities/movie/schemas/movie.schema';
+import { TmdbPersonSchema } from '@/entities/person/person.schema';
 import { TmdbTvshowSchema } from '@/entities/tvshow/schemas/tvshow.schema';
 import { z } from 'zod';
 
@@ -18,3 +19,6 @@ export const TmdbMoviesPaginatedResponseSchema =
 
 export const TmdbTvshowPaginatedResponseSchema =
     CreateTmdbPaginatedResponseSchema(TmdbTvshowSchema);
+
+export const TmdbPersonsPaginatedResponseSchema =
+    CreateTmdbPaginatedResponseSchema(TmdbPersonSchema);

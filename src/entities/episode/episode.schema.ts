@@ -11,7 +11,7 @@ export const TmdbEpisodeBaseSchema = z.object({
     air_date: z.string(),
     episode_number: z.number(),
     production_code: z.string(),
-    runtime: z.number(),
+    runtime: z.number().nullable(),
     season_number: z.number(),
     still_path: z.string().nullable(),
 });

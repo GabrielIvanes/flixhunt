@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
     const language = searchParams.get('language') || 'en-US';
-    const media_type = searchParams.get('media_type');
+    let media_type = searchParams.get('media_type');
 
     if (!language) {
         return NextResponse.json(
@@ -14,17 +14,27 @@ export async function GET(req: NextRequest) {
 
     if (!media_type) {
         return NextResponse.json(
-            { success: false, data: null, error: 'Missing parameter media_type' },
+            {
+                success: false,
+                data: null,
+                error: 'Missing parameter media_type',
+            },
             { status: 400 }
         );
     }
 
-    if (media_type !== 'movie' && media_type !== 'tv') {
+    if (media_type !== 'movie' && media_type !== 'tvshow') {
         return NextResponse.json(
-            { success: false, data: null, error: 'Invalid parameter media_type' },
+            {
+                success: false,
+                data: null,
+                error: 'Invalid parameter media_type',
+            },
             { status: 400 }
         );
     }
+
+    if (media_type === 'tvshow') media_type = 'tv';
 
     const url = `${process.env.TMDB_BASE_URL}/genre/${media_type}/list?language=${language}`;
 

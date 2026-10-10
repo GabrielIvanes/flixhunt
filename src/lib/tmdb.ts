@@ -24,20 +24,4 @@ export async function getProviders(
     }
 }
 
-export async function getGenres(mediaType: 'movie' | 'tv', language?: string) {
-    const url = new URL(`${process.env.API_BASE_URL}/tmdb/genres`);
-    url.searchParams.set('media_type', mediaType);
-    if (language) url.searchParams.set('language', language);
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-    const json = await response.json();
 
-    if (json.success) {
-        const genres: Genre[] = json.data.genres;
-        return genres;
-    } else {
-        throw new Error(json.error);
-    }
-}

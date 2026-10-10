@@ -1,5 +1,5 @@
 import { MovieDetail } from '@/entities/movie/types/movie.types';
-import { getMovieDetail } from '../movie/services/get-movie-detail';
+import { getMovieDetail } from '../movie-detail/services/get-movie-detail';
 import MediaBackdrop from '@/entities/media/components/media-backdrop';
 import MovieDetailClient from '../movie-detail/movie-detail-client';
 import CastSection from '../movie-detail/sections/cast-section';

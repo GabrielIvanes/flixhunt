@@ -134,3 +134,13 @@ export type WatchProviderOptions = {
     ads: Provider[];
     free: Provider[];
 };
+
+export interface Providers {
+    results: {
+        displayPriorities: Record<CountryCode, number>;
+        logoUrl: string | null;
+        providerId: number;
+        providerName: string;
+        displayPriority: number;
+    }[];
+}

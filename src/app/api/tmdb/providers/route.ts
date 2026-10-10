@@ -4,7 +4,7 @@ export async function GET(req: NextRequest) {
     const { searchParams } = req.nextUrl;
     const language = searchParams.get('language') || 'en-US';
     const region = searchParams.get('region') || 'FR';
-    const mediaType = searchParams.get('media_type');
+    let mediaType = searchParams.get('media_type');
 
     if (!mediaType)
         return NextResponse.json(
@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
             },
             { status: 400 }
         );
-    if (mediaType !== 'movie' && mediaType !== 'tv')
+    if (mediaType !== 'movie' && mediaType !== 'tvshow')
         return NextResponse.json(
             {
                 success: false,
@@ -25,7 +25,11 @@ export async function GET(req: NextRequest) {
             { status: 400 }
         );
 
-    const url = new URL(`${process.env.TMDB_BASE_URL}/watch/providers/${mediaType}`);
+    if (mediaType === 'tvshow') mediaType = 'tv';
+
+    const url = new URL(
+        `${process.env.TMDB_BASE_URL}/watch/providers/${mediaType}`
+    );
     url.searchParams.set('watch_region', region);
     url.searchParams.set('language', language);
 

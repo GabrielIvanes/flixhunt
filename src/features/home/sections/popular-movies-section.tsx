@@ -1,4 +1,4 @@
-import { getPopularMovies } from '@/features/movie/services/get-popular-movies';
+import { getPopularMovies } from '@/features/movies/services/get-popular-movies';
 import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 
 export default async function PopularMoviesSection() {

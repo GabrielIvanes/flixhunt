@@ -1,3 +1,6 @@
+import { Movie } from '../movie/types/movie.types';
+import { Tvshow } from '../tvshow/types/tvshow.types';
+
 export type PersonBase = {
     adult: boolean;
     gender: number;
@@ -9,13 +12,10 @@ export type PersonBase = {
 };
 
 export type Person = PersonBase & {
-    alsoKnownAs: string[];
-    biography: string;
-    birthday: string | null;
-    deathday: string | null;
-    homepage: string | null;
-    imdbId: string | null;
-    placeOfBirth: string | null;
+    knownFor: (
+        | (Movie & { media_type: 'movie' })
+        | (Tvshow & { media_type: 'tv' })
+    )[];
 };
 
 export type PersonMovieCastCredit = {
@@ -123,7 +123,14 @@ export type PersonCombinedCrewCredit =
     | PersonMovieCrewCredit
     | PersonTvCrewCredit;
 
-export type PersonDetail = Person & {
+export type PersonDetail = PersonBase & {
+    alsoKnownAs: string[];
+    biography: string;
+    birthday: string | null;
+    deathday: string | null;
+    homepage: string | null;
+    imdbId: string | null;
+    placeOfBirth: string | null;
     combinedCredits: {
         cast: PersonCombinedCastCredit[];
         crew: PersonCombinedCrewCredit[];

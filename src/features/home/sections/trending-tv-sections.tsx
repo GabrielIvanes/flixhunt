@@ -1,5 +1,5 @@
 import TvshowsCarousel from '@/features/tvshow-detail/components/tvshows-carousel';
-import { getTrendingTvshows } from '@/features/tvshow/services/get-trending-tvshows';
+import { getTrendingTvshows } from '@/features/tvshows/services/get-trending-tvshows';
 
 export default async function TrendingTvSection() {
     const trendingTvshows = await getTrendingTvshows();

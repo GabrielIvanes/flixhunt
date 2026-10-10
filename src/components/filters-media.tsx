@@ -8,7 +8,7 @@ import {
 } from '@/types/global-interfaces';
 import Element from '@/shared/ui/element';
 import { useRouter, useSearchParams } from 'next/navigation';
-import Pagination from '@/components/pagination';
+import Pagination from '@/shared/components/old';
 import {
     Dialog,
     DialogClose,

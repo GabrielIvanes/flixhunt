@@ -15,16 +15,12 @@ interface Props {
     totalPages: number;
     page: number;
     media: 'movies' | 'tvs' | 'persons';
-    searchParams: ReadonlyURLSearchParams;
-    router: AppRouterInstance;
 }
 
 export default function Pagination({
     page,
     totalPages,
     media,
-    searchParams,
-    router,
 }: Props) {
     if (totalPages > 500) totalPages = 500;
 
@@ -39,8 +35,6 @@ export default function Pagination({
                                     handlePageChange(
                                         page - 1,
                                         media,
-                                        searchParams,
-                                        router
                                     );
                                     window.scrollTo(0, 0);
                                 }}

@@ -1,4 +1,4 @@
-import { getTheatreMovies } from '@/features/movie/services/get-theatre-movies';
+import { getTheatreMovies } from '@/features/movies/services/get-theatre-movies';
 import MoviesCarousel from '@/features/movie-detail/components/movies-carousel';
 import { PaginatedResponse } from '@/shared/types/paginated-response.types';
 import { Movie } from '@/entities/movie/types/movie.types';

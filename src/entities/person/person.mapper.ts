@@ -1,3 +1,5 @@
+import { mapTmdbMovie } from '../movie/mappers/movie.mapper';
+import { mapTmdbTvshow } from '../tvshow/mappers/tvshow.mapper';
 import type {
     TmdbPersonBaseDto,
     TmdbPersonCastAggregateCreditDto,
@@ -5,6 +7,7 @@ import type {
     TmdbPersonCombinedCrewCreditDto,
     TmdbPersonCrewAggregateCreditDto,
     TmdbPersonDetailDto,
+    TmdbPersonDto,
 } from './person.schema';
 import type {
     Person,
@@ -31,16 +34,23 @@ export async function mapTmdbPersonBase(
     };
 }
 
-export async function mapTmdbPerson(dto: TmdbPersonDetailDto): Promise<Person> {
+export async function mapTmdbPerson(dto: TmdbPersonDto): Promise<Person> {
     return {
         ...(await mapTmdbPersonBase(dto)),
-        alsoKnownAs: dto.also_known_as,
-        biography: dto.biography,
-        birthday: dto.birthday,
-        deathday: dto.deathday,
-        homepage: dto.homepage,
-        imdbId: dto.imdb_id,
-        placeOfBirth: dto.place_of_birth,
+        knownFor: await Promise.all(
+            dto.known_for.map(async (media) => {
+                if (media.media_type === 'movie') {
+                    return {
+                        ...(await mapTmdbMovie(media)),
+                        media_type: 'movie' as const,
+                    };
+                }
+                return {
+                    ...(await mapTmdbTvshow(media)),
+                    media_type: 'tv' as const,
+                };
+            })
+        ),
     };
 }
 
@@ -123,10 +133,17 @@ export async function mapTmdbPersonCombinedCrewCredit(
 export async function mapTmdbPersonDetail(
     dto: TmdbPersonDetailDto
 ): Promise<PersonDetail> {
-    const person = await mapTmdbPerson(dto);
+    const person = await mapTmdbPersonBase(dto);
 
     return {
         ...person,
+        alsoKnownAs: dto.also_known_as,
+        biography: dto.biography,
+        birthday: dto.birthday,
+        deathday: dto.deathday,
+        homepage: dto.homepage,
+        imdbId: dto.imdb_id,
+        placeOfBirth: dto.place_of_birth,
         combinedCredits: {
             cast: await Promise.all(
                 dto.combined_credits.cast.map(mapTmdbPersonCombinedCastCredit)

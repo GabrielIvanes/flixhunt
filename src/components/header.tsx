@@ -20,7 +20,7 @@ export default function Header() {
             name: 'Movies',
         },
         {
-            href: '/tvs',
+            href: '/tvshows',
             name: 'TV Shows',
         },
         {

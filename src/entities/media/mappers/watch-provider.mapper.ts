@@ -1,6 +1,14 @@
-import { TmdbWatchProvidersDto } from '@/entities/media/schemas/watch-provider.schema';
-import { WatchProviderOptions } from '@/entities/media/types/media.types';
+import {
+    TmdbProvidersDto,
+    TmdbWatchProvidersDto,
+} from '@/entities/media/schemas/watch-provider.schema';
+import {
+    CountryCode,
+    Providers,
+    WatchProviderOptions,
+} from '@/entities/media/types/media.types';
 import { mapTmdbProvider } from '@/entities/provider/provider.mapper';
+import { buildUrl } from '@/lib/tmdb/tmdb.image';
 
 export async function mapWatchProviders(
     providers: TmdbWatchProvidersDto
@@ -34,4 +42,23 @@ export async function mapWatchProviders(
     );
 
     return Object.fromEntries(entries);
+}
+
+export async function mapTmdbProviders(
+    dto: TmdbProvidersDto
+): Promise<Providers> {
+    return {
+        results: await Promise.all(
+            dto.results.map(async (provider) => ({
+                displayPriorities: provider.display_priorities as Record<
+                    CountryCode,
+                    number
+                >,
+                logoUrl: await buildUrl(provider.logo_path, 'w500'),
+                providerId: provider.provider_id,
+                providerName: provider.provider_name,
+                displayPriority: provider.display_priority,
+            }))
+        ),
+    };
 }
